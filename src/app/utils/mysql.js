@@ -1,20 +1,14 @@
 const mysql = require('mysql'),
-    config = require('../../config.js');
+    config = require('../../config.js'),
 
-var connectionPool = mysql.createPool({
-    'host': config.database.host,
-    'port': config.database.port,
-    'user': config.database.user,
-    'password': config.database.password,
-    'database': config.database.database,
-    'charset': config.database.charset,
-    'connectionLimit': config.database.connectionLimit,
-    'supportBigNumbers': true,
-    'bigNumberStrings': true
-});
+    connectionPool = mysql.createPool({
+        ...config.database,
+        'supportBigNumbers': true,
+        'bigNumberStrings': true
+    });
 
 function release(connection) {
-    connection.end(function (error) {
+    connection.end(error => {
         if (error) {
             console.log('Connection closed failed.');
         } else {
@@ -25,7 +19,7 @@ function release(connection) {
 
 function execQuery(sql) {
 
-    var results = new Promise((resolve, reject) => {
+    return new Promise((resolve, reject) => {
 
         connectionPool.getConnection((error, connection) => {
 
@@ -33,7 +27,6 @@ function execQuery(sql) {
                 console.log('Get connection from mysql pool failed !');
                 throw error;
             }
-
 
             connection.query(sql, (error, results) => {
 
@@ -46,7 +39,7 @@ function execQuery(sql) {
 
             });
 
-            connection.release(function (error) {
+            connection.release(error => {
                 if (error) {
                     console.log('Mysql connection close failed !');
                     throw error;
@@ -55,11 +48,9 @@ function execQuery(sql) {
 
         });
 
-    }).then(function (chunk) {
+    }).then(chunk => {
         return chunk;
     });
-
-    return results;
 
 };
 
