@@ -1,26 +1,17 @@
-const userService = require('../service/PatientService.js');
+const PatientService = require('../service/PatientService.js');
 
-var getUserinfo = (ctx, next) => {
+function getPatients(ctx, next) {
 
-    let query = ctx.query;
-    let userId = query.id;
-    let userInfo = userService.getUserById(userId);
+    const patients = PatientService.getPatients();
 
-    let html = '<html><body>'
-        + '<div> userinfo:&nbsp;' + userInfo + '</div>'
-        + '</body></html>';
-    ctx.response.type = 'text/html';
-    ctx.response.body = html;
+    // ctx.response.type = 'text/html';
+    ctx.response.body = JSON.stringify({
+        data: patients
+    });
 
-};
-
-var saveUserinfo = (ctx, next) => {
-    const requestString = ctx.data;
-    //TODO数据处理
-    Console.log(requestString);
 };
 
 module.exports = {
-    'GET /getUserinfo': getUserinfo,
-    'POST /saveUserinfo': saveUserinfo
+    'GET /getPatients': getPatients
+    // 'POST /saveUserinfo': saveUserinfo
 };
