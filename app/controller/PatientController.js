@@ -1,6 +1,7 @@
-const userService = require('./../service/userService.js');
+const userService = require('../service/PatientService.js');
 
 var getUserinfo = (ctx, next) => {
+
     let query = ctx.query;
     let userId = query.id;
     let userInfo = userService.getUserById(userId);
@@ -8,8 +9,9 @@ var getUserinfo = (ctx, next) => {
     let html = '<html><body>'
         + '<div> userinfo:&nbsp;' + userInfo + '</div>'
         + '</body></html>';
-    ctx.response.type ='text/html';
+    ctx.response.type = 'text/html';
     ctx.response.body = html;
+
 };
 
 var saveUserinfo = (ctx, next) => {
