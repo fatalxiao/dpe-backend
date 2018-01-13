@@ -8,7 +8,7 @@ module.exports = {
         user: 'root',
         password: 'root',
         database: 'dpe',
-        charset: 'utf-8',
+        charset: 'UTF8_GENERAL_CI',
         connectionLimit: 1000
     }
 

@@ -1,4 +1,4 @@
-const mysql = require('src/app/utils/mysql'),
+const mysql = require('mysql'),
     config = require('../../config.js');
 
 var connectionPool = mysql.createPool({
