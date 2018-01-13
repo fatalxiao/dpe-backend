@@ -1,22 +1,13 @@
 const Koa = require('koa'),
-    router = require('koa-router')(),
-    koaBody = require('koa-body'),
+    bodyParser = require('koa-bodyparser'),
 
-    app = module.exports = new Koa(),
+    router2controller = require('./utils/router2controller.js'),
+    config = require('./config.js'),
 
-    Patient = require('./controller/PatientController');
+    app = new Koa();
 
-// "database"
+app.use(bodyParser());
+app.use(router2controller());
 
-// middleware
-
-app.use(koaBody());
-
-router
-.get('/dpe/patients', Patient.getPatients)
-.get('/dpe/patient/:id', Patient.getPatient);
-
-app.use(router.routes());
-
-// listen
-if (!module.parent) app.listen(4100);
+app.listen(config.port);
+console.log(`Server started and listen on port ${config.port}`);
