@@ -1,5 +1,5 @@
-const mysql = require('mysql');
-const config = require('../config.js');
+const mysql = require('src/app/utils/mysql'),
+    config = require('../../config.js');
 
 var connectionPool = mysql.createPool({
     'host': config.database.host,
@@ -13,7 +13,7 @@ var connectionPool = mysql.createPool({
     'bigNumberStrings': true
 });
 
-var release = connection => {
+function release(connection) {
     connection.end(function (error) {
         if (error) {
             console.log('Connection closed failed.');
@@ -23,36 +23,28 @@ var release = connection => {
     });
 };
 
-var execQuery = sqlOptions => {
+function execQuery(sql) {
+
     var results = new Promise((resolve, reject) => {
+
         connectionPool.getConnection((error, connection) => {
+
             if (error) {
                 console.log('Get connection from mysql pool failed !');
                 throw error;
             }
 
-            var sql = sqlOptions['sql'];
-            var args = sqlOptions['args'];
 
-            if (!args) {
-                var query = connection.query(sql, (error, results) => {
-                    if (error) {
-                        console.log('Execute query error !');
-                        throw error;
-                    }
+            connection.query(sql, (error, results) => {
 
-                    resolve(results);
-                });
-            } else {
-                var query = connection.query(sql, args, function (error, results) {
-                    if (error) {
-                        console.log('Execute query error !');
-                        throw error;
-                    }
+                if (error) {
+                    console.log('Execute query error !');
+                    throw error;
+                }
 
-                    resolve(results);
-                });
-            }
+                resolve(results);
+
+            });
 
             connection.release(function (error) {
                 if (error) {
@@ -60,15 +52,18 @@ var execQuery = sqlOptions => {
                     throw error;
                 }
             });
+
         });
+
     }).then(function (chunk) {
         return chunk;
     });
 
     return results;
+
 };
 
 module.exports = {
-    release: release,
-    execQuery: execQuery
+    release,
+    execQuery
 };
