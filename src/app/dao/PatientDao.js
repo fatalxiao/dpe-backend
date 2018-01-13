@@ -4,7 +4,9 @@ async function getPatients() {
 
     const sql = 'select * from patient';
 
-    return await mysql.execQuery(sql);
+    const result = await mysql.execQuery(sql);
+
+    return result;
 
 }
 

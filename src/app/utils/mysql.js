@@ -35,6 +35,8 @@ function execQuery(sql) {
                     throw error;
                 }
 
+                console.log(sql, '\n', results);
+
                 resolve(results);
 
             });

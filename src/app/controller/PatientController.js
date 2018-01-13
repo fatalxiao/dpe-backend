@@ -1,9 +1,9 @@
 const PatientService = require('../service/PatientService.js'),
     response = require('../utils/response.js');
 
-function getPatients(ctx, next) {
+async function getPatients(ctx, next) {
 
-    const patients = PatientService.getPatients();
+    const patients = await PatientService.getPatients();
 
     // ctx.response.type = 'text/html';
     ctx.response.body = response.success(patients);

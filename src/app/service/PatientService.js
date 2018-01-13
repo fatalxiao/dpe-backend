@@ -1,7 +1,11 @@
 const PatientDao = require('../dao/PatientDao.js');
 
 async function getPatients() {
-    return PatientDao.getPatients();
+
+    const result = await PatientDao.getPatients();
+
+    return result;
+
 };
 
 module.exports = {
