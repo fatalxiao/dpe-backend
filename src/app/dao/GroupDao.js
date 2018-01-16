@@ -8,9 +8,7 @@ async function getGroups() {
         group_name AS groupName
         FROM dpe_group`;
 
-    const result = await mysql.execQuery(sql);
-
-    return result;
+    return await mysql.execQuery(sql);
 
 }
 

@@ -20,9 +20,7 @@ async function getPatients() {
         description
         FROM patient`;
 
-    const result = await mysql.execQuery(sql);
-
-    return result;
+    return await mysql.execQuery(sql);
 
 }
 

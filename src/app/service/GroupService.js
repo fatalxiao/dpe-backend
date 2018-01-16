@@ -1,11 +1,7 @@
 const GroupDao = require('../dao/GroupDao.js');
 
 async function getGroups() {
-
-    const result = await GroupDao.getGroups();
-
-    return result;
-
+    return await GroupDao.getGroups();
 };
 
 module.exports = {

@@ -9,9 +9,7 @@ async function getSensoryBlocks() {
         sensory_block_value AS sensoryBlockValue
         FROM sensory_block`;
 
-    const result = await mysql.execQuery(sql);
-
-    return result;
+    return await mysql.execQuery(sql);
 
 }
 

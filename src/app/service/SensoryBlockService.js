@@ -1,11 +1,7 @@
 const SensoryBlockDao = require('../dao/SensoryBlockDao.js');
 
 async function getSensoryBlocks() {
-
-    const result = await SensoryBlockDao.getSensoryBlocks();
-
-    return result;
-
+    return await SensoryBlockDao.getSensoryBlocks();
 };
 
 module.exports = {
