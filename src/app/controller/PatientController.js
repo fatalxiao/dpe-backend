@@ -2,13 +2,11 @@ const PatientService = require('../service/PatientService.js'),
     Response = require('../utils/Response.js');
 
 async function getPatients(ctx, next) {
-    const patients = await PatientService.getPatients();
-    ctx.response.body = Response.success(patients);
+    ctx.response.body = await PatientService.getPatients();
 };
 
 async function addPatient(ctx, next) {
-    const patientId = await PatientService.addPatient(ctx.request.body);
-    ctx.response.body = Response.success(patientId);
+    ctx.response.body = await PatientService.addPatient(ctx.request.body);
 };
 
 module.exports = {
