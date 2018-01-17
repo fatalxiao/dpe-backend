@@ -4,8 +4,8 @@ async function getPatients() {
     return await Patient.findAll();
 }
 
-async function addPatient() {
-    // return await Patient.findAll();
+async function addPatient(formData) {
+    return await Patient.create(formData);
 }
 
 module.exports = {

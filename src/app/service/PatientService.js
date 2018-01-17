@@ -5,8 +5,8 @@ async function getPatients() {
     return Response.success(await PatientDao.getPatients());
 };
 
-async function addPatient() {
-    return Response.success(await PatientDao.addPatient());
+async function addPatient(formData) {
+    return Response.success(await PatientDao.addPatient(formData));
 };
 
 module.exports = {
