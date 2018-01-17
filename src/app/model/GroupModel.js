@@ -3,6 +3,7 @@ const Sequelize = require('Sequelize'),
 
     Group = sequelizeInstance.define('dpe_group', {
         id: {
+            field: 'id',
             type: Sequelize.INTEGER,
             allowNull: false,
             unique: true,
@@ -10,8 +11,8 @@ const Sequelize = require('Sequelize'),
             autoIncrement: true
         },
         groupName: {
-            type: Sequelize.STRING(20),
-            field: 'group_name'
+            field: 'group_name',
+            type: Sequelize.STRING(20)
         }
     }, {
         timestamps: false

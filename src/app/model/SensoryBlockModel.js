@@ -3,6 +3,7 @@ const Sequelize = require('Sequelize'),
 
     SensoryBlock = sequelizeInstance.define('sensory_block', {
         id: {
+            field: 'id',
             type: Sequelize.INTEGER,
             allowNull: false,
             unique: true,
@@ -10,12 +11,12 @@ const Sequelize = require('Sequelize'),
             autoIncrement: true
         },
         sensoryBlockName: {
-            type: Sequelize.STRING(20),
-            field: 'sensory_block_name'
+            field: 'sensory_block_name',
+            type: Sequelize.STRING(20)
         },
         sensoryBlockValue: {
-            type: Sequelize.INTEGER,
-            field: 'sensory_block_value'
+            field: 'sensory_block_value',
+            type: Sequelize.INTEGER
         }
     }, {
         timestamps: false
