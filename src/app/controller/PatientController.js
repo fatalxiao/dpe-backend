@@ -7,12 +7,8 @@ async function getPatients(ctx, next) {
 };
 
 async function addPatient(ctx, next) {
-
-    ctx.request.body
-
-    const patientId = await PatientService.addPatient();
+    const patientId = await PatientService.addPatient(ctx.request.body);
     ctx.response.body = Response.success(patientId);
-
 };
 
 module.exports = {

@@ -1,9 +1,7 @@
-const GroupService = require('../service/GroupService.js'),
-    Response = require('../utils/Response.js');
+const GroupService = require('../service/GroupService.js');
 
 async function getGroups(ctx, next) {
-    const groups = await GroupService.getGroups();
-    ctx.response.body = Response.success(groups);
+    ctx.response.body = await GroupService.getGroups();
 };
 
 module.exports = {

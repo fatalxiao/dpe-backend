@@ -3,62 +3,62 @@ const Sequelize = require('Sequelize'),
 
     Patient = sequelizeInstance.define('patient', {
         id: {
-            filed: 'id',
+            field: 'id',
             type: Sequelize.STRING(10),
             allowNull: false,
             unique: true,
             primaryKey: true
         },
         groupId: {
-            filed: 'group_id',
+            field: 'group_id',
             type: Sequelize.INTEGER(1)
         },
         patientName: {
-            filed: 'patient_name',
+            field: 'patient_name',
             type: Sequelize.STRING(30)
         },
         age: {
-            filed: 'age',
+            field: 'age',
             type: Sequelize.INTEGER(3)
         },
         gestationalDays: {
-            filed: 'gestational_days',
+            field: 'gestational_days',
             type: Sequelize.INTEGER(3)
         },
         height: {
-            filed: 'height',
+            field: 'height',
             type: Sequelize.FLOAT
         },
         weight: {
-            filed: 'weight',
+            field: 'weight',
             type: Sequelize.FLOAT
         },
         initialVasScore: {
-            filed: 'initial_vas_score',
+            field: 'initial_vas_score',
             type: Sequelize.INTEGER(3)
         },
         cervicalDilationAtTimeOfEa: {
-            filed: 'cervical_dilation_at_time_of_ea',
+            field: 'cervical_dilation_at_time_of_ea',
             type: Sequelize.INTEGER(3)
         },
         heartRate: {
-            filed: 'heart_rate',
+            field: 'heart_rate',
             type: Sequelize.INTEGER(3)
         },
         systolicBloodPressure: {
-            filed: 'systolic_blood_pressure',
+            field: 'systolic_blood_pressure',
             type: Sequelize.INTEGER(3)
         },
         diastolicBloodPressure: {
-            filed: 'diastolic_blood_pressure',
+            field: 'diastolic_blood_pressure',
             type: Sequelize.INTEGER(3)
         },
         foetalHeartRate: {
-            filed: 'foetal_heart_rate',
+            field: 'foetal_heart_rate',
             type: Sequelize.INTEGER(3)
         },
         description: {
-            filed: 'description',
+            field: 'description',
             type: Sequelize.STRING(1000)
         }
     }, {
