@@ -1,11 +1,12 @@
-const PatientDao = require('../dao/PatientDao.js');
+const PatientDao = require('../dao/PatientDao.js'),
+    Response = require('../utils/Response.js');
 
 async function getPatients() {
-    return await PatientDao.getPatients();
+    return Response.success(await PatientDao.getPatients());
 };
 
 async function addPatient() {
-    return await PatientDao.addPatient();
+    return Response.success(await PatientDao.addPatient());
 };
 
 module.exports = {
