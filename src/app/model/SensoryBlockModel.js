@@ -9,8 +9,14 @@ const Sequelize = require('Sequelize'),
             primaryKey: true,
             autoIncrement: true
         },
-        sensory_block_name: Sequelize.STRING(20),
-        sensory_block_value: Sequelize.INTEGER
+        sensoryBlockName: {
+            type: Sequelize.STRING(20),
+            field: 'sensory_block_name'
+        },
+        sensoryBlockValue: {
+            type: Sequelize.INTEGER,
+            field: 'sensory_block_value'
+        }
     }, {
         timestamps: false
     });
