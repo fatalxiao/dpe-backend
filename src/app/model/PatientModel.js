@@ -3,7 +3,7 @@ const Sequelize = require('Sequelize'),
 
     Patient = sequelize.define('patient', {
         id: {
-            type: Sequelize.STRING(6),
+            type: Sequelize.STRING(10),
             allowNull: false,
             unique: true,
             primaryKey: true

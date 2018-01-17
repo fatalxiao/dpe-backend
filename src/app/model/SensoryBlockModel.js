@@ -1,7 +1,7 @@
 const Sequelize = require('Sequelize'),
     sequelize = require('../utils/sequelize'),
 
-    Group = sequelize.define('dpe_group', {
+    SensoryBlock = sequelize.define('sensory_block', {
         id: {
             type: Sequelize.INTEGER,
             allowNull: false,
@@ -9,9 +9,10 @@ const Sequelize = require('Sequelize'),
             primaryKey: true,
             autoIncrement: true
         },
-        group_name: Sequelize.STRING(20)
+        sensory_block_name: Sequelize.STRING(20),
+        sensory_block_value: Sequelize.INTEGER
     }, {
         timestamps: false
     });
 
-module.exports = Group;
+module.exports = SensoryBlock;
