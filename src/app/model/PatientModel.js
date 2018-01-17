@@ -3,13 +3,13 @@ const Sequelize = require('Sequelize'),
 
     Patient = sequelize.define('patient', {
         id: {
-            type: Sequelize.CHAR(6),
+            type: Sequelize.STRING(6),
             allowNull: false,
             unique: true,
             primaryKey: true
         },
         group_id: Sequelize.INTEGER(1),
-        patient_name: Sequelize.CHAR(30),
+        patient_name: Sequelize.STRING(30),
         age: Sequelize.INTEGER(3),
         gestational_days: Sequelize.INTEGER(3),
         height: Sequelize.FLOAT,
@@ -20,7 +20,7 @@ const Sequelize = require('Sequelize'),
         systolic_blood_pressure: Sequelize.INTEGER(3),
         diastolic_blood_pressure: Sequelize.INTEGER(3),
         foetal_heart_rate: Sequelize.INTEGER(3),
-        description: Sequelize.CHAR(1000)
+        description: Sequelize.STRING(1000)
     }, {
         timestamps: true,
         createdAt: 'ctime',
