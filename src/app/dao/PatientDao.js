@@ -4,6 +4,11 @@ async function getPatients() {
     return await Patient.findAll();
 }
 
+async function addPatient() {
+    // return await Patient.findAll();
+}
+
 module.exports = {
-    getPatients
+    getPatients,
+    addPatient
 };

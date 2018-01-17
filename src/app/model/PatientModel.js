@@ -1,7 +1,7 @@
 const Sequelize = require('Sequelize'),
-    sequelize = require('../utils/sequelize'),
+    sequelizeInstance = require('../utils/SequelizeGenerator')(),
 
-    Patient = sequelize.define('patient', {
+    Patient = sequelizeInstance.define('patient', {
         id: {
             type: Sequelize.STRING(10),
             allowNull: false,

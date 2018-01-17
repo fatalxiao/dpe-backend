@@ -1,7 +1,7 @@
 const Sequelize = require('Sequelize'),
-    sequelize = require('../utils/sequelize'),
+    sequelizeInstance = require('../utils/SequelizeGenerator')(),
 
-    SensoryBlock = sequelize.define('sensory_block', {
+    SensoryBlock = sequelizeInstance.define('sensory_block', {
         id: {
             type: Sequelize.INTEGER,
             allowNull: false,

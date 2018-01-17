@@ -1,9 +1,17 @@
-const Sequelize = require('Sequelize'),
+const Sequelize = require('sequelize'),
 
     config = require('../../config'),
-    databaseConfig = config.database,
+    databaseConfig = config.database;
 
-    sequelize = new Sequelize(
+let sequelize;
+
+function generateSequelize() {
+
+    if (sequelize) {
+        return sequelize;
+    }
+
+    return sequelize = new Sequelize(
         databaseConfig.database,
         databaseConfig.username,
         databaseConfig.password, {
@@ -29,4 +37,7 @@ const Sequelize = require('Sequelize'),
         }
     );
 
-module.exports = sequelize;
+}
+
+
+module.exports = generateSequelize;

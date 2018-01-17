@@ -1,7 +1,7 @@
 const Sequelize = require('Sequelize'),
-    sequelize = require('../utils/sequelize'),
+    sequelizeInstance = require('../utils/SequelizeGenerator')(),
 
-    Group = sequelize.define('dpe_group', {
+    Group = sequelizeInstance.define('dpe_group', {
         id: {
             type: Sequelize.INTEGER,
             allowNull: false,
@@ -9,7 +9,10 @@ const Sequelize = require('Sequelize'),
             primaryKey: true,
             autoIncrement: true
         },
-        group_name: Sequelize.STRING(20)
+        groupName: {
+            type: Sequelize.STRING(20),
+            field: 'group_name'
+        }
     }, {
         timestamps: false
     });

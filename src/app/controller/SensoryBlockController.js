@@ -1,9 +1,9 @@
 const SensoryBlockService = require('../service/SensoryBlockService.js'),
-    response = require('../utils/response.js');
+    Response = require('../utils/Response.js');
 
 async function getSensoryBlocks(ctx, next) {
     const sensoryBlocks = await SensoryBlockService.getSensoryBlocks();
-    ctx.response.body = response.success(sensoryBlocks);
+    ctx.response.body = Response.success(sensoryBlocks);
 };
 
 module.exports = {
