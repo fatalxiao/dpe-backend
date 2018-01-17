@@ -1,7 +1,7 @@
 const Sequelize = require('Sequelize'),
     sequelize = require('../utils/sequelize'),
 
-    Group = sequelize.define('dep_group', {
+    Group = sequelize.define('dpe_group', {
         id: {
             type: Sequelize.INTEGER(2),
             allowNull: false,
