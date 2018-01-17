@@ -10,6 +10,7 @@
         "koa-bodyparser": "^2.5.0",
         "koa-router": "^7.2.0",
         "mysql": "^2.15.0",
+        "mysql2": "^1.5.1",
         "sequelize": "^4.31.2"
     }
 }
