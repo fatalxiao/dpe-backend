@@ -31,9 +31,6 @@ function generateSequelize() {
                 underscored: true
             }
 
-            // http://docs.sequelizejs.com/manual/tutorial/querying.html#operators
-            // operatorsAliases: false
-
         }
     );
 
