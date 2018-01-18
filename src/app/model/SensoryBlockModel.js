@@ -19,6 +19,7 @@ const Sequelize = require('Sequelize'),
             type: Sequelize.INTEGER
         }
     }, {
+        freezeTableName: true,
         timestamps: false
     });
 

@@ -15,6 +15,7 @@ const Sequelize = require('Sequelize'),
             type: Sequelize.STRING(20)
         }
     }, {
+        freezeTableName: true,
         timestamps: false
     });
 
