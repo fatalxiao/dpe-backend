@@ -24,7 +24,7 @@ const Sequelize = require('Sequelize'),
         },
         vasScore: {
             field: 'vas_score',
-            type: Sequelize.INTEGER(3)
+            type: Sequelize.INTEGER
         },
         thoracicSensoryBlockLeft: {
             field: 'thoracic_sensory_block_left',
@@ -48,15 +48,15 @@ const Sequelize = require('Sequelize'),
         },
         systolicBloodPressure: {
             field: 'systolic_blood_pressure',
-            type: Sequelize.INTEGER(3)
+            type: Sequelize.INTEGER
         },
         diastolicBloodPressure: {
             field: 'diastolic_blood_pressure',
-            type: Sequelize.INTEGER(3)
+            type: Sequelize.INTEGER
         },
         heartRate: {
             field: 'heart_rate',
-            type: Sequelize.INTEGER(3)
+            type: Sequelize.INTEGER
         },
         pulseOxygenSaturation: {
             field: 'pulse_oxygen_saturation',

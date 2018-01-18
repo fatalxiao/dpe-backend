@@ -109,6 +109,14 @@ const Sequelize = require('Sequelize'),
         patientSatisfactionScore: {
             field: 'patient_satisfaction_score',
             type: Sequelize.INTEGER
+        },
+        hasAccidentalDuralPunture: {
+            field: 'has_accidental_dural_punture',
+            type: Sequelize.BOOLEAN
+        },
+        lateralEpisiotomyVasScore: {
+            field: 'lateralEpisiotomyVasScore',
+            type: Sequelize.INTEGER
         }
     }, {
         freezeTableName: true,
