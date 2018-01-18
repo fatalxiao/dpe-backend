@@ -117,6 +117,58 @@ const Sequelize = require('Sequelize'),
         lateralEpisiotomyVasScore: {
             field: 'lateralEpisiotomyVasScore',
             type: Sequelize.INTEGER
+        },
+        hasLateralEpisiotomy: {
+            field: 'has_lateral_episiotomy',
+            type: Sequelize.BOOLEAN
+        },
+        birthTime: {
+            field: 'birth_time',
+            type: Sequelize.DATE
+        },
+        foetalHeight: {
+            field: 'foetal_height',
+            type: Sequelize.INTEGER
+        },
+        foetalWeight: {
+            field: 'foetal_weight',
+            type: Sequelize.INTEGER
+        },
+        oneMinuteApgarScore: {
+            field: 'one_minute_apgar_score',
+            type: Sequelize.INTEGER
+        },
+        fiveMinuteApgarScore: {
+            field: 'five_minute_apgar_score',
+            type: Sequelize.INTEGER
+        },
+        hasNicu: {
+            field: 'has_nicu',
+            type: Sequelize.BOOLEAN
+        },
+        nicuReason: {
+            field: 'nicu_reason',
+            type: Sequelize.STRING
+        },
+        arterialPh: {
+            field: 'arterial_ph',
+            type: Sequelize.FLOAT
+        },
+        arterialBe: {
+            field: 'arterial_be',
+            type: Sequelize.FLOAT
+        },
+        venousPh: {
+            field: 'venous_ph',
+            type: Sequelize.FLOAT
+        },
+        venousBe: {
+            field: 'venous_be',
+            type: Sequelize.FLOAT
+        },
+        description: {
+            field: 'description',
+            type: Sequelize.STRING(1000)
         }
     }, {
         freezeTableName: true,
