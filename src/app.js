@@ -1,13 +1,13 @@
 const Koa = require('koa'),
     bodyParser = require('koa-bodyparser'),
 
-    router2controller = require('./app/utils/router2controller.js'),
+    Api = require('./app/utils/Api.js'),
     config = require('./config.js'),
 
     app = new Koa();
 
 app.use(bodyParser());
-app.use(router2controller());
+app.use(Api.router2controller());
 
 app.listen(config.port);
 console.log(`Server started and listen on port ${config.port}`);
