@@ -10,12 +10,9 @@ const fs = require('fs'),
     API_TYPE_DELETE = 'delete';
 
 function decorator(apiType, apiRoute, controller) {
-
     controller[API_TYPE] = apiType;
     controller[API_ROUTE] = apiRoute;
-
     return controller;
-
 }
 
 function addMapping(router, controllers) {
