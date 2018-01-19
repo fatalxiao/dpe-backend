@@ -1,10 +1,10 @@
 const SensoryBlockService = require('../service/SensoryBlockService.js'),
-    Response = require('../utils/Response.js');
+    Api = require('../utils/Api');
 
-async function getSensoryBlocks(ctx, next) {
+const getSensoryBlocks = Api.decorator(Api.API_TYPE_GET, '/dpe/sensoryBlock/getSensoryBlocks', async function (ctx, next) {
     ctx.response.body = await SensoryBlockService.getSensoryBlocks();
-};
+});
 
 module.exports = {
-    'GET /dpe/sensoryBlock/getSensoryBlocks': getSensoryBlocks
+    getSensoryBlocks
 };

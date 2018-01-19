@@ -1,7 +1,7 @@
 const Koa = require('koa'),
     bodyParser = require('koa-bodyparser'),
 
-    router2controller = require('./app/router2controller.js'),
+    router2controller = require('./app/utils/router2controller.js'),
     config = require('./config.js'),
 
     app = new Koa();

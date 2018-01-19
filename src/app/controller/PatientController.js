@@ -1,17 +1,15 @@
 const PatientService = require('../service/PatientService.js'),
-    Api = require('../utils/ApiDecorator'),
-    Response = require('../utils/Response.js');
+    Api = require('../utils/Api');
 
-@Api
-async function getPatients(ctx, next) {
+const getPatients = Api.decorator(Api.API_TYPE_GET, '/dpe/patient/getPatients', async function (ctx, next) {
     ctx.response.body = await PatientService.getPatients();
-};
+});
 
-async function addPatient(ctx, next) {
+const addPatient = Api.decorator(Api.API_TYPE_POST, '/dpe/patient/addPatient', async function (ctx, next) {
     ctx.response.body = await PatientService.addPatient(ctx.request.body);
-};
+});
 
 module.exports = {
-    'GET /dpe/patient/getPatients': getPatients,
-    'POST /dpe/patient/addPatient': addPatient
+    getPatients,
+    addPatient
 };

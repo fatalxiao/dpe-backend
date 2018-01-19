@@ -1,9 +1,10 @@
-const GroupService = require('../service/GroupService.js');
+const GroupService = require('../service/GroupService.js'),
+    Api = require('../utils/Api');
 
-async function getGroups(ctx, next) {
+const getGroups = Api.decorator(Api.API_TYPE_GET, '/dpe/group/getGroups', async function (ctx, next) {
     ctx.response.body = await GroupService.getGroups();
-};
+});
 
 module.exports = {
-    'GET /dpe/group/getGroups': getGroups
+    getGroups
 };
