@@ -25,13 +25,9 @@ function addMapping(router, controllers) {
     }
 
     for (let key in controllers) {
-
         const controller = controllers[key];
-
         console.log(`register URL mapping: ${controller[API_TYPE].toUpperCase()} ${controller[API_ROUTE]}`);
-
         router[controller[API_TYPE]](controller[API_ROUTE], controller);
-
     }
 
 }
