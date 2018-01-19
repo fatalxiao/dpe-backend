@@ -1,6 +1,8 @@
 const PatientService = require('../service/PatientService.js'),
+    Api = require('../utils/ApiDecorator'),
     Response = require('../utils/Response.js');
 
+@Api
 async function getPatients(ctx, next) {
     ctx.response.body = await PatientService.getPatients();
 };

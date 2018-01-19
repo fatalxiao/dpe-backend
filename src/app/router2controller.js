@@ -26,17 +26,14 @@ function addMapping(router, mapping) {
 }
 
 function addControllers(router, dir) {
-    fs.readdirSync(__dirname + '/' + dir).filter((f) => {
-        return f.endsWith('.js');
-    }).forEach((f) => {
+    fs.readdirSync(__dirname + '/' + dir).forEach(f => {
         console.log(`process controller: ${f}...`);
         let mapping = require(__dirname + '/' + dir + '/' + f);
         addMapping(router, mapping);
     });
 }
 
-module.exports = function (dir) {
-    var controllersDir = dir || 'controller';
-    addControllers(router, controllersDir);
+module.exports = function (dir = 'controller') {
+    addControllers(router, dir);
     return router.routes();
 };
