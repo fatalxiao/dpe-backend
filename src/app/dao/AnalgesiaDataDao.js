@@ -1,6 +1,6 @@
 const AnalgesiaData = require('../model/AnalgesiaDataModel');
 
-async function getAnalgesiaDataById(id) {
+async function getById(id) {
     return await AnalgesiaData.findAll({
         where: {
             id
@@ -8,7 +8,7 @@ async function getAnalgesiaDataById(id) {
     });
 }
 
-async function getAnalgesiaDataByPatientId(patientId) {
+async function getByPatientId(patientId) {
     return await AnalgesiaData.findAll({
         where: {
             patientId
@@ -16,7 +16,7 @@ async function getAnalgesiaDataByPatientId(patientId) {
     });
 }
 
-async function getAnalgesiaDataByPatientIdAndTimePoint(patientId, TimePoint) {
+async function getByPatientIdAndTimePoint(patientId, TimePoint) {
     return await AnalgesiaData.findAll({
         where: {
             patientId,
@@ -25,11 +25,11 @@ async function getAnalgesiaDataByPatientIdAndTimePoint(patientId, TimePoint) {
     });
 }
 
-async function addAnalgesiaData(data) {
+async function add(data) {
     return await AnalgesiaData.create(data);
 }
 
-async function updateAnalgesiaData(id, data) {
+async function update(id, data) {
     return await AnalgesiaData.update(data, {
         where: {
             id
@@ -37,10 +37,25 @@ async function updateAnalgesiaData(id, data) {
     });
 }
 
+async function updateByPatientIdAndTimePoint(patientId, TimePoint) {
+    return await AnalgesiaData.destroy({
+        where: {
+            patientId,
+            TimePoint
+        }
+    });
+}
+
 module.exports = {
-    getAnalgesiaDataById,
-    getAnalgesiaDataByPatientId,
-    getAnalgesiaDataByPatientIdAndTimePoint,
-    addAnalgesiaData,
-    updateAnalgesiaData
+
+    getById,
+    getByPatientId,
+    getByPatientIdAndTimePoint,
+
+    add,
+
+    update,
+
+    updateByPatientIdAndTimePoint
+
 };
