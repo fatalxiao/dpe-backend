@@ -1,9 +1,9 @@
-const SensoryBlock = require('../model/SensoryBlockModel');
+import SensoryBlock from '../model/SensoryBlockModel.js';
 
 async function getSensoryBlocks() {
     return await SensoryBlock.findAll();
 }
 
-module.exports = {
+export default {
     getSensoryBlocks
 };

@@ -1,10 +1,10 @@
-const SensoryBlockDao = require('../dao/SensoryBlockDao.js'),
-    Response = require('../utils/Response.js');
+import SensoryBlockDao from '../dao/SensoryBlockDao.js';
+import Response from '../utils/Response.js';
 
 async function getSensoryBlocks() {
     return Response.buildSuccess(await SensoryBlockDao.getSensoryBlocks());
 };
 
-module.exports = {
+export default {
     getSensoryBlocks
 };

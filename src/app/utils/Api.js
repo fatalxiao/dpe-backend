@@ -1,5 +1,7 @@
-const fs = require('fs'),
-    router = require('koa-router')(),
+import fs from 'fs';
+import Router from 'koa-router';
+
+const router = Router(),
 
     API_TYPE = Symbol('API_TYPE'),
     API_ROUTE = Symbol('API_ROUTE'),
@@ -41,7 +43,7 @@ function router2controller(dir = '../controller') {
     return router.routes();
 };
 
-module.exports = {
+export default {
 
     API_TYPE,
     API_ROUTE,

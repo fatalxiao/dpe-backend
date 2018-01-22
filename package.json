@@ -5,7 +5,8 @@
     "scripts": {
         "clean": "rimraf dist",
         "build": "npm run clean & babel src --out-dir dist",
-        "serve": "node dist/main"
+        "serve": "node dist/main",
+        "start": "npm run build & npm run serve"
     },
     "dependencies": {
         "babel-plugin-transform-decorators-legacy": "^1.3.4",

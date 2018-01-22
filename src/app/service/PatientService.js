@@ -1,5 +1,5 @@
-const PatientDao = require('../dao/PatientDao.js'),
-    Response = require('../utils/Response.js');
+import PatientDao from '../dao/PatientDao.js';
+import Response from '../utils/Response.js';
 
 async function getPatients() {
     return Response.buildSuccess(await PatientDao.getPatients());
@@ -22,7 +22,7 @@ async function addPatient(formData) {
 
 };
 
-module.exports = {
+export default {
     getPatients,
     addPatient
 };

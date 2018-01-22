@@ -1,4 +1,4 @@
-const AnalgesiaData = require('../model/AnalgesiaDataModel');
+import AnalgesiaData from '../model/AnalgesiaDataModel.js';
 
 async function getById(id) {
     return await AnalgesiaData.findAll({
@@ -46,7 +46,7 @@ async function updateByPatientIdAndTimePoint(patientId, TimePoint) {
     });
 }
 
-module.exports = {
+export default {
 
     getById,
     getByPatientId,

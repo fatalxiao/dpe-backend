@@ -1,8 +1,8 @@
-const _ = require('lodash'),
-    PatientService = require('../service/PatientService.js'),
-    AnalgesiaDataService = require('../service/AnalgesiaDataService.js'),
-    Api = require('../utils/Api'),
-    Response = require('../utils/Response');
+import _ from 'lodash';
+import PatientService from '../service/PatientService.js';
+import AnalgesiaDataService from '../service/AnalgesiaDataService.js';
+import Api from '../utils/Api.js';
+import Response from '../utils/Response.js';
 
 const getPatients = Api.decorator(Api.API_TYPE_GET, '/dpe/patient/getPatients', async ctx => {
     ctx.response.body = await PatientService.getPatients();
@@ -48,7 +48,7 @@ const updateAnalgesiaData = Api.decorator(Api.API_TYPE_POST, '/dpe/patient/updat
 
 });
 
-module.exports = {
+export default {
     getPatients,
     addPatient,
     updateAnalgesiaData

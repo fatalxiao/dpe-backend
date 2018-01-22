@@ -27,7 +27,7 @@ function buildParamError(data) {
     return build(Mappings.PARAM_INCORRECT, data);
 }
 
-module.exports = {
+export default {
     build,
     buildSuccess,
     buildError,

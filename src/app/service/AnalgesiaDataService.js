@@ -1,5 +1,5 @@
-const AnalgesiaDataDao = require('../dao/AnalgesiaDataDao.js'),
-    Response = require('../utils/Response.js');
+import AnalgesiaDataDao from '../dao/AnalgesiaDataDao.js';
+import Response from '../utils/Response.js';
 
 async function updateAnalgesiaData(formData) {
 
@@ -27,6 +27,6 @@ async function updateAnalgesiaData(formData) {
 
 };
 
-module.exports = {
+export default {
     updateAnalgesiaData
 };

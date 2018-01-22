@@ -1,8 +1,7 @@
-const Sequelize = require('sequelize'),
+import Sequelize from 'sequelize';
+import config from '../../config.js';
 
-    config = require('../../config'),
-    databaseConfig = config.database;
-
+const databaseConfig = config.database;
 let sequelize;
 
 function generateSequelize() {
@@ -37,4 +36,4 @@ function generateSequelize() {
 }
 
 
-module.exports = generateSequelize;
+export default generateSequelize;

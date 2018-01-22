@@ -1,22 +1,22 @@
-const Sequelize = require('Sequelize'),
-    sequelizeInstance = require('../utils/SequelizeGenerator')(),
+import Sequelize from 'Sequelize';
+import SequelizeGenerator from '../utils/SequelizeGenerator.js';
 
-    Group = sequelizeInstance.define('dpe_group', {
-        id: {
-            field: 'id',
-            type: Sequelize.INTEGER,
-            allowNull: false,
-            unique: true,
-            primaryKey: true,
-            autoIncrement: true
-        },
-        groupName: {
-            field: 'group_name',
-            type: Sequelize.STRING(20)
-        }
-    }, {
-        freezeTableName: true,
-        timestamps: false
-    });
+const sequelizeInstance = SequelizeGenerator();
 
-module.exports = Group;
+export default sequelizeInstance.define('dpe_group', {
+    id: {
+        field: 'id',
+        type: Sequelize.INTEGER,
+        allowNull: false,
+        unique: true,
+        primaryKey: true,
+        autoIncrement: true
+    },
+    groupName: {
+        field: 'group_name',
+        type: Sequelize.STRING(20)
+    }
+}, {
+    freezeTableName: true,
+    timestamps: false
+});

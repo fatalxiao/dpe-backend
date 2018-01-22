@@ -1,9 +1,9 @@
-const Group = require('../model/GroupModel');
+import Group from '../model/GroupModel.js';
 
 async function getGroups() {
     return await Group.findAll();
 }
 
-module.exports = {
+export default {
     getGroups
 };
