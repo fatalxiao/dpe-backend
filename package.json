@@ -3,10 +3,9 @@
     "version": "1.0.0",
     "private": true,
     "scripts": {
+        "dev": "nodemon src/main --exec babel-node",
         "clean": "rimraf dist",
-        "build": "npm run clean & babel src --out-dir dist",
-        "serve": "node dist/main",
-        "start": "npm run build & npm run serve"
+        "build": "npm run clean & babel src --out-dir dist"
     },
     "dependencies": {
         "babel-plugin-transform-decorators-legacy": "^1.3.4",
@@ -26,6 +25,7 @@
         "babel-preset-env": "^1.6.1",
         "cross-env": "^5.1.3",
         "mocha": "^5.0.0",
+        "nodemon": "^1.14.11",
         "rimraf": "^2.6.2"
     }
 }

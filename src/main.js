@@ -1,7 +1,7 @@
 import Koa from 'koa';
-import Api from './app/utils/Api.js';
+import Api from 'app/utils/Api.js';
 import bodyParser from 'koa-bodyparser';
-import config from './config.js';
+import config from 'config.js';
 
 const app = new Koa();
 
