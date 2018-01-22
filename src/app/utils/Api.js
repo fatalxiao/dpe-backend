@@ -34,7 +34,7 @@ function addMapping(router, controllers) {
 function addControllers(router, dir) {
     fs.readdirSync(__dirname + '/' + dir).forEach(f => {
         console.log(`process controller: ${f}...`);
-        addMapping(router, require(__dirname + '/' + dir + '/' + f));
+        addMapping(router, require(__dirname + '/' + dir + '/' + f).default);
     });
 }
 
