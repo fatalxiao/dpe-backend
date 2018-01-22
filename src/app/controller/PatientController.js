@@ -1,55 +1,56 @@
 import _ from 'lodash';
 import PatientService from '../service/PatientService.js';
 import AnalgesiaDataService from '../service/AnalgesiaDataService.js';
-import Api from '../utils/Api.js';
 import Response from '../utils/Response.js';
+import {request} from '../utils/ApiDecorator';
 
-const getPatients = Api.decorator(Api.API_TYPE_GET, '/dpe/patient/getPatients', async ctx => {
-    ctx.response.body = await PatientService.getPatients();
-});
+export default class PatientController {
 
-const addPatient = Api.decorator(Api.API_TYPE_POST, '/dpe/patient/addPatient', async ctx => {
-
-    const requestData = ctx.request.body;
-    let error;
-
-    if (!requestData.groupId) {
-        error = Response.buildParamError('Group ID is required');
-    } else if (!requestData.id) {
-        error = Response.buildParamError('ID is required');
-    } else if (!requestData.patientName) {
-        error = Response.buildParamError('Patient Name is required');
+    @request('GET', '/dpe/patient/getPatients')
+    static async getPatients(ctx) {
+        ctx.response.body = await PatientService.getPatients();
     }
 
-    if (error) {
-        return ctx.response.body = error;
+    @request('POST', '/dpe/patient/addPatient')
+    static async addPatient(ctx) {
+
+        const requestData = ctx.request.body;
+        let error;
+
+        if (!requestData.groupId) {
+            error = Response.buildParamError('Group ID is required');
+        } else if (!requestData.id) {
+            error = Response.buildParamError('ID is required');
+        } else if (!requestData.patientName) {
+            error = Response.buildParamError('Patient Name is required');
+        }
+
+        if (error) {
+            return ctx.response.body = error;
+        }
+
+        ctx.response.body = await PatientService.addPatient(requestData);
+
     }
 
-    ctx.response.body = await PatientService.addPatient(requestData);
+    @request('POST', '/dpe/patient/updateAnalgesiaData')
+    static async updateAnalgesiaData(ctx) {
 
-});
+        const requestData = ctx.request.body;
+        let error;
 
-const updateAnalgesiaData = Api.decorator(Api.API_TYPE_POST, '/dpe/patient/updateAnalgesiaData', async ctx => {
+        if (!requestData.patientId) {
+            error = Response.buildParamError('Patient ID is required');
+        } else if (!requestData.analgesiaData || !_.isArray(requestData.analgesiaData)) {
+            error = Response.buildParamError('Analgesia Data is required');
+        }
 
-    const requestData = ctx.request.body;
-    let error;
+        if (error) {
+            return ctx.response.body = error;
+        }
 
-    if (!requestData.patientId) {
-        error = Response.buildParamError('Patient ID is required');
-    } else if (!requestData.analgesiaData || !_.isArray(requestData.analgesiaData)) {
-        error = Response.buildParamError('Analgesia Data is required');
+        ctx.response.body = await AnalgesiaDataService.updateAnalgesiaData(requestData);
+
     }
 
-    if (error) {
-        return ctx.response.body = error;
-    }
-
-    ctx.response.body = await AnalgesiaDataService.updateAnalgesiaData(requestData);
-
-});
-
-export default {
-    getPatients,
-    addPatient,
-    updateAnalgesiaData
 };

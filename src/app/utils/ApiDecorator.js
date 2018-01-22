@@ -21,9 +21,7 @@ function addMapping(router, controllers) {
 
         _.pull(methods, 'name', 'constructor', 'length', 'prototype');
 
-        methods
-        //.filter(methodName => controller[methodName][API_METHOD] && controller[methodName][API_ROUTE])
-        .forEach(methodName => {
+        methods.forEach(methodName => {
 
             const method = controller[methodName][API_METHOD],
                 route = controller[methodName][API_ROUTE];
@@ -38,8 +36,6 @@ function addMapping(router, controllers) {
 
         });
 
-        // console.log(`register URL mapping: ${controller[API_TYPE].toUpperCase()} ${controller[API_ROUTE]}`);
-        // router[controller[API_TYPE]](controller[API_ROUTE], controller);
     }
 
 }
