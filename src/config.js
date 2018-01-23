@@ -9,6 +9,16 @@ export default {
         password: 'root',
         database: 'dpe',
         charset: 'UTF8_GENERAL_CI'
+    },
+
+    swaggerConfig: {
+        swagger: '2.0',
+        info: {
+            title: 'DPE Service',
+            version: '1.0.0',
+            description: ''
+        },
+        basePath: '/v2'
     }
 
 };
