@@ -13,25 +13,30 @@ function addMapping(router, controller) {
         return;
     }
 
-    const methods = Object.getOwnPropertyNames(controller);
-
-    _.pull(methods, 'name', 'constructor', 'length', 'prototype');
-
     // traversal all rest class methods
-    methods.forEach(methodName => {
+    for (let methodName of Object.getOwnPropertyNames(controller)) {
 
-        const method = controller[methodName],
-            requestMethod = method[REQUEST_METHOD],
+        if (!methodName) {
+            continue;
+        }
+
+        const method = controller[methodName];
+
+        if (!method) {
+            continue;
+        }
+
+        const requestMethod = method[REQUEST_METHOD],
             route = method[REQUEST_ROUTE];
 
         if (!requestMethod || !route) {
-            return;
+            continue;
         }
 
         console.log(`register URL mapping: ${requestMethod.toUpperCase()} ${route}`);
         router[requestMethod](route, controller[methodName]);
 
-    });
+    }
 
 }
 
