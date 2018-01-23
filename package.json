@@ -27,5 +27,10 @@
         "mocha": "^5.0.0",
         "nodemon": "^1.14.11",
         "rimraf": "^2.6.2"
+    },
+    "nodemonConfig": {
+        "ignore": [
+            "src/swagger/*"
+        ]
     }
 }

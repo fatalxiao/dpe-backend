@@ -7,7 +7,7 @@ const app = new Koa();
 
 app
 .use(bodyParser())
-.use(mappingRouterToController(__dirname + '/app/controller'))
+.use(mappingRouterToController(__dirname))
 .listen(config.port, () => {
     console.log(`Server started and listen on port ${config.port}`);
 });

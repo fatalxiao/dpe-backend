@@ -64,12 +64,12 @@ function mappingController(controller) {
 function mappingRouterToController(dir) {
 
     // traversal all controll file
-    fs.readdirSync(dir).forEach(file => {
+    fs.readdirSync(dir + '/app/controller').forEach(file => {
         console.log(`process controller: ${file}`);
-        mappingController(require(dir + '/' + file).default);
+        mappingController(require(dir + '/app/controller/' + file).default);
     });
 
-    console.log(JSON.stringify(swaggerConfig));
+    fs.writeFileSync(dir + '/swagger/swagger.json', JSON.stringify(swaggerConfig));
 
     return router.routes();
 
