@@ -37,6 +37,7 @@ function addMapping(router, controller) {
 
 function mappingRouterToController(dir) {
 
+    // traversal all controll file
     fs.readdirSync(dir).forEach(file => {
 
         console.log(`process controller: ${file}`);
