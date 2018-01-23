@@ -4,6 +4,13 @@ import Router from 'koa-router';
 
 const
 
+    RequestMethod = {
+        GET: 'get',
+        POST: 'post',
+        PUT: 'put',
+        DELETE: 'delete'
+    },
+
     API_METHOD = Symbol('API_METHOD'),
     API_ROUTE = Symbol('API_ROUTE'),
 
@@ -47,13 +54,17 @@ function mappingRouterToController(dir) {
 
 };
 
-const request = (method, path) => (target, name, descriptor) => {
+const requestMapping = ({method, route}) => (target, name, descriptor) => {
     descriptor.value[API_METHOD] = method;
-    descriptor.value[API_ROUTE] = path;
+    descriptor.value[API_ROUTE] = route;
     return descriptor;
 };
 
 export {
-    request,
+
+    RequestMethod,
+
+    requestMapping,
     mappingRouterToController
+
 };

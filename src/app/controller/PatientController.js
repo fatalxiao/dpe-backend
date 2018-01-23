@@ -2,16 +2,16 @@ import _ from 'lodash';
 import PatientService from '../service/PatientService.js';
 import AnalgesiaDataService from '../service/AnalgesiaDataService.js';
 import Response from '../utils/Response.js';
-import {request} from '../utils/ApiDecorator';
+import {RequestMethod, requestMapping} from '../utils/ApiDecorator';
 
 export default class PatientController {
 
-    @request('GET', '/dpe/patient/getPatients')
+    @requestMapping({method: RequestMethod.GET, route: '/dpe/patient/getPatients'})
     static async getPatients(ctx) {
         ctx.response.body = await PatientService.getPatients();
     }
 
-    @request('POST', '/dpe/patient/addPatient')
+    @requestMapping({method: RequestMethod.POST, route: '/dpe/patient/addPatient'})
     static async addPatient(ctx) {
 
         const requestData = ctx.request.body;
@@ -33,7 +33,7 @@ export default class PatientController {
 
     }
 
-    @request('POST', '/dpe/patient/updateAnalgesiaData')
+    @requestMapping({method: RequestMethod.POST, route: '/dpe/patient/updateAnalgesiaData'})
     static async updateAnalgesiaData(ctx) {
 
         const requestData = ctx.request.body;
