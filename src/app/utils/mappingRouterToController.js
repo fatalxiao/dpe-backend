@@ -13,6 +13,21 @@ function mappingMethod(controller, methodName) {
         requestMethod = method[REQUEST_METHOD],
         requestRoute = method[REQUEST_ROUTE];
 
+    // add swagger paths
+    if (!(requestRoute in swaggerConfig.paths)) {
+        swaggerConfig.paths[requestRoute] = {};
+    }
+    swaggerConfig.paths[requestRoute][requestMethod] = {
+        tags: [controller[REQUEST_TAGS]],
+        consumes: [
+            'application/json'
+        ],
+        produces: [
+            'application/json'
+        ]
+    };
+
+    // add mapping route
     console.log(`register URL mapping: ${requestMethod.toUpperCase()} ${requestRoute}`);
     router[requestMethod](requestRoute, controller[methodName]);
 
