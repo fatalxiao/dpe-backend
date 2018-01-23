@@ -1,9 +1,14 @@
+import Sequelize from 'sequelize';
 import AnalgesiaData from '../model/AnalgesiaDataModel.js';
+
+const Op = Sequelize.Op;
 
 async function getById(id) {
     return await AnalgesiaData.findAll({
         where: {
-            id
+            id: {
+                [Op.eq]: id
+            }
         }
     });
 }
@@ -11,7 +16,9 @@ async function getById(id) {
 async function getByPatientId(patientId) {
     return await AnalgesiaData.findAll({
         where: {
-            patientId
+            patientId: {
+                [Op.eq]: patientId
+            }
         }
     });
 }
@@ -19,8 +26,12 @@ async function getByPatientId(patientId) {
 async function getByPatientIdAndTimePoint(patientId, TimePoint) {
     return await AnalgesiaData.findAll({
         where: {
-            patientId,
-            TimePoint
+            patientId: {
+                [Op.eq]: patientId
+            },
+            TimePoint: {
+                [Op.eq]: TimePoint
+            }
         }
     });
 }
@@ -32,7 +43,9 @@ async function add(data) {
 async function update(id, data) {
     return await AnalgesiaData.update(data, {
         where: {
-            id
+            id: {
+                [Op.eq]: id
+            }
         }
     });
 }
@@ -40,8 +53,12 @@ async function update(id, data) {
 async function updateByPatientIdAndTimePoint(patientId, TimePoint) {
     return await AnalgesiaData.destroy({
         where: {
-            patientId,
-            TimePoint
+            patientId: {
+                [Op.eq]: patientId
+            },
+            TimePoint: {
+                [Op.eq]: TimePoint
+            }
         }
     });
 }

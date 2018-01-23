@@ -43,7 +43,6 @@ function mappingRouterToController(dir) {
         addMapping(router, require(dir + '/' + file).default);
     });
 
-    // addMapping(router, controllers);
     return router.routes();
 
 };
