@@ -5,7 +5,7 @@ import {Api, GetMapping, ApiOperation} from '../utils/ApiDecorator.js';
 export default class GroupController {
 
     @GetMapping({value: '/dpe/group/getGroups'})
-    @ApiOperation({value: 'get accounts', notes: 'get accounts on TripAdivisor'})
+    @ApiOperation({value: 'get groups', notes: 'get all patient groups'})
     static async getGroups(ctx) {
         ctx.response.body = await GroupService.getGroups();
     }

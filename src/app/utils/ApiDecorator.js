@@ -3,6 +3,8 @@ const
     REQUEST_TAGS = Symbol('REQUEST_TAGS'),
     REQUEST_METHOD = Symbol('REQUEST_METHOD'),
     REQUEST_ROUTE = Symbol('REQUEST_ROUTE'),
+    REQUEST_SUMMARY = Symbol('REQUEST_SUMMARY'),
+    REQUEST_DESCRIPTION = Symbol('REQUEST_DESCRIPTION'),
 
     RequestMethod = {
         GET: 'get',
@@ -46,9 +48,9 @@ const DeleteMapping = ({value}) => (target, name, descriptor) => {
     return descriptor;
 };
 
-const ApiOperation = ({method, route}) => (target, name, descriptor) => {
-    descriptor.value[REQUEST_METHOD] = method;
-    descriptor.value[REQUEST_ROUTE] = route;
+const ApiOperation = ({value, notes}) => (target, name, descriptor) => {
+    descriptor.value[REQUEST_SUMMARY] = value;
+    descriptor.value[REQUEST_DESCRIPTION] = notes;
     return descriptor;
 };
 
@@ -57,6 +59,8 @@ export {
     REQUEST_TAGS,
     REQUEST_METHOD,
     REQUEST_ROUTE,
+    REQUEST_SUMMARY,
+    REQUEST_DESCRIPTION,
 
     RequestMethod,
 
