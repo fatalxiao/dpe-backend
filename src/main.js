@@ -1,5 +1,5 @@
 import Koa from 'koa';
-import {mappingRouterToController} from './app/utils/ApiDecorator.js';
+import mappingRouterToController from './app/utils/mappingRouterToController.js';
 import bodyParser from 'koa-bodyparser';
 import config from './config.js';
 
