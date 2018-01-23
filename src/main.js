@@ -8,6 +8,6 @@ const app = new Koa();
 app
 .use(bodyParser())
 .use(mappingRouterToController(__dirname + '/app/controller'))
-.listen(config.port);
-
-console.log(`Server started and listen on port ${config.port}`);
+.listen(config.port, () => {
+    console.log(`Server started and listen on port ${config.port}`);
+});
