@@ -33,7 +33,7 @@ export default class PatientController {
 
     }
 
-    @requestMapping({method: RequestMethod.POST, route: '/dpe/patient/updateAnalgesiaData'})
+    @RequestMapping({method: RequestMethod.POST, route: '/dpe/patient/updateAnalgesiaData'})
     static async updateAnalgesiaData(ctx) {
 
         const requestData = ctx.request.body;

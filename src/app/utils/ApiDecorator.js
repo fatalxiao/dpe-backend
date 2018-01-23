@@ -54,7 +54,13 @@ function mappingRouterToController(dir) {
 
 };
 
-const requestMapping = ({method, route}) => (target, name, descriptor) => {
+const RequestMapping = ({method, route}) => (target, name, descriptor) => {
+    descriptor.value[REQUEST_METHOD] = method;
+    descriptor.value[REQUEST_ROUTE] = route;
+    return descriptor;
+};
+
+const ApiOperation = ({method, route}) => (target, name, descriptor) => {
     descriptor.value[REQUEST_METHOD] = method;
     descriptor.value[REQUEST_ROUTE] = route;
     return descriptor;
@@ -64,7 +70,9 @@ export {
 
     RequestMethod,
 
-    requestMapping,
+    RequestMapping,
+    ApiOperation,
+
     mappingRouterToController
 
 };
