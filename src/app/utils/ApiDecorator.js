@@ -1,6 +1,7 @@
 import _ from 'lodash';
 import fs from 'fs';
 import Router from 'koa-router';
+import config from '../../config.js';
 
 const
 
@@ -15,7 +16,9 @@ const
     REQUEST_METHOD = Symbol('REQUEST_METHOD'),
     REQUEST_ROUTE = Symbol('REQUEST_ROUTE'),
 
-    router = Router();
+    router = Router(),
+
+    swaggerConfig = _.cloneDeep(config.swaggerConfig);
 
 function addMapping(router, controller) {
 
@@ -36,9 +39,8 @@ function addMapping(router, controller) {
             return;
         }
 
-        router[requestMethod](route, controller[methodName]);
-
         console.log(`register URL mapping: ${requestMethod.toUpperCase()} ${route}`);
+        router[requestMethod](route, controller[methodName]);
 
     });
 
@@ -47,8 +49,19 @@ function addMapping(router, controller) {
 function mappingRouterToController(dir) {
 
     fs.readdirSync(dir).forEach(file => {
+
         console.log(`process controller: ${file}`);
-        addMapping(router, require(dir + '/' + file).default);
+
+        const controller = require(dir + '/' + file).default;
+
+        if (controller[REQUEST_TAGS]) {
+            swaggerConfig.tags.push({
+                name: controller[REQUEST_TAGS]
+            });
+        }
+
+        addMapping(router, controller);
+
     });
 
     return router.routes();
@@ -56,8 +69,7 @@ function mappingRouterToController(dir) {
 };
 
 const Api = ({tags}) => (target, name, descriptor) => {
-    descriptor.value[REQUEST_TAGS] = tags;
-    return descriptor;
+    target[REQUEST_TAGS] = tags;
 };
 
 const RequestMapping = ({method, route}) => (target, name, descriptor) => {
