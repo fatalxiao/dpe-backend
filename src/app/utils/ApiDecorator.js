@@ -11,8 +11,8 @@ const
         DELETE: 'delete'
     },
 
-    API_METHOD = Symbol('API_METHOD'),
-    API_ROUTE = Symbol('API_ROUTE'),
+    REQUEST_METHOD = Symbol('REQUEST_METHOD'),
+    REQUEST_ROUTE = Symbol('REQUEST_ROUTE'),
 
     router = Router();
 
@@ -28,16 +28,16 @@ function addMapping(router, controller) {
 
     methods.forEach(methodName => {
 
-        const method = controller[methodName][API_METHOD],
-            route = controller[methodName][API_ROUTE];
+        const requestMethod = controller[methodName][REQUEST_METHOD],
+            route = controller[methodName][REQUEST_ROUTE];
 
-        if (!method || !route) {
+        if (!requestMethod || !route) {
             return;
         }
 
-        router[method.toLowerCase()](route, controller[methodName]);
+        router[requestMethod](route, controller[methodName]);
 
-        console.log(`register URL mapping: ${method.toUpperCase()} ${route}`);
+        console.log(`register URL mapping: ${requestMethod.toUpperCase()} ${route}`);
 
     });
 
@@ -55,8 +55,8 @@ function mappingRouterToController(dir) {
 };
 
 const requestMapping = ({method, route}) => (target, name, descriptor) => {
-    descriptor.value[API_METHOD] = method;
-    descriptor.value[API_ROUTE] = route;
+    descriptor.value[REQUEST_METHOD] = method;
+    descriptor.value[REQUEST_ROUTE] = route;
     return descriptor;
 };
 
