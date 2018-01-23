@@ -2,8 +2,9 @@ import _ from 'lodash';
 import PatientService from '../service/PatientService.js';
 import AnalgesiaDataService from '../service/AnalgesiaDataService.js';
 import Response from '../utils/Response.js';
-import {GetMapping, PostMapping} from '../utils/ApiDecorator';
+import {Api, GetMapping, PostMapping} from '../utils/ApiDecorator';
 
+@Api({tags: 'Patient'})
 export default class PatientController {
 
     @GetMapping({route: '/dpe/patient/getPatients'})

@@ -54,6 +54,7 @@ function mappingRouterToController(dir) {
 
         const controller = require(dir + '/' + file).default;
 
+        // add swagger tags
         if (controller[REQUEST_TAGS]) {
             swaggerConfig.tags.push({
                 name: controller[REQUEST_TAGS]
@@ -63,6 +64,8 @@ function mappingRouterToController(dir) {
         addMapping(router, controller);
 
     });
+
+    console.log(JSON.stringify(swaggerConfig));
 
     return router.routes();
 

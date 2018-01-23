@@ -1,6 +1,7 @@
 import SensoryBlockService from '../service/SensoryBlockService.js';
-import {GetMapping} from '../utils/ApiDecorator';
+import {Api, GetMapping} from '../utils/ApiDecorator';
 
+@Api({tags: 'SensoryBlock'})
 export default class SensoryBlockController {
 
     @GetMapping({route: '/dpe/sensoryBlock/getSensoryBlocks'})
