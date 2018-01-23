@@ -27,7 +27,8 @@ function generateSequelize() {
             },
 
             define: {
-                underscored: true
+                underscored: true,
+                operatorsAliases: false
             }
 
         }
