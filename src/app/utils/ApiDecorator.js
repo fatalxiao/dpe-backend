@@ -30,6 +30,7 @@ function addMapping(router, controller) {
 
     _.pull(methods, 'name', 'constructor', 'length', 'prototype');
 
+    // traversal all rest class methods
     methods.forEach(methodName => {
 
         const requestMethod = controller[methodName][REQUEST_METHOD],
@@ -71,8 +72,9 @@ function mappingRouterToController(dir) {
 
 };
 
-const Api = ({tags}) => (target, name, descriptor) => {
+const Api = ({tags}) => (target) => {
     target[REQUEST_TAGS] = tags;
+    return target;
 };
 
 const RequestMapping = ({method, route}) => (target, name, descriptor) => {
