@@ -3,7 +3,7 @@ import SequelizeGenerator from '../utils/SequelizeGenerator.js';
 
 const sequelizeInstance = SequelizeGenerator();
 
-export default sequelizeInstance.define('patient', {
+export default sequelizeInstance.define('patients', {
     id: {
         field: 'id',
         type: Sequelize.STRING(10),
@@ -64,6 +64,7 @@ export default sequelizeInstance.define('patient', {
         type: Sequelize.STRING(1000)
     }
 }, {
+    freezeTableName: true,
     timestamps: true,
     createdAt: 'ctime',
     updatedAt: 'utime',

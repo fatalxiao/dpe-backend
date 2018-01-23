@@ -2,7 +2,7 @@ import _ from 'lodash';
 import PatientService from '../service/PatientService.js';
 import AnalgesiaDataService from '../service/AnalgesiaDataService.js';
 import Response from '../utils/Response.js';
-import {Api, ApiOperation, GetMapping, PostMapping} from '../utils/ApiDecorator';
+import {Api, ApiOperation, GetMapping, PostMapping, RequestBody} from '../utils/ApiDecorator';
 
 @Api({tags: 'Patient'})
 export default class PatientController {
@@ -15,6 +15,7 @@ export default class PatientController {
 
     @PostMapping({value: '/dpe/patient/addPatient'})
     @ApiOperation({value: 'add new patient', notes: 'add new patient'})
+    @RequestBody({value: 'patients', notes: 'add new patient'})
     static async addPatient(ctx) {
 
         const requestData = ctx.request.body;
