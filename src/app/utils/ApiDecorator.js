@@ -11,6 +11,7 @@ const
         DELETE: 'delete'
     },
 
+    REQUEST_TAGS = Symbol('REQUEST_TAGS'),
     REQUEST_METHOD = Symbol('REQUEST_METHOD'),
     REQUEST_ROUTE = Symbol('REQUEST_ROUTE'),
 
@@ -54,8 +55,37 @@ function mappingRouterToController(dir) {
 
 };
 
+const Api = ({tags}) => (target, name, descriptor) => {
+    descriptor.value[REQUEST_TAGS] = tags;
+    return descriptor;
+};
+
 const RequestMapping = ({method, route}) => (target, name, descriptor) => {
     descriptor.value[REQUEST_METHOD] = method;
+    descriptor.value[REQUEST_ROUTE] = route;
+    return descriptor;
+};
+
+const GetMapping = ({route}) => (target, name, descriptor) => {
+    descriptor.value[REQUEST_METHOD] = RequestMethod.GET;
+    descriptor.value[REQUEST_ROUTE] = route;
+    return descriptor;
+};
+
+const PostMapping = ({route}) => (target, name, descriptor) => {
+    descriptor.value[REQUEST_METHOD] = RequestMethod.POST;
+    descriptor.value[REQUEST_ROUTE] = route;
+    return descriptor;
+};
+
+const PutMapping = ({route}) => (target, name, descriptor) => {
+    descriptor.value[REQUEST_METHOD] = RequestMethod.PUT;
+    descriptor.value[REQUEST_ROUTE] = route;
+    return descriptor;
+};
+
+const DeleteMapping = ({route}) => (target, name, descriptor) => {
+    descriptor.value[REQUEST_METHOD] = RequestMethod.DELETE;
     descriptor.value[REQUEST_ROUTE] = route;
     return descriptor;
 };
@@ -70,7 +100,12 @@ export {
 
     RequestMethod,
 
+    Api,
     RequestMapping,
+    GetMapping,
+    PostMapping,
+    PutMapping,
+    DeleteMapping,
     ApiOperation,
 
     mappingRouterToController

@@ -1,9 +1,11 @@
 import GroupService from '../service/GroupService.js';
-import {RequestMethod, RequestMapping} from '../utils/ApiDecorator.js';
+import {Api, GetMapping, ApiOperation} from '../utils/ApiDecorator.js';
 
+@Api({tags: 'Group'})
 export default class GroupController {
 
-    @RequestMapping({method: RequestMethod.GET, route: '/dpe/group/getGroups'})
+    @GetMapping({route: '/dpe/group/getGroups'})
+    @ApiOperation({value: 'get accounts', notes: 'get accounts on TripAdivisor'})
     static async getGroups(ctx) {
         ctx.response.body = await GroupService.getGroups();
     }
