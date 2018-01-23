@@ -7,7 +7,7 @@ import {REQUEST_TAGS, REQUEST_METHOD, REQUEST_ROUTE} from './ApiDecorator';
 const router = Router(),
     swaggerConfig = _.cloneDeep(config.swaggerConfig);
 
-function addMapping(router, controller) {
+function addMapping(controller) {
 
     if (!controller) {
         return;
@@ -40,24 +40,25 @@ function addMapping(router, controller) {
 
 }
 
+function mappingController(controller) {
+
+    // add swagger tags
+    if (controller[REQUEST_TAGS]) {
+        swaggerConfig.tags.push({
+            name: controller[REQUEST_TAGS]
+        });
+    }
+
+    addMapping(controller);
+
+}
+
 function mappingRouterToController(dir) {
 
     // traversal all controll file
     fs.readdirSync(dir).forEach(file => {
-
         console.log(`process controller: ${file}`);
-
-        const controller = require(dir + '/' + file).default;
-
-        // add swagger tags
-        if (controller[REQUEST_TAGS]) {
-            swaggerConfig.tags.push({
-                name: controller[REQUEST_TAGS]
-            });
-        }
-
-        addMapping(router, controller);
-
+        mappingController(require(dir + '/' + file).default);
     });
 
     console.log(JSON.stringify(swaggerConfig));
