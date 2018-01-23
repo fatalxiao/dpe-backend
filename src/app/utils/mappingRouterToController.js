@@ -7,10 +7,22 @@ import {REQUEST_TAGS, REQUEST_METHOD, REQUEST_ROUTE} from './ApiDecorator';
 const router = Router(),
     swaggerConfig = _.cloneDeep(config.swaggerConfig);
 
-function addMapping(controller) {
+function mappingMethod(controller, methodName, requestMethod, requestRoute) {
+    console.log(`register URL mapping: ${requestMethod.toUpperCase()} ${requestRoute}`);
+    router[requestMethod](requestRoute, controller[methodName]);
+}
+
+function mappingController(controller) {
 
     if (!controller) {
         return;
+    }
+
+    // add swagger tags
+    if (controller[REQUEST_TAGS]) {
+        swaggerConfig.tags.push({
+            name: controller[REQUEST_TAGS]
+        });
     }
 
     // traversal all rest class methods
@@ -27,29 +39,15 @@ function addMapping(controller) {
         }
 
         const requestMethod = method[REQUEST_METHOD],
-            route = method[REQUEST_ROUTE];
+            requestRoute = method[REQUEST_ROUTE];
 
-        if (!requestMethod || !route) {
+        if (!requestMethod || !requestRoute) {
             continue;
         }
 
-        console.log(`register URL mapping: ${requestMethod.toUpperCase()} ${route}`);
-        router[requestMethod](route, controller[methodName]);
+        mappingMethod(controller, methodName, requestMethod, requestRoute);
 
     }
-
-}
-
-function mappingController(controller) {
-
-    // add swagger tags
-    if (controller[REQUEST_TAGS]) {
-        swaggerConfig.tags.push({
-            name: controller[REQUEST_TAGS]
-        });
-    }
-
-    addMapping(controller);
 
 }
 
