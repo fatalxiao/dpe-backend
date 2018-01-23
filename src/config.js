@@ -18,7 +18,6 @@ export default {
             version: '1.0.0',
             description: ''
         },
-        basePath: '/v2',
         tags: [],
         paths: {},
         definitions: {}
