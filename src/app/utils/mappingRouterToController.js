@@ -2,7 +2,7 @@ import _ from 'lodash';
 import fs from 'fs';
 import Router from 'koa-router';
 import config from '../../config';
-import {REQUEST_TAGS, REQUEST_METHOD, REQUEST_ROUTE} from './ApiDecorator';
+import {REQUEST_TAGS, REQUEST_METHOD, REQUEST_ROUTE, REQUEST_SUMMARY, REQUEST_DESCRIPTION} from './ApiDecorator';
 
 const router = Router(),
     swaggerConfig = _.cloneDeep(config.swaggerConfig);
@@ -19,6 +19,8 @@ function mappingMethod(controller, methodName) {
     }
     swaggerConfig.paths[requestRoute][requestMethod] = {
         tags: [controller[REQUEST_TAGS]],
+        summary: method[REQUEST_SUMMARY],
+        description: method[REQUEST_DESCRIPTION],
         consumes: [
             'application/json'
         ],
