@@ -7,12 +7,12 @@ import {Api, GetMapping, PostMapping} from '../utils/ApiDecorator';
 @Api({tags: 'Patient'})
 export default class PatientController {
 
-    @GetMapping({route: '/dpe/patient/getPatients'})
+    @GetMapping({value: '/dpe/patient/getPatients'})
     static async getPatients(ctx) {
         ctx.response.body = await PatientService.getPatients();
     }
 
-    @PostMapping({route: '/dpe/patient/addPatient'})
+    @PostMapping({value: '/dpe/patient/addPatient'})
     static async addPatient(ctx) {
 
         const requestData = ctx.request.body;
@@ -34,7 +34,7 @@ export default class PatientController {
 
     }
 
-    @PostMapping({route: '/dpe/patient/updateAnalgesiaData'})
+    @PostMapping({value: '/dpe/patient/updateAnalgesiaData'})
     static async updateAnalgesiaData(ctx) {
 
         const requestData = ctx.request.body;

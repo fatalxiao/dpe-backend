@@ -16,33 +16,33 @@ const Api = ({tags}) => (target) => {
     return target;
 };
 
-const RequestMapping = ({method, route}) => (target, name, descriptor) => {
+const RequestMapping = ({method, value}) => (target, name, descriptor) => {
     descriptor.value[REQUEST_METHOD] = method;
-    descriptor.value[REQUEST_ROUTE] = route;
+    descriptor.value[REQUEST_ROUTE] = value;
     return descriptor;
 };
 
-const GetMapping = ({route}) => (target, name, descriptor) => {
+const GetMapping = ({value}) => (target, name, descriptor) => {
     descriptor.value[REQUEST_METHOD] = RequestMethod.GET;
-    descriptor.value[REQUEST_ROUTE] = route;
+    descriptor.value[REQUEST_ROUTE] = value;
     return descriptor;
 };
 
-const PostMapping = ({route}) => (target, name, descriptor) => {
+const PostMapping = ({value}) => (target, name, descriptor) => {
     descriptor.value[REQUEST_METHOD] = RequestMethod.POST;
-    descriptor.value[REQUEST_ROUTE] = route;
+    descriptor.value[REQUEST_ROUTE] = value;
     return descriptor;
 };
 
-const PutMapping = ({route}) => (target, name, descriptor) => {
+const PutMapping = ({value}) => (target, name, descriptor) => {
     descriptor.value[REQUEST_METHOD] = RequestMethod.PUT;
-    descriptor.value[REQUEST_ROUTE] = route;
+    descriptor.value[REQUEST_ROUTE] = value;
     return descriptor;
 };
 
-const DeleteMapping = ({route}) => (target, name, descriptor) => {
+const DeleteMapping = ({value}) => (target, name, descriptor) => {
     descriptor.value[REQUEST_METHOD] = RequestMethod.DELETE;
-    descriptor.value[REQUEST_ROUTE] = route;
+    descriptor.value[REQUEST_ROUTE] = value;
     return descriptor;
 };
 
