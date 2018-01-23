@@ -61,12 +61,63 @@ function mappingController(controller) {
 
 }
 
+function parseModelType(type) {
+
+    const typeStr = type.toString().toLowerCase();
+
+    if (typeStr === 'tinyint(1)') {
+        return 'boolean';
+    } else if (/^varchar\(\d+\)$/.test(typeStr)) {
+        return 'string';
+    } else if (/^integer\(\d+\)$/.test(typeStr)) {
+        return 'integer';
+    }
+
+    return typeStr;
+
+}
+
+function mappingModel(model) {
+
+    if (!model) {
+        return;
+    }
+
+    if (!(model.name in swaggerConfig.definitions)) {
+        swaggerConfig.definitions[model.name] = {
+            type: 'object',
+            properties: {},
+            xml: {
+                'name': model.name
+            }
+        };
+    }
+
+    const properties = swaggerConfig.definitions[model.name].properties;
+
+    for (let attributeName in model.attributes) {
+
+        const attribute = model.attributes[attributeName];
+
+        properties[attribute.fieldName] = {
+            type: parseModelType(attribute.type)
+        };
+
+    }
+
+}
+
 function mappingRouterToController(dir) {
 
     // traversal all controll file
     fs.readdirSync(dir + '/app/controller').forEach(file => {
         console.log(`process controller: ${file}`);
         mappingController(require(dir + '/app/controller/' + file).default);
+    });
+
+    // traversal all model file
+    fs.readdirSync(dir + '/app/model').forEach(file => {
+        mappingModel(require(dir + '/app/model/' + file).default);
     });
 
     fs.writeFileSync(dir + '/swagger/swagger.json', JSON.stringify(swaggerConfig));
