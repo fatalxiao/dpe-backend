@@ -5,6 +5,9 @@ const
     REQUEST_ROUTE = Symbol('REQUEST_ROUTE'),
     REQUEST_SUMMARY = Symbol('REQUEST_SUMMARY'),
     REQUEST_DESCRIPTION = Symbol('REQUEST_DESCRIPTION'),
+    REQUEST_PARAMETERS = Symbol('REQUEST_PARAMETERS'),
+    REQUEST_PARAMETERS_BODY = Symbol('REQUEST_PARAMETERS_BODY'),
+    REQUEST_PARAMETERS_PARAM = Symbol('REQUEST_PARAMETERS_PARAM'),
 
     RequestMethod = {
         GET: 'get',
@@ -54,6 +57,42 @@ const ApiOperation = ({value, notes}) => (target, name, descriptor) => {
     return descriptor;
 };
 
+const RequestBody = ({value, notes}) => (target, name, descriptor) => {
+
+    const param = {
+        type: REQUEST_PARAMETERS_BODY,
+        value,
+        notes
+    };
+
+    if (REQUEST_PARAMETERS in descriptor.value) {
+        descriptor.value[REQUEST_PARAMETERS].push(param);
+    } else {
+        descriptor.value[REQUEST_PARAMETERS] = [param];
+    }
+
+    return descriptor;
+
+};
+
+const RequestParam = ({value, notes}) => (target, name, descriptor) => {
+
+    const param = {
+        type: REQUEST_PARAMETERS_PARAM,
+        value,
+        notes
+    };
+
+    if (REQUEST_PARAMETERS in descriptor.value) {
+        descriptor.value[REQUEST_PARAMETERS].push(param);
+    } else {
+        descriptor.value[REQUEST_PARAMETERS] = [param];
+    }
+
+    return descriptor;
+
+};
+
 export {
 
     REQUEST_TAGS,
@@ -61,17 +100,20 @@ export {
     REQUEST_ROUTE,
     REQUEST_SUMMARY,
     REQUEST_DESCRIPTION,
+    REQUEST_PARAMETERS,
+    REQUEST_PARAMETERS_BODY,
+    REQUEST_PARAMETERS_PARAM,
 
     RequestMethod,
 
     Api,
-
     RequestMapping,
     GetMapping,
     PostMapping,
     PutMapping,
     DeleteMapping,
-
-    ApiOperation
+    ApiOperation,
+    RequestBody,
+    RequestParam
 
 };
