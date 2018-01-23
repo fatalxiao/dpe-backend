@@ -5,9 +5,9 @@ const
     REQUEST_ROUTE = Symbol('REQUEST_ROUTE'),
     REQUEST_SUMMARY = Symbol('REQUEST_SUMMARY'),
     REQUEST_DESCRIPTION = Symbol('REQUEST_DESCRIPTION'),
-    REQUEST_PARAMETERS = Symbol('REQUEST_PARAMETERS'),
-    REQUEST_PARAMETERS_BODY = Symbol('REQUEST_PARAMETERS_BODY'),
+    REQUEST_PARAMETERS_PATH = Symbol('REQUEST_PARAMETERS_PATH'),
     REQUEST_PARAMETERS_PARAM = Symbol('REQUEST_PARAMETERS_PARAM'),
+    REQUEST_PARAMETERS_BODY = Symbol('REQUEST_PARAMETERS_BODY'),
 
     RequestMethod = {
         GET: 'get',
@@ -57,36 +57,55 @@ const ApiOperation = ({value, notes}) => (target, name, descriptor) => {
     return descriptor;
 };
 
-const RequestBody = ({value, notes}) => (target, name, descriptor) => {
+const PathVariable = ({value, notes, required}) => (target, name, descriptor) => {
 
     const param = {
-        type: REQUEST_PARAMETERS_BODY,
         value,
-        notes
+        notes,
+        required
     };
 
-    if (REQUEST_PARAMETERS in descriptor.value) {
-        descriptor.value[REQUEST_PARAMETERS].push(param);
+    if (REQUEST_PARAMETERS_PATH in descriptor.value) {
+        descriptor.value[REQUEST_PARAMETERS_PATH].push(param);
     } else {
-        descriptor.value[REQUEST_PARAMETERS] = [param];
+        descriptor.value[REQUEST_PARAMETERS_PATH] = [param];
     }
 
     return descriptor;
 
 };
 
-const RequestParam = ({value, notes}) => (target, name, descriptor) => {
+const ApiParam = ({value, type, notes, required}) => (target, name, descriptor) => {
 
     const param = {
-        type: REQUEST_PARAMETERS_PARAM,
         value,
-        notes
+        type,
+        notes,
+        required
     };
 
-    if (REQUEST_PARAMETERS in descriptor.value) {
-        descriptor.value[REQUEST_PARAMETERS].push(param);
+    if (REQUEST_PARAMETERS_PARAM in descriptor.value) {
+        descriptor.value[REQUEST_PARAMETERS_PARAM].push(param);
     } else {
-        descriptor.value[REQUEST_PARAMETERS] = [param];
+        descriptor.value[REQUEST_PARAMETERS_PARAM] = [param];
+    }
+
+    return descriptor;
+
+};
+
+const RequestBody = ({value, notes, required}) => (target, name, descriptor) => {
+
+    const param = {
+        value,
+        notes,
+        required
+    };
+
+    if (REQUEST_PARAMETERS_BODY in descriptor.value) {
+        descriptor.value[REQUEST_PARAMETERS_BODY].push(param);
+    } else {
+        descriptor.value[REQUEST_PARAMETERS_BODY] = [param];
     }
 
     return descriptor;
@@ -100,9 +119,9 @@ export {
     REQUEST_ROUTE,
     REQUEST_SUMMARY,
     REQUEST_DESCRIPTION,
-    REQUEST_PARAMETERS,
-    REQUEST_PARAMETERS_BODY,
+    REQUEST_PARAMETERS_PATH,
     REQUEST_PARAMETERS_PARAM,
+    REQUEST_PARAMETERS_BODY,
 
     RequestMethod,
 
@@ -113,7 +132,8 @@ export {
     PutMapping,
     DeleteMapping,
     ApiOperation,
-    RequestBody,
-    RequestParam
+    PathVariable,
+    ApiParam,
+    RequestBody
 
 };

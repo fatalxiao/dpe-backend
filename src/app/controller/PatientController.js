@@ -15,7 +15,7 @@ export default class PatientController {
 
     @PostMapping({value: '/dpe/patient/addPatient'})
     @ApiOperation({value: 'add new patient', notes: 'add new patient'})
-    @RequestBody({value: 'patients', notes: 'add new patient'})
+    @RequestBody({value: 'patients'})
     static async addPatient(ctx) {
 
         const requestData = ctx.request.body;
@@ -39,6 +39,7 @@ export default class PatientController {
 
     @PostMapping({value: '/dpe/patient/updateAnalgesiaData'})
     @ApiOperation({value: 'update analgesia data', notes: 'update analgesia data to the patient'})
+    @RequestBody({value: 'analgesia_data'})
     static async updateAnalgesiaData(ctx) {
 
         const requestData = ctx.request.body;

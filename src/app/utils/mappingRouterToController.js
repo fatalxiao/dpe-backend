@@ -2,22 +2,21 @@ import _ from 'lodash';
 import fs from 'fs';
 import Router from 'koa-router';
 import config from '../../config';
-import {REQUEST_TAGS, REQUEST_METHOD, REQUEST_ROUTE, REQUEST_SUMMARY, REQUEST_DESCRIPTION} from './ApiDecorator';
+import {
+    REQUEST_TAGS, REQUEST_METHOD, REQUEST_ROUTE, REQUEST_SUMMARY, REQUEST_DESCRIPTION,
+    REQUEST_PARAMETERS_PATH, REQUEST_PARAMETERS_PARAM, REQUEST_PARAMETERS_BODY
+} from './ApiDecorator';
 
 const router = Router(),
     swaggerConfig = _.cloneDeep(config.swaggerConfig);
 
-function mappingMethod(controller, methodName) {
+function mappingPaths(controller, method, requestMethod, requestRoute) {
 
-    const method = controller[methodName],
-        requestMethod = method[REQUEST_METHOD],
-        requestRoute = method[REQUEST_ROUTE];
-
-    // add swagger paths
     if (!(requestRoute in swaggerConfig.paths)) {
         swaggerConfig.paths[requestRoute] = {};
     }
-    swaggerConfig.paths[requestRoute][requestMethod] = {
+
+    const config = {
         tags: [controller[REQUEST_TAGS]],
         summary: method[REQUEST_SUMMARY],
         description: method[REQUEST_DESCRIPTION],
@@ -26,12 +25,64 @@ function mappingMethod(controller, methodName) {
         ],
         produces: [
             'application/json'
-        ]
+        ],
+        parameters: []
     };
+
+    // add PathVariable
+    if (REQUEST_PARAMETERS_PATH in method) {
+        for (let item of method[REQUEST_PARAMETERS_PATH]) {
+            config.parameters.push({
+                name: item.value,
+                in: 'query',
+                description: item.notes,
+                required: item.required
+            });
+        }
+    }
+
+    // add ApiParam
+    if (REQUEST_PARAMETERS_PARAM in method) {
+        for (let item of method[REQUEST_PARAMETERS_PARAM]) {
+            config.parameters.push({
+                name: item.value,
+                in: 'body',
+                description: item.notes,
+                required: item.required,
+                type: param.type
+            });
+        }
+    }
+
+    // add RequestBody
+    if (REQUEST_PARAMETERS_BODY in method) {
+        for (let item of method[REQUEST_PARAMETERS_BODY]) {
+            config.parameters.push({
+                in: 'body',
+                name: 'body',
+                description: item.notes,
+                required: item.required,
+                schema: {
+                    $ref: `#/definitions/${item.value}`
+                }
+            });
+        }
+    }
+
+    swaggerConfig.paths[requestRoute][requestMethod] = config;
+
+}
+
+function mappingMethod(controller, method) {
+
+    const requestMethod = method[REQUEST_METHOD],
+        requestRoute = method[REQUEST_ROUTE];
+
+    mappingPaths(controller, method, requestMethod, requestRoute);
 
     // add mapping route
     console.log(`register URL mapping: ${requestMethod.toUpperCase()} ${requestRoute}`);
-    router[requestMethod](requestRoute, controller[methodName]);
+    router[requestMethod](requestRoute, method);
 
 }
 
@@ -57,7 +108,7 @@ function mappingController(controller) {
             continue;
         }
 
-        mappingMethod(controller, methodName);
+        mappingMethod(controller, controller[methodName]);
 
     }
 
