@@ -1,4 +1,5 @@
 import Koa from 'koa';
+import cors from '@koa/cors';
 import serve from 'koa-static';
 import bodyParser from 'koa-bodyparser';
 
@@ -8,9 +9,10 @@ import config from './config.js';
 const app = new Koa();
 
 app
+.use(cors())
+.use(serve('.'))
 .use(bodyParser())
 .use(mappingRouterToController(__dirname))
-.use(serve(__dirname + '/swagger/'))
 .listen(config.port, () => {
     console.log(`Server started and listen on port ${config.port}`);
 });
