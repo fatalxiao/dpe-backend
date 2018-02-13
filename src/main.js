@@ -13,6 +13,13 @@ app
 .use(serve('.'))
 .use(bodyParser())
 .use(mappingRouterToController(__dirname))
-.listen(config.port, () => {
+.listen(config.port, error => {
+
+    if (error) {
+        console.log(error);
+        return;
+    }
+
     console.log(`Server started and listen on port ${config.port}`);
+
 });
