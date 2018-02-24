@@ -15,7 +15,7 @@ async function isPatientInfomationExist(id) {
     }) > 0;
 }
 
-async function addPatientInfomation(data) {
+async function createOrUpdatePatientInfomation(data) {
     if (await isPatientInfomationExist(data.id)) {
         return await Patient.update(data, {
             where: {
@@ -53,7 +53,7 @@ async function createOrUpdateObservalData(data) {
 
 export default {
     getPatients,
-    addPatientInfomation,
+    createOrUpdatePatientInfomation,
     addAnalgesiaData,
     createOrUpdateObservalData
 };

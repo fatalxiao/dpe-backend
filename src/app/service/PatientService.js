@@ -1,6 +1,7 @@
 import PatientDao from '../dao/PatientDao.js';
 import Response from '../utils/Response.js';
-import Data from '../utils/Data.js';
+
+// import Data from '../utils/Data.js';
 
 async function getPatients() {
     return Response.buildSuccess(await PatientDao.getPatients());
@@ -18,7 +19,7 @@ async function addPatient(requestData) {
 
 async function addPatientInfomation(data) {
     // Data.verify(data, ['id', 'groupId']);
-    return Response.buildSuccess(await PatientDao.addPatientInfomation(data));
+    return Response.buildSuccess(await PatientDao.createOrUpdatePatientInfomation(data));
 };
 
 async function addAnalgesiaData(data) {
