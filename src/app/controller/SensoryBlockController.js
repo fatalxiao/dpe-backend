@@ -2,7 +2,7 @@ import SensoryBlockService from '../service/SensoryBlockService.js';
 import {Api, ApiOperation, GetMapping} from '../utils/ApiDecorator';
 
 @Api({tags: 'SensoryBlock'})
-export default class SensoryBlockController {
+class SensoryBlockController {
 
     @GetMapping({value: '/dpe/sensoryBlock/getSensoryBlocks'})
     @ApiOperation({value: 'get sensory blocks', notes: 'get all sensory blocks'})
@@ -11,3 +11,5 @@ export default class SensoryBlockController {
     }
 
 };
+
+export default SensoryBlockController;

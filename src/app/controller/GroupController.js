@@ -2,7 +2,7 @@ import GroupService from '../service/GroupService.js';
 import {Api, GetMapping, ApiOperation} from '../utils/ApiDecorator.js';
 
 @Api({tags: 'Group'})
-export default class GroupController {
+class GroupController {
 
     @GetMapping({value: '/dpe/group/getGroups'})
     @ApiOperation({value: 'get groups', notes: 'get all patient groups'})
@@ -11,3 +11,5 @@ export default class GroupController {
     }
 
 };
+
+export default GroupController;
