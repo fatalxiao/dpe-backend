@@ -4,11 +4,11 @@ async function getPatients() {
     return await Patient.findAll();
 }
 
-async function addPatient(data) {
+async function addPatientInfomation(data) {
     return await Patient.create(data);
 }
 
 export default {
     getPatients,
-    addPatient
+    addPatientInfomation
 };

@@ -21,11 +21,11 @@ export default class PatientController {
         const requestData = ctx.request.body;
         let error;
 
-        if (!requestData.groupId) {
-            error = Response.buildParamError('Group ID is required');
-        } else if (!requestData.id) {
+        if (!requestData.id) {
             error = Response.buildParamError('ID is required');
-        } else if (!requestData.patientName) {
+        } else if (!requestData.patient || !requestData.patient.groupId) {
+            error = Response.buildParamError('Group ID is required');
+        } else if (!requestData.patient || !requestData.patient.patientName) {
             error = Response.buildParamError('Patient Name is required');
         }
 
@@ -37,26 +37,26 @@ export default class PatientController {
 
     }
 
-    @PostMapping({value: '/dpe/patient/updateAnalgesiaData'})
-    @ApiOperation({value: 'update analgesia data', notes: 'update analgesia data to the patient'})
-    @RequestBody({value: 'analgesia_data'})
-    static async updateAnalgesiaData(ctx) {
-
-        const requestData = ctx.request.body;
-        let error;
-
-        if (!requestData.patientId) {
-            error = Response.buildParamError('Patient ID is required');
-        } else if (!requestData.analgesiaData || !_.isArray(requestData.analgesiaData)) {
-            error = Response.buildParamError('Analgesia Data is required');
-        }
-
-        if (error) {
-            return ctx.response.body = error;
-        }
-
-        ctx.response.body = await AnalgesiaDataService.updateAnalgesiaData(requestData);
-
-    }
+    // @PostMapping({value: '/dpe/patient/updateAnalgesiaData'})
+    // @ApiOperation({value: 'update analgesia data', notes: 'update analgesia data to the patient'})
+    // @RequestBody({value: 'analgesia_data'})
+    // static async updateAnalgesiaData(ctx) {
+    //
+    //     const requestData = ctx.request.body;
+    //     let error;
+    //
+    //     if (!requestData.patientId) {
+    //         error = Response.buildParamError('Patient ID is required');
+    //     } else if (!requestData.analgesiaData || !_.isArray(requestData.analgesiaData)) {
+    //         error = Response.buildParamError('Analgesia Data is required');
+    //     }
+    //
+    //     if (error) {
+    //         return ctx.response.body = error;
+    //     }
+    //
+    //     ctx.response.body = await AnalgesiaDataService.updateAnalgesiaData(requestData);
+    //
+    // }
 
 };

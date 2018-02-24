@@ -5,7 +5,17 @@ async function getPatients() {
     return Response.buildSuccess(await PatientDao.getPatients());
 };
 
-async function addPatient(formData) {
+async function addPatient(requestData) {
+
+    await addPatientInfomation({id: requestData.id, ...requestData.patient});
+    await addAnalgesiaData(requestData.analgesia.map(item => ({id: requestData.id, ...item})));
+    await addObservalData({id: requestData.id, ...requestData.observal});
+
+    return Response.buildSuccess({});
+
+};
+
+async function addPatientInfomation(formData) {
 
     formData.age = formData.age || null;
     formData.gestationalDays = formData.gestationalDays || null;
@@ -18,8 +28,16 @@ async function addPatient(formData) {
     formData.diastolicBloodPressure = formData.diastolicBloodPressure || null;
     formData.foetalHeartRate = formData.foetalHeartRate || null;
 
-    return Response.buildSuccess(await PatientDao.addPatient(formData));
+    return Response.buildSuccess(await PatientDao.addPatientInfomation(formData));
 
+};
+
+async function addAnalgesiaData(arrayData) {
+    return Response.buildSuccess(await PatientDao.addPatientInfomation(arrayData));
+};
+
+async function addObservalData(arrayData) {
+    return Response.buildSuccess(await PatientDao.addPatientInfomation(arrayData));
 };
 
 export default {
