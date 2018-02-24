@@ -10,7 +10,7 @@ async function addPatient(requestData) {
 
     try {
         await addPatientInfomation({...requestData.patient, id: requestData.id});
-        // await addAnalgesiaData(requestData.analgesia.map(item => ({...item, patientId: requestData.id})));
+        await addAnalgesiaData(requestData.analgesia.map(item => ({...item, patientId: requestData.id})));
         // await addObservalData({...requestData.observal, patientId: requestData.id});
     } catch (e) {
         return Response.buildError(e);
@@ -26,6 +26,10 @@ async function addPatientInfomation(data) {
 };
 
 async function addAnalgesiaData(data) {
+    Data.verify(data, ['patientId', 'timePoint']);
+    data.forEach(item => {
+        delete item.id;
+    });
     return Response.buildSuccess(await PatientDao.createOrUpdateAnalgesiaData(data));
 };
 
