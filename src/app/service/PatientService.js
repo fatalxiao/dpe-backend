@@ -1,5 +1,6 @@
 import PatientDao from '../dao/PatientDao.js';
 import Response from '../utils/Response.js';
+import Data from '../utils/Data.js';
 
 async function getPatients() {
     return Response.buildSuccess(await PatientDao.getPatients());
@@ -16,28 +17,17 @@ async function addPatient(requestData) {
 };
 
 async function addPatientInfomation(formData) {
-
-    formData.age = formData.age || null;
-    formData.gestationalDays = formData.gestationalDays || null;
-    formData.height = formData.height || null;
-    formData.weight = formData.weight || null;
-    formData.heartRate = formData.heartRate || null;
-    formData.initialVasScore = formData.initialVasScore || null;
-    formData.cervicalDilationAtTimeOfEA = formData.cervicalDilationAtTimeOfEA || null;
-    formData.systolicBloodPressure = formData.systolicBloodPressure || null;
-    formData.diastolicBloodPressure = formData.diastolicBloodPressure || null;
-    formData.foetalHeartRate = formData.foetalHeartRate || null;
-
+    // Data.verify(formData, ['id', 'groupId']);
     return Response.buildSuccess(await PatientDao.addPatientInfomation(formData));
-
 };
 
 async function addAnalgesiaData(arrayData) {
     return Response.buildSuccess(await PatientDao.addAnalgesiaData(arrayData));
 };
 
-async function addObservalData(arrayData) {
-    return Response.buildSuccess(await PatientDao.addObservalData(arrayData));
+async function addObservalData(formData) {
+    Data.verify(formData);
+    return Response.buildSuccess(await PatientDao.addObservalData(formData));
 };
 
 export default {
