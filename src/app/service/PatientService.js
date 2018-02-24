@@ -33,11 +33,11 @@ async function addPatientInfomation(formData) {
 };
 
 async function addAnalgesiaData(arrayData) {
-    return Response.buildSuccess(await PatientDao.addPatientInfomation(arrayData));
+    return Response.buildSuccess(await PatientDao.addAnalgesiaData(arrayData));
 };
 
 async function addObservalData(arrayData) {
-    return Response.buildSuccess(await PatientDao.addPatientInfomation(arrayData));
+    return Response.buildSuccess(await PatientDao.addObservalData(arrayData));
 };
 
 export default {

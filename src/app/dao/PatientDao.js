@@ -8,7 +8,17 @@ async function addPatientInfomation(data) {
     return await Patient.create(data);
 }
 
+async function addAnalgesiaData(data) {
+    return await Patient.create(data);
+}
+
+async function addObservalData(data) {
+    return await Patient.create(data);
+}
+
 export default {
     getPatients,
-    addPatientInfomation
+    addPatientInfomation,
+    addAnalgesiaData,
+    addObservalData
 };
