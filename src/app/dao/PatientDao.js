@@ -74,8 +74,16 @@ async function createOrUpdateObservalData(data) {
 }
 
 export default {
+
     getPatients,
+
+    isPatientInfomationExist,
     createOrUpdatePatientInfomation,
+
+    isAnalgesiaDataExist,
     createOrUpdateAnalgesiaData,
+
+    isObservalDataExist,
     createOrUpdateObservalData
+
 };
