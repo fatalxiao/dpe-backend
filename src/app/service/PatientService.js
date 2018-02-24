@@ -9,25 +9,24 @@ async function getPatients() {
 async function addPatient(requestData) {
 
     await addPatientInfomation({id: requestData.id, ...requestData.patient});
-    await addAnalgesiaData(requestData.analgesia.map(item => ({id: requestData.id, ...item})));
-    await addObservalData({id: requestData.id, ...requestData.observal});
+    await addAnalgesiaData(requestData.analgesia.map(item => ({patientId: requestData.id, ...item})));
+    await addObservalData({patientId: requestData.id, ...requestData.observal});
 
     return Response.buildSuccess({});
 
 };
 
-async function addPatientInfomation(formData) {
-    // Data.verify(formData, ['id', 'groupId']);
-    return Response.buildSuccess(await PatientDao.addPatientInfomation(formData));
+async function addPatientInfomation(data) {
+    // Data.verify(data, ['id', 'groupId']);
+    return Response.buildSuccess(await PatientDao.addPatientInfomation(data));
 };
 
-async function addAnalgesiaData(arrayData) {
-    return Response.buildSuccess(await PatientDao.addAnalgesiaData(arrayData));
+async function addAnalgesiaData(data) {
+    return Response.buildSuccess(await PatientDao.addAnalgesiaData(data));
 };
 
-async function addObservalData(formData) {
-    Data.verify(formData);
-    return Response.buildSuccess(await PatientDao.addObservalData(formData));
+async function addObservalData(data) {
+    return Response.buildSuccess(await PatientDao.addObservalData(data));
 };
 
 export default {
