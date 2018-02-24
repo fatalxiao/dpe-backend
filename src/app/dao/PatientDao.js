@@ -1,59 +1,81 @@
 import Sequelize from 'sequelize';
 
-import Patient from '../model/PatientModel.js';
-import ObservalData from '../model/ObservalDataModel.js';
+import PatientModel from '../model/PatientModel.js';
+import AnalgesiaDataModel from '../model/AnalgesiaDataModel.js';
+import ObservalDataModel from '../model/ObservalDataModel.js';
 
 async function getPatients() {
-    return await Patient.findAll();
+    return await PatientModel.findAll();
 }
 
 async function isPatientInfomationExist(id) {
-    return await Patient.count({
+    return await PatientModel.count({
         where: {
-            'id': {[Sequelize.Op.eq]: id}
+            id: {[Sequelize.Op.eq]: id}
         }
     }) > 0;
 }
 
 async function createOrUpdatePatientInfomation(data) {
     if (await isPatientInfomationExist(data.id)) {
-        return await Patient.update(data, {
+        return await PatientModel.update(data, {
             where: {
-                'id': {[Sequelize.Op.eq]: data.id}
+                id: {[Sequelize.Op.eq]: data.id}
             }
         });
     } else {
-        return await Patient.create(data);
+        return await PatientModel.create(data);
     }
 }
 
-async function addAnalgesiaData(data) {
-    return await Patient.create(data);
+async function isAnalgesiaDataExist(patientId, timePoint) {
+    return await AnalgesiaDataModel.count({
+        where: {
+            patientId: {[Sequelize.Op.eq]: patientId},
+            timePoint: {[Sequelize.Op.eq]: timePoint}
+        }
+    }) > 0;
+}
+
+async function createOrUpdateAnalgesiaData(data) {
+    for (let item of data) {
+        if (await isAnalgesiaDataExist(item.patientId, item.timePoint)) {
+            await AnalgesiaDataModel.update(item, {
+                where: {
+                    patientId: {[Sequelize.Op.eq]: item.patientId},
+                    timePoint: {[Sequelize.Op.eq]: item.timePoint}
+                }
+            });
+        } else {
+            await AnalgesiaDataModel.create(item);
+        }
+    }
+    return;
 }
 
 async function isObservalDataExist(patientId) {
-    return await ObservalData.count({
+    return await ObservalDataModel.count({
         where: {
-            'patientId': {[Sequelize.Op.eq]: patientId}
+            patientId: {[Sequelize.Op.eq]: patientId}
         }
     }) > 0;
 }
 
 async function createOrUpdateObservalData(data) {
     if (await isObservalDataExist(data.patientId)) {
-        return await ObservalData.update(data, {
+        return await ObservalDataModel.update(data, {
             where: {
-                'patientId': {[Sequelize.Op.eq]: data.patientId}
+                patientId: {[Sequelize.Op.eq]: data.patientId}
             }
         });
     } else {
-        return await ObservalData.create(data);
+        return await ObservalDataModel.create(data);
     }
 }
 
 export default {
     getPatients,
     createOrUpdatePatientInfomation,
-    addAnalgesiaData,
+    createOrUpdateAnalgesiaData,
     createOrUpdateObservalData
 };

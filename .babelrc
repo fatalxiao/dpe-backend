@@ -22,6 +22,7 @@
             }
         ],
         "transform-export-extensions",
-        "transform-decorators-legacy"
+        "transform-decorators-legacy",
+        "transform-object-rest-spread"
     ]
 }

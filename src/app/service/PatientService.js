@@ -9,11 +9,11 @@ async function getPatients() {
 
 async function addPatient(requestData) {
 
-    await addPatientInfomation({id: requestData.id, ...requestData.patient});
-    await addAnalgesiaData(requestData.analgesia.map(item => ({patientId: requestData.id, ...item})));
-    await addObservalData({patientId: requestData.id, ...requestData.observal});
+    await addPatientInfomation({...requestData.patient, id: requestData.id});
+    await addAnalgesiaData(requestData.analgesia.map(item => ({...item, patientId: requestData.id})));
+    await addObservalData({...requestData.observal, patientId: requestData.id});
 
-    return Response.buildSuccess({});
+    return Response.buildSuccess();
 
 };
 
@@ -23,7 +23,7 @@ async function addPatientInfomation(data) {
 };
 
 async function addAnalgesiaData(data) {
-    return Response.buildSuccess(await PatientDao.addAnalgesiaData(data));
+    return Response.buildSuccess(await PatientDao.createOrUpdateAnalgesiaData(data));
 };
 
 async function addObservalData(data) {

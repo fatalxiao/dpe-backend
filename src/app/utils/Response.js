@@ -8,11 +8,18 @@ const Mappings = {
 };
 
 function build([code, msg], data) {
-    return JSON.stringify({
+
+    const json = {
         code,
-        msg,
-        data
-    });
+        msg
+    };
+
+    if (data) {
+        json.data = data;
+    }
+
+    return JSON.stringify(json);
+
 }
 
 function buildSuccess(data) {

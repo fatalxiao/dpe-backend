@@ -1,11 +1,9 @@
-import _ from 'lodash';
 import PatientService from '../service/PatientService.js';
-import AnalgesiaDataService from '../service/AnalgesiaDataService.js';
 import Response from '../utils/Response.js';
 import {Api, ApiOperation, GetMapping, PostMapping, RequestBody} from '../utils/ApiDecorator';
 
 @Api({tags: 'Patient'})
-export default class PatientController {
+class PatientController {
 
     @GetMapping({value: '/dpe/patient/getPatients'})
     @ApiOperation({value: 'get patients', notes: 'get all patients'})
@@ -37,26 +35,6 @@ export default class PatientController {
 
     }
 
-    // @PostMapping({value: '/dpe/patient/updateAnalgesiaData'})
-    // @ApiOperation({value: 'update analgesia data', notes: 'update analgesia data to the patient'})
-    // @RequestBody({value: 'analgesia_data'})
-    // static async updateAnalgesiaData(ctx) {
-    //
-    //     const requestData = ctx.request.body;
-    //     let error;
-    //
-    //     if (!requestData.patientId) {
-    //         error = Response.buildParamError('Patient ID is required');
-    //     } else if (!requestData.analgesiaData || !_.isArray(requestData.analgesiaData)) {
-    //         error = Response.buildParamError('Analgesia Data is required');
-    //     }
-    //
-    //     if (error) {
-    //         return ctx.response.body = error;
-    //     }
-    //
-    //     ctx.response.body = await AnalgesiaDataService.updateAnalgesiaData(requestData);
-    //
-    // }
-
 };
+
+export default PatientController;
