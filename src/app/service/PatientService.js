@@ -1,7 +1,6 @@
 import PatientDao from '../dao/PatientDao.js';
 import Response from '../utils/Response.js';
-
-// import Data from '../utils/Data.js';
+import Data from '../utils/Data.js';
 
 async function getPatients() {
     return Response.buildSuccess(await PatientDao.getPatients());
@@ -9,16 +8,20 @@ async function getPatients() {
 
 async function addPatient(requestData) {
 
-    await addPatientInfomation({...requestData.patient, id: requestData.id});
-    await addAnalgesiaData(requestData.analgesia.map(item => ({...item, patientId: requestData.id})));
-    await addObservalData({...requestData.observal, patientId: requestData.id});
+    try {
+        await addPatientInfomation({...requestData.patient, id: requestData.id});
+        // await addAnalgesiaData(requestData.analgesia.map(item => ({...item, patientId: requestData.id})));
+        // await addObservalData({...requestData.observal, patientId: requestData.id});
+    } catch (e) {
+        return Response.buildError(e);
+    }
 
     return Response.buildSuccess();
 
 };
 
 async function addPatientInfomation(data) {
-    // Data.verify(data, ['id', 'groupId']);
+    Data.verify(data, ['id', 'groupId']);
     return Response.buildSuccess(await PatientDao.createOrUpdatePatientInfomation(data));
 };
 

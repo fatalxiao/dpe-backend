@@ -29,7 +29,9 @@ function generateSequelize() {
             define: {
                 underscored: true,
                 operatorsAliases: false
-            }
+            },
+
+            timezone: '+08:00'
 
         }
     );
