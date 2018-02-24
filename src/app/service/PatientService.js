@@ -26,7 +26,7 @@ async function addAnalgesiaData(data) {
 };
 
 async function addObservalData(data) {
-    return Response.buildSuccess(await PatientDao.addObservalData(data));
+    return Response.buildSuccess(await PatientDao.createOrUpdateObservalData(data));
 };
 
 export default {

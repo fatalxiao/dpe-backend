@@ -23,7 +23,7 @@ async function isObservalDataExist(patientId) {
     }) > 0;
 }
 
-async function addObservalData(data) {
+async function createOrUpdateObservalData(data) {
     if (await isObservalDataExist(data.patientId)) {
         return await ObservalData.update(data, {
             where: {
@@ -39,5 +39,5 @@ export default {
     getPatients,
     addPatientInfomation,
     addAnalgesiaData,
-    addObservalData
+    createOrUpdateObservalData
 };
