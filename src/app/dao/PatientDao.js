@@ -7,8 +7,24 @@ async function getPatients() {
     return await Patient.findAll();
 }
 
+async function isPatientInfomationExist(id) {
+    return await Patient.count({
+        where: {
+            'id': {[Sequelize.Op.eq]: id}
+        }
+    }) > 0;
+}
+
 async function addPatientInfomation(data) {
-    return await Patient.create(data);
+    if (await isPatientInfomationExist(data.id)) {
+        return await Patient.update(data, {
+            where: {
+                'id': {[Sequelize.Op.eq]: data.id}
+            }
+        });
+    } else {
+        return await Patient.create(data);
+    }
 }
 
 async function addAnalgesiaData(data) {
