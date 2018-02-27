@@ -117,7 +117,7 @@ const sequelizeInstance = SequelizeGenerator(),
             type: Sequelize.BOOLEAN
         },
         lateralEpisiotomyVasScore: {
-            field: 'lateralEpisiotomyVasScore',
+            field: 'lateral_episiotomy_vas_score',
             type: Sequelize.INTEGER
         },
         hasLateralEpisiotomy: {

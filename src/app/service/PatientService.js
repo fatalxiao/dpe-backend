@@ -8,13 +8,13 @@ async function getPatients() {
 
 async function addPatient(requestData) {
 
-    try {
-        await addPatientInfomation({...requestData.patient, id: requestData.id});
-        await addAnalgesiaData(requestData.analgesia.map(item => ({...item, patientId: requestData.id})));
-        await addObservalData({...requestData.observal, patientId: requestData.id});
-    } catch (e) {
-        return Response.buildError(e);
-    }
+    // try {
+    await addPatientInfomation({...requestData.patient, id: requestData.id});
+    await addAnalgesiaData(requestData.analgesia.map(item => ({...item, patientId: requestData.id})));
+    await addObservalData({...requestData.observal, patientId: requestData.id});
+    // } catch (e) {
+    //     return Response.buildError(e);
+    // }
 
     return Response.buildSuccess();
 
