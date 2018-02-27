@@ -39,7 +39,7 @@ const sequelizeInstance = SequelizeGenerator(),
             field: 'initial_vas_score',
             type: Sequelize.INTEGER(3)
         },
-        cervicalDilationAtTimeOfEa: {
+        cervicalDilationAtTimeOfEA: {
             field: 'cervical_dilation_at_time_of_ea',
             type: Sequelize.INTEGER(3)
         },
