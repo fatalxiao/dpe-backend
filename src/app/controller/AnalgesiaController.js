@@ -3,7 +3,7 @@ import Response from '../utils/Response.js';
 import {Api, ApiOperation, PostMapping, RequestBody} from '../utils/ApiDecorator';
 
 @Api({tags: 'Analgesia'})
-class AnalgesiaDataController {
+class AnalgesiaController {
 
     /**
      * @param ctx
@@ -71,4 +71,4 @@ class AnalgesiaDataController {
 
 };
 
-export default PatientController;
+export default AnalgesiaController;
