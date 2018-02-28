@@ -6,9 +6,9 @@ async function getPatients() {
     return Response.buildSuccess(await PatientDao.getPatients());
 };
 
-async function createPatientInformation(data) {
+async function createPatient(data) {
 
-    if (await PatientDao.isPatientInfomationExist(data.id)) {
+    if (await PatientDao.isPatientExist(data.id)) {
         return Response.buildError(`Patient ID ${data.id} is exist.`);
     }
 
@@ -16,7 +16,7 @@ async function createPatientInformation(data) {
     let result;
 
     try {
-        result = await PatientDao.createPatientInfomation(data);
+        result = await PatientDao.createPatient(data);
     } catch (e) {
         return Response.buildError('Create Patient failure.');
     }
@@ -25,9 +25,9 @@ async function createPatientInformation(data) {
 
 };
 
-async function updatePatientInformation(data) {
+async function updatePatient(data) {
 
-    if (!(await PatientDao.isPatientInfomationExist(data.id))) {
+    if (!(await PatientDao.isPatientExist(data.id))) {
         return Response.buildError(`Patient ID ${data.id} is not exist.`);
     }
 
@@ -35,7 +35,7 @@ async function updatePatientInformation(data) {
     let result;
 
     try {
-        result = await PatientDao.updatePatientInfomation(data);
+        result = await PatientDao.updatePatient(data);
     } catch (e) {
         return Response.buildError('Update Patient failure.');
     }
@@ -44,13 +44,13 @@ async function updatePatientInformation(data) {
 
 };
 
-async function createOrUpdatePatientInfomation(data) {
+async function createOrUpdatePatient(data) {
 
     Data.verify(data, ['id', 'groupId']);
     let result;
 
     try {
-        result = await PatientDao.createOrUpdatePatientInfomation(data);
+        result = await PatientDao.createOrUpdatePatient(data);
     } catch (e) {
         return Response.buildError('Update Patient failure.');
     }
@@ -63,8 +63,8 @@ export default {
 
     getPatients,
 
-    createPatientInformation,
-    updatePatientInformation,
-    createOrUpdatePatientInfomation
+    createPatient,
+    updatePatient,
+    createOrUpdatePatient
 
 };

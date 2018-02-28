@@ -6,7 +6,7 @@ async function getPatients() {
     return await PatientModel.findAll();
 }
 
-async function isPatientInfomationExist(id) {
+async function isPatientExist(id) {
     return await PatientModel.count({
         where: {
             id: {[Sequelize.Op.eq]: id}
@@ -14,11 +14,11 @@ async function isPatientInfomationExist(id) {
     }) > 0;
 }
 
-async function createPatientInfomation(data) {
+async function createPatient(data) {
     return await PatientModel.create(data);
 }
 
-async function updatePatientInfomation(data) {
+async function updatePatient(data) {
     return await PatientModel.update(data, {
         where: {
             id: {[Sequelize.Op.eq]: data.id}
@@ -26,11 +26,11 @@ async function updatePatientInfomation(data) {
     });
 }
 
-async function createOrUpdatePatientInfomation(data) {
-    if (await isPatientInfomationExist(data.id)) {
-        return updatePatientInfomation(data);
+async function createOrUpdatePatient(data) {
+    if (await isPatientExist(data.id)) {
+        return updatePatient(data);
     } else {
-        return createPatientInfomation(data);
+        return createPatient(data);
     }
 }
 
@@ -38,10 +38,10 @@ export default {
 
     getPatients,
 
-    isPatientInfomationExist,
+    isPatientExist,
 
-    createPatientInfomation,
-    updatePatientInfomation,
-    createOrUpdatePatientInfomation
+    createPatient,
+    updatePatient,
+    createOrUpdatePatient
 
 };

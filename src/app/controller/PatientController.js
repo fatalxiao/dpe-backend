@@ -27,10 +27,10 @@ class PatientController {
         ctx.response.body = await PatientService.getPatients();
     }
 
-    @PostMapping({value: '/dpe/patient/createPatientInformation'})
+    @PostMapping({value: '/dpe/patient/createPatient'})
     @ApiOperation({value: 'create new patient', notes: 'create new patient'})
     @RequestBody({value: 'Patients'})
-    static async createPatientInformation(ctx) {
+    static async createPatient(ctx) {
 
         const requestData = ctx.request.body;
 
@@ -39,14 +39,14 @@ class PatientController {
             return ctx.response.body = error;
         }
 
-        ctx.response.body = await PatientService.createPatientInformation(requestData);
+        ctx.response.body = await PatientService.createPatient(requestData);
 
     }
 
-    @PostMapping({value: '/dpe/patient/updatePatientInformation'})
-    @ApiOperation({value: 'update patient information', notes: 'update patient information'})
+    @PostMapping({value: '/dpe/patient/updatePatient'})
+    @ApiOperation({value: 'update patient', notes: 'update patient'})
     @RequestBody({value: 'Patients'})
-    static async updatePatientInformation(ctx) {
+    static async updatePatient(ctx) {
 
         const requestData = ctx.request.body;
 
@@ -55,14 +55,14 @@ class PatientController {
             return ctx.response.body = error;
         }
 
-        ctx.response.body = await PatientService.updatePatientInformation(requestData);
+        ctx.response.body = await PatientService.updatePatient(requestData);
 
     }
 
-    @PostMapping({value: '/dpe/patient/createOrUpdatePatientInfomation'})
-    @ApiOperation({value: 'create or update patient information', notes: 'create or update patient information'})
+    @PostMapping({value: '/dpe/patient/createOrUpdatePatient'})
+    @ApiOperation({value: 'create or update patient', notes: 'create or update patient'})
     @RequestBody({value: 'Patients'})
-    static async createOrUpdatePatientInfomation(ctx) {
+    static async createOrUpdatePatient(ctx) {
 
         const requestData = ctx.request.body;
 
@@ -71,7 +71,7 @@ class PatientController {
             return ctx.response.body = error;
         }
 
-        ctx.response.body = await PatientService.createOrUpdatePatientInfomation(requestData);
+        ctx.response.body = await PatientService.createOrUpdatePatient(requestData);
 
     }
 
