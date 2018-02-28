@@ -5,6 +5,22 @@ import {Api, ApiOperation, GetMapping, PostMapping, RequestBody} from '../utils/
 @Api({tags: 'Patient'})
 class PatientController {
 
+    static verifyRequestData(requestData) {
+
+        if (!requestData) {
+            return Response.buildParamError('Request Data is required');
+        } else if (!requestData.id) {
+            return Response.buildParamError('ID is required');
+        } else if (!requestData.groupId) {
+            return Response.buildParamError('Group is required');
+        } else if (!requestData.patientName) {
+            return Response.buildParamError('Patient Name is required');
+        }
+
+        return;
+
+    }
+
     @GetMapping({value: '/dpe/patient/getPatients'})
     @ApiOperation({value: 'get patients', notes: 'get all patients'})
     static async getPatients(ctx) {
@@ -17,16 +33,8 @@ class PatientController {
     static async createPatientInformation(ctx) {
 
         const requestData = ctx.request.body;
-        let error;
 
-        if (!requestData.id) {
-            error = Response.buildParamError('ID is required');
-        } else if (!requestData.groupId) {
-            error = Response.buildParamError('Group is required');
-        } else if (!requestData.patientName) {
-            error = Response.buildParamError('Patient Name is required');
-        }
-
+        let error = PatientController.verifyRequestData(requestData);
         if (error) {
             return ctx.response.body = error;
         }
@@ -41,16 +49,8 @@ class PatientController {
     static async updatePatientInformation(ctx) {
 
         const requestData = ctx.request.body;
-        let error;
 
-        if (!requestData.id) {
-            error = Response.buildParamError('ID is required');
-        } else if (!requestData.groupId) {
-            error = Response.buildParamError('Group is required');
-        } else if (!requestData.patientName) {
-            error = Response.buildParamError('Patient Name is required');
-        }
-
+        let error = PatientController.verifyRequestData(requestData);
         if (error) {
             return ctx.response.body = error;
         }
@@ -65,16 +65,8 @@ class PatientController {
     static async createOrUpdatePatientInfomation(ctx) {
 
         const requestData = ctx.request.body;
-        let error;
 
-        if (!requestData.id) {
-            error = Response.buildParamError('ID is required');
-        } else if (!requestData.groupId) {
-            error = Response.buildParamError('Group is required');
-        } else if (!requestData.patientName) {
-            error = Response.buildParamError('Patient Name is required');
-        }
-
+        let error = PatientController.verifyRequestData(requestData);
         if (error) {
             return ctx.response.body = error;
         }
