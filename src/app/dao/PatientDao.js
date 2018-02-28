@@ -28,13 +28,9 @@ async function updatePatientInfomation(data) {
 
 async function createOrUpdatePatientInfomation(data) {
     if (await isPatientInfomationExist(data.id)) {
-        return await PatientModel.update(data, {
-            where: {
-                id: {[Sequelize.Op.eq]: data.id}
-            }
-        });
+        return updatePatientInfomation(data);
     } else {
-        return await PatientModel.create(data);
+        return createPatientInfomation(data);
     }
 }
 

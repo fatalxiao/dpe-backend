@@ -24,8 +24,20 @@ async function updateAnalgesiaData(data) {
     });
 }
 
+async function createOrUpdateAnalgesiaData(data) {
+    if (await isAnalgesiaDataExist(data.patientId, data.timePoint)) {
+        return updateAnalgesiaData(data);
+    } else {
+        return createAnalgesiaData(data);
+    }
+}
+
 export default {
+
     isAnalgesiaDataExist,
+
     createAnalgesiaData,
-    updateAnalgesiaData
+    updateAnalgesiaData,
+    createOrUpdateAnalgesiaData
+
 };
