@@ -37,7 +37,7 @@ async function updatePatientInformation(data) {
     try {
         result = await PatientDao.updatePatientInfomation(data);
     } catch (e) {
-        return Response.buildError('Create Patient failure.');
+        return Response.buildError('Update Patient failure.');
     }
 
     return Response.buildSuccess(result);
@@ -52,7 +52,7 @@ async function createOrUpdatePatientInfomation(data) {
     try {
         result = await PatientDao.createOrUpdatePatientInfomation(data);
     } catch (e) {
-        return Response.buildError('Create Patient failure.');
+        return Response.buildError('Update Patient failure.');
     }
 
     return Response.buildSuccess(result);
