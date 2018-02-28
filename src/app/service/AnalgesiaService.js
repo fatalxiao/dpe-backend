@@ -13,7 +13,7 @@ import Data from '../utils/Data.js';
  */
 async function createAnalgesiaData(data) {
 
-    Data.verify(data, ['patientId', 'timePoint']);
+    Data.verify(data.analgesiaData, ['timePoint']);
 
     const error = [];
 
@@ -56,7 +56,7 @@ async function createAnalgesiaData(data) {
  */
 async function updateAnalgesiaData(data) {
 
-    Data.verify(data, ['patientId', 'timePoint']);
+    Data.verify(data.analgesiaData, ['timePoint']);
 
     const error = [];
 
@@ -99,7 +99,7 @@ async function updateAnalgesiaData(data) {
  */
 async function createOrUpdateAnalgesiaData(data) {
 
-    Data.verify(data, ['patientId', 'timePoint']);
+    Data.verify(data.analgesiaData, ['timePoint']);
 
     const error = [];
 

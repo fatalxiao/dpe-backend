@@ -22,8 +22,17 @@ async function updateObservalData(data) {
     });
 }
 
+async function createOrUpdateObservalData(data) {
+    if (await isObservalDataExist(data.patientId)) {
+        return updateObservalData(data);
+    } else {
+        return createObservalData(data);
+    }
+}
+
 export default {
     isObservalDataExist,
     createObservalData,
-    updateObservalData
+    updateObservalData,
+    createOrUpdateObservalData
 };
