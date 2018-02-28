@@ -40,6 +40,7 @@ async function createPatientInformation(data) {
 // };
 
 export default {
-    getPatients
+    getPatients,
+    createPatientInformation
     // addPatient
 };
