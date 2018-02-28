@@ -11,10 +11,10 @@ class PatientController {
         ctx.response.body = await PatientService.getPatients();
     }
 
-    @PostMapping({value: '/dpe/patient/addPatient'})
+    @PostMapping({value: '/dpe/patient/createPatientInformation'})
     @ApiOperation({value: 'add new patient', notes: 'add new patient'})
     @RequestBody({value: 'patients'})
-    static async addPatient(ctx) {
+    static async createPatientInformation(ctx) {
 
         const requestData = ctx.request.body;
         let error;
@@ -31,7 +31,7 @@ class PatientController {
             return ctx.response.body = error;
         }
 
-        ctx.response.body = await PatientService.addPatient(requestData);
+        ctx.response.body = await PatientService.createPatientInformation(requestData);
 
     }
 
