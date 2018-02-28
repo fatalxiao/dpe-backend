@@ -28,23 +28,8 @@ async function updatePatientInformation(data) {
 
 };
 
-// async function addAnalgesiaData(data) {
-//     Data.verify(data, ['patientId', 'timePoint']);
-//     data.forEach(item => {
-//         delete item.id;
-//     });
-//     return Response.buildSuccess(await PatientDao.createOrUpdateAnalgesiaData(data));
-// };
-//
-// async function addObservalData(data) {
-//     Data.verify(data, ['patientId']);
-//     delete data.id;
-//     return Response.buildSuccess(await PatientDao.createOrUpdateObservalData(data));
-// };
-
 export default {
     getPatients,
     createPatientInformation,
     updatePatientInformation
-    // addPatient
 };
