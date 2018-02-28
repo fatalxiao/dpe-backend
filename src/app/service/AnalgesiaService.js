@@ -41,7 +41,7 @@ async function createAnalgesiaData(data) {
         return Response.buildError(error.join(' '));
     }
 
-    Response.buildSuccess(data.analgesiaData.length);
+    return Response.buildSuccess(data.analgesiaData.length);
 
 };
 
@@ -84,7 +84,7 @@ async function updateAnalgesiaData(data) {
         return Response.buildError(error.join(' '));
     }
 
-    Response.buildSuccess(data.analgesiaData.length);
+    return Response.buildSuccess(data.analgesiaData.length);
 
 };
 
@@ -122,7 +122,7 @@ async function createOrUpdateAnalgesiaData(data) {
         return Response.buildError(error.join(' '));
     }
 
-    Response.buildSuccess(data.analgesiaData.length);
+    return Response.buildSuccess(data.analgesiaData.length);
 
 };
 

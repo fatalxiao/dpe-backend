@@ -3,7 +3,7 @@
     "version": "1.0.0",
     "private": true,
     "scripts": {
-        "dev": "nodemon $NODE_DEBUG_OPTION src/main --exec babel-node",
+        "dev": "nodemon src/main --exec babel-node $NODE_DEBUG_OPTION",
         "clean": "rimraf dist",
         "build": "npm run clean & babel src --out-dir dist"
     },

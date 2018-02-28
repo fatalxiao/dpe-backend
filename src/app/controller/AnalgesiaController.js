@@ -85,6 +85,8 @@ class AnalgesiaController {
 
         const requestData = ctx.request.body;
 
+        console.log(requestData);
+
         let error = AnalgesiaController.verifyRequestData(requestData);
         if (error) {
             return ctx.response.body = error;
