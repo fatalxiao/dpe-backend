@@ -13,7 +13,15 @@ async function createPatientInformation(data) {
     }
 
     Data.verify(data, ['id', 'groupId']);
-    return Response.buildSuccess(await PatientDao.createPatientInfomation(data));
+    let result;
+
+    try {
+        result = await PatientDao.createPatientInfomation(data);
+    } catch (e) {
+        return Response.buildError('Create Patient failure.');
+    }
+
+    return Response.buildSuccess(result);
 
 };
 
@@ -24,13 +32,31 @@ async function updatePatientInformation(data) {
     }
 
     Data.verify(data, ['id', 'groupId']);
-    return Response.buildSuccess(await PatientDao.updatePatientInfomation(data));
+    let result;
+
+    try {
+        result = await PatientDao.updatePatientInfomation(data);
+    } catch (e) {
+        return Response.buildError('Create Patient failure.');
+    }
+
+    return Response.buildSuccess(result);
 
 };
 
 async function createOrUpdatePatientInfomation(data) {
+
     Data.verify(data, ['id', 'groupId']);
-    return Response.buildSuccess(await PatientDao.createOrUpdatePatientInfomation(data));
+    let result;
+
+    try {
+        result = await PatientDao.createOrUpdatePatientInfomation(data);
+    } catch (e) {
+        return Response.buildError('Create Patient failure.');
+    }
+
+    return Response.buildSuccess(result);
+
 };
 
 export default {
