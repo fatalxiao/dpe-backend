@@ -1,16 +1,28 @@
 import ObservalDao from '../dao/ObservalDao.js';
 import Response from '../utils/Response.js';
 
+/**
+ * @param data
+ * @returns {Promise<*>}
+ *
+ *  data: {
+ *      patientId: String
+ *      observalData: Object
+ *  }
+ */
 async function createObservalData(data) {
 
-    if (await ObservalDao.isObservalDataExist(data.patientData)) {
-        return Response.buildError(`Patient ID ${data.patientData} Observal Data is exist.`);
+    if (await ObservalDao.isObservalDataExist(data.patientId)) {
+        return Response.buildError(`Patient ID ${data.patientId} Observal Data is exist.`);
     }
 
     let result;
 
     try {
-        result = await ObservalDao.createObservalData(data);
+        result = await ObservalDao.createObservalData({
+            ...data.observalData,
+            patientId: data.patientId
+        });
     } catch (e) {
         return Response.buildError('Add Observal Data failure.');
     }
@@ -19,16 +31,28 @@ async function createObservalData(data) {
 
 };
 
+/**
+ * @param data
+ * @returns {Promise<*>}
+ *
+ *  data: {
+ *      patientId: String
+ *      observalData: Object
+ *  }
+ */
 async function updateObservalData(data) {
 
-    if (!await ObservalDao.isObservalDataExist(data.patientData)) {
-        return Response.buildError(`Patient ID ${data.patientData} Observal Data is not exist.`);
+    if (!await ObservalDao.isObservalDataExist(data.patientId)) {
+        return Response.buildError(`Patient ID ${data.patientId} Observal Data is not exist.`);
     }
 
     let result;
 
     try {
-        result = await ObservalDao.updateObservalData(data);
+        result = await ObservalDao.updateObservalData({
+            ...data.observalData,
+            patientId: data.patientId
+        });
     } catch (e) {
         return Response.buildError('Update Observal Data failure.');
     }
@@ -37,12 +61,24 @@ async function updateObservalData(data) {
 
 };
 
+/**
+ * @param data
+ * @returns {Promise<*>}
+ *
+ *  data: {
+ *      patientId: String
+ *      observalData: Object
+ *  }
+ */
 async function createOrUpdateObservalData(data) {
 
     let result;
 
     try {
-        result = await ObservalDao.createOrUpdateObservalData(data);
+        result = await ObservalDao.createOrUpdateObservalData({
+            ...data.observalData,
+            patientId: data.patientId
+        });
     } catch (e) {
         return Response.buildError('Update Observal Data failure.');
     }
