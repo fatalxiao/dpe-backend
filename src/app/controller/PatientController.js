@@ -13,7 +13,7 @@ class PatientController {
 
     @PostMapping({value: '/dpe/patient/createPatientInformation'})
     @ApiOperation({value: 'create new patient', notes: 'create new patient'})
-    @RequestBody({value: 'patients'})
+    @RequestBody({value: 'Patients'})
     static async createPatientInformation(ctx) {
 
         const requestData = ctx.request.body;
@@ -37,7 +37,7 @@ class PatientController {
 
     @PostMapping({value: '/dpe/patient/updatePatientInformation'})
     @ApiOperation({value: 'update patient information', notes: 'update patient information'})
-    @RequestBody({value: 'patients'})
+    @RequestBody({value: 'Patients'})
     static async updatePatientInformation(ctx) {
 
         const requestData = ctx.request.body;
@@ -61,7 +61,7 @@ class PatientController {
 
     @PostMapping({value: '/dpe/patient/createOrUpdatePatientInfomation'})
     @ApiOperation({value: 'create or update patient information', notes: 'create or update patient information'})
-    @RequestBody({value: 'patients'})
+    @RequestBody({value: 'Patients'})
     static async createOrUpdatePatientInfomation(ctx) {
 
         const requestData = ctx.request.body;

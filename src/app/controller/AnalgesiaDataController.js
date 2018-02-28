@@ -2,7 +2,7 @@ import AnalgesiaService from '../service/AnalgesiaService.js';
 import Response from '../utils/Response.js';
 import {Api, ApiOperation, PostMapping, RequestBody} from '../utils/ApiDecorator';
 
-@Api({tags: 'AnalgesiaData'})
+@Api({tags: 'Analgesia'})
 class AnalgesiaDataController {
 
     /**
