@@ -59,6 +59,30 @@ class PatientController {
 
     }
 
+    @PostMapping({value: '/dpe/patient/createOrUpdatePatientInfomation'})
+    @ApiOperation({value: 'create or update patient information', notes: 'create or update patient information'})
+    @RequestBody({value: 'patients'})
+    static async createOrUpdatePatientInfomation(ctx) {
+
+        const requestData = ctx.request.body;
+        let error;
+
+        if (!requestData.id) {
+            error = Response.buildParamError('ID is required');
+        } else if (!requestData.groupId) {
+            error = Response.buildParamError('Group is required');
+        } else if (!requestData.patientName) {
+            error = Response.buildParamError('Patient Name is required');
+        }
+
+        if (error) {
+            return ctx.response.body = error;
+        }
+
+        ctx.response.body = await PatientService.createOrUpdatePatientInfomation(requestData);
+
+    }
+
 };
 
 export default PatientController;

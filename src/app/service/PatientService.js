@@ -28,8 +28,17 @@ async function updatePatientInformation(data) {
 
 };
 
+async function createOrUpdatePatientInfomation(data) {
+    Data.verify(data, ['id', 'groupId']);
+    return Response.buildSuccess(await PatientDao.createOrUpdatePatientInfomation(data));
+};
+
 export default {
+
     getPatients,
+
     createPatientInformation,
-    updatePatientInformation
+    updatePatientInformation,
+    createOrUpdatePatientInfomation
+
 };
