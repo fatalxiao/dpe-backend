@@ -1,6 +1,6 @@
 import AnalgesiaService from '../service/AnalgesiaService.js';
 import Response from '../utils/Response.js';
-import {Api, ApiOperation, GetMapping, PostMapping, RequestBody} from '../utils/ApiDecorator';
+import {Api, ApiOperation, PostMapping, RequestBody} from '../utils/ApiDecorator';
 
 @Api({tags: 'AnalgesiaData'})
 class AnalgesiaDataController {

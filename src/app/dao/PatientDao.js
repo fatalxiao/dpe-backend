@@ -26,12 +26,26 @@ async function updatePatientInfomation(data) {
     });
 }
 
+async function createOrUpdatePatientInfomation(data) {
+    if (await isPatientInfomationExist(data.id)) {
+        return await PatientModel.update(data, {
+            where: {
+                id: {[Sequelize.Op.eq]: data.id}
+            }
+        });
+    } else {
+        return await PatientModel.create(data);
+    }
+}
+
 export default {
 
     getPatients,
 
     isPatientInfomationExist,
+
     createPatientInfomation,
-    updatePatientInfomation
+    updatePatientInfomation,
+    createOrUpdatePatientInfomation
 
 };
