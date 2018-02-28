@@ -12,22 +12,16 @@ async function isAnalgesiaDataExist(patientId, timePoint) {
 }
 
 async function createAnalgesiaData(data) {
-    for (let item of data) {
-        await AnalgesiaModel.create(item);
-    }
-    return;
+    return await AnalgesiaModel.create(data);
 }
 
 async function updateAnalgesiaData(data) {
-    for (let item of data) {
-        await AnalgesiaModel.update(item, {
-            where: {
-                patientId: {[Sequelize.Op.eq]: item.patientId},
-                timePoint: {[Sequelize.Op.eq]: item.timePoint}
-            }
-        });
-    }
-    return;
+    return await AnalgesiaModel.update(data, {
+        where: {
+            patientId: {[Sequelize.Op.eq]: data.patientId},
+            timePoint: {[Sequelize.Op.eq]: data.timePoint}
+        }
+    });
 }
 
 export default {
