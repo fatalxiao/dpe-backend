@@ -78,12 +78,12 @@ export default {
     getPatients,
 
     isPatientInfomationExist,
-    createOrUpdatePatientInfomation,
+    createOrUpdatePatientInfomation
 
-    isAnalgesiaDataExist,
-    createOrUpdateAnalgesiaData,
-
-    isObservalDataExist,
-    createOrUpdateObservalData
+    // isAnalgesiaDataExist,
+    // createOrUpdateAnalgesiaData,
+    //
+    // isObservalDataExist,
+    // createOrUpdateObservalData
 
 };

@@ -21,8 +21,25 @@ async function getPatients() {
 // };
 
 async function createPatientInformation(data) {
+
+    if (await PatientDao.isPatientInfomationExist(data.id)) {
+        return Response.buildError(`Patient ID ${data.id} is exist.`);
+    }
+
     Data.verify(data, ['id', 'groupId']);
     return Response.buildSuccess(await PatientDao.createOrUpdatePatientInfomation(data));
+
+};
+
+async function updatePatientInformation(data) {
+
+    if (!(await PatientDao.isPatientInfomationExist(data.id))) {
+        return Response.buildError(`Patient ID ${data.id} is not exist.`);
+    }
+
+    Data.verify(data, ['id', 'groupId']);
+    return Response.buildSuccess(await PatientDao.createOrUpdatePatientInfomation(data));
+
 };
 
 // async function addAnalgesiaData(data) {
@@ -41,6 +58,7 @@ async function createPatientInformation(data) {
 
 export default {
     getPatients,
-    createPatientInformation
+    createPatientInformation,
+    updatePatientInformation
     // addPatient
 };
