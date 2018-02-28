@@ -5,6 +5,20 @@ import {Api, ApiOperation, PostMapping, RequestBody} from '../utils/ApiDecorator
 @Api({tags: 'Analgesia'})
 class AnalgesiaController {
 
+    static verifyRequestData(requestData) {
+
+        if (!requestData) {
+            return Response.buildParamError('Request Data is required');
+        } else if (!requestData.patientId) {
+            return Response.buildParamError('Patient ID is required');
+        } else if (!requestData.analgesiaData) {
+            return Response.buildParamError('Analgesia Data is required');
+        }
+
+        return;
+
+    }
+
     /**
      * @param ctx
      * @returns {Promise<*>}
@@ -20,14 +34,8 @@ class AnalgesiaController {
     static async createAnalgesiaData(ctx) {
 
         const requestData = ctx.request.body;
-        let error;
 
-        if (!requestData.patientId) {
-            error = Response.buildParamError('Patient ID is required');
-        } else if (!requestData.analgesiaData) {
-            error = Response.buildParamError('Analgesia Data is required');
-        }
-
+        let error = AnalgesiaController.verifyRequestData(requestData);
         if (error) {
             return ctx.response.body = error;
         }
@@ -51,14 +59,8 @@ class AnalgesiaController {
     static async updateAnalgesiaData(ctx) {
 
         const requestData = ctx.request.body;
-        let error;
 
-        if (!requestData.patientId) {
-            error = Response.buildParamError('Patient ID is required');
-        } else if (!requestData.analgesiaData) {
-            error = Response.buildParamError('Analgesia Data is required');
-        }
-
+        let error = AnalgesiaController.verifyRequestData(requestData);
         if (error) {
             return ctx.response.body = error;
         }
@@ -82,14 +84,8 @@ class AnalgesiaController {
     static async createOrUpdateAnalgesiaData(ctx) {
 
         const requestData = ctx.request.body;
-        let error;
 
-        if (!requestData.patientId) {
-            error = Response.buildParamError('Patient ID is required');
-        } else if (!requestData.analgesiaData) {
-            error = Response.buildParamError('Analgesia Data is required');
-        }
-
+        let error = AnalgesiaController.verifyRequestData(requestData);
         if (error) {
             return ctx.response.body = error;
         }
