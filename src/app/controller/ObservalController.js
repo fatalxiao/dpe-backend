@@ -5,20 +5,28 @@ import {Api, ApiOperation, PostMapping, RequestBody} from '../utils/ApiDecorator
 @Api({tags: 'Observal'})
 class ObservalController {
 
+    static verifyRequestData(requestData) {
+
+        if (!requestData) {
+            return Response.buildParamError('Request Data is required');
+        } else if (!requestData.patientId) {
+            return Response.buildParamError('Patient ID is required');
+        } else if (!requestData.observalData) {
+            return Response.buildParamError('Observal Data is required');
+        }
+
+        return;
+
+    }
+
     @PostMapping({value: '/dpe/observal/createObservalData'})
     @ApiOperation({value: 'add new observal data', notes: 'add new observal data'})
     @RequestBody({value: 'Observal'})
     static async createObservalData(ctx) {
 
         const requestData = ctx.request.body;
-        let error;
 
-        if (!requestData.patientId) {
-            error = Response.buildParamError('Patient ID is required');
-        } else if (!requestData.observalData) {
-            error = Response.buildParamError('Observal Data is required');
-        }
-
+        let error = ObservalController.verifyRequestData(requestData);
         if (error) {
             return ctx.response.body = error;
         }
@@ -33,14 +41,8 @@ class ObservalController {
     static async updateObservalData(ctx) {
 
         const requestData = ctx.request.body;
-        let error;
 
-        if (!requestData.patientId) {
-            error = Response.buildParamError('Patient ID is required');
-        } else if (!requestData.observalData) {
-            error = Response.buildParamError('Observal Data is required');
-        }
-
+        let error = ObservalController.verifyRequestData(requestData);
         if (error) {
             return ctx.response.body = error;
         }
@@ -55,14 +57,8 @@ class ObservalController {
     static async createOrUpdateObservalData(ctx) {
 
         const requestData = ctx.request.body;
-        let error;
 
-        if (!requestData.patientId) {
-            error = Response.buildParamError('Patient ID is required');
-        } else if (!requestData.observalData) {
-            error = Response.buildParamError('Observal Data is required');
-        }
-
+        let error = ObservalController.verifyRequestData(requestData);
         if (error) {
             return ctx.response.body = error;
         }
