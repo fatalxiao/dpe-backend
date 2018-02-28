@@ -1,6 +1,5 @@
 import ObservalDao from '../dao/ObservalDao.js';
 import Response from '../utils/Response.js';
-import Data from '../utils/Data.js';
 
 async function createObservalData(data) {
 
@@ -8,13 +7,44 @@ async function createObservalData(data) {
         return Response.buildError(`Patient ID ${data.patientData} Observal Data is exist.`);
     }
 
-    Data.verify(data.observalData, ['id', 'groupId']);
     let result;
 
     try {
-        result = await PatientDao.createPatientInfomation(data);
+        result = await ObservalDao.createObservalData(data);
     } catch (e) {
-        return Response.buildError('Create Patient failure.');
+        return Response.buildError('Add Observal Data failure.');
+    }
+
+    return Response.buildSuccess(result);
+
+};
+
+async function updateObservalData(data) {
+
+    if (!await ObservalDao.isObservalDataExist(data.patientData)) {
+        return Response.buildError(`Patient ID ${data.patientData} Observal Data is not exist.`);
+    }
+
+    let result;
+
+    try {
+        result = await ObservalDao.updateObservalData(data);
+    } catch (e) {
+        return Response.buildError('Update Observal Data failure.');
+    }
+
+    return Response.buildSuccess(result);
+
+};
+
+async function createOrUpdateObservalData(data) {
+
+    let result;
+
+    try {
+        result = await ObservalDao.createOrUpdateObservalData(data);
+    } catch (e) {
+        return Response.buildError('Update Observal Data failure.');
     }
 
     return Response.buildSuccess(result);
@@ -22,8 +52,7 @@ async function createObservalData(data) {
 };
 
 export default {
-    getPatients,
-    createPatientInformation,
-    updatePatientInformation
-    // addPatient
+    createObservalData,
+    updateObservalData,
+    createOrUpdateObservalData
 };
