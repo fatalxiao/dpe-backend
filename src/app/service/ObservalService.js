@@ -1,5 +1,6 @@
 import ObservalDao from '../dao/ObservalDao.js';
 import Response from '../utils/Response.js';
+import Data from '../utils/Data';
 
 /**
  * @param data
@@ -16,6 +17,7 @@ async function createObservalData(data) {
         return Response.buildError(`Patient ID ${data.patientId} Observal Data is exist.`);
     }
 
+    Data.verify(data.observalData);
     let result;
 
     try {
@@ -46,6 +48,7 @@ async function updateObservalData(data) {
         return Response.buildError(`Patient ID ${data.patientId} Observal Data is not exist.`);
     }
 
+    Data.verify(data.observalData);
     let result;
 
     try {
@@ -72,6 +75,7 @@ async function updateObservalData(data) {
  */
 async function createOrUpdateObservalData(data) {
 
+    Data.verify(data.observalData);
     let result;
 
     try {
