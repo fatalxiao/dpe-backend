@@ -14,9 +14,14 @@ async function createAnalgesiaData(data) {
 
         if (await AnalgesiaDao.isAnalgesiaDataExist(item.patientId, item.timePoint)) {
             error.push(`Patient ID ${item.patientId}, timePoint ${item.timePoint} data is exist.`);
+            continue;
         }
 
-        await AnalgesiaDao.createAnalgesiaData(data);
+        try {
+            await AnalgesiaDao.createAnalgesiaData(data);
+        } catch (e) {
+            error.push(`Patient ID ${item.patientId}, timePoint ${item.timePoint} create failure.`);
+        }
 
     }
 
@@ -40,9 +45,40 @@ async function updateAnalgesiaData(data) {
 
         if (!await AnalgesiaDao.isAnalgesiaDataExist(item.patientId, item.timePoint)) {
             error.push(`Patient ID ${item.patientId}, timePoint ${item.timePoint} data is not exist.`);
+            continue;
         }
 
-        await AnalgesiaDao.updateAnalgesiaData(data);
+        try {
+            await AnalgesiaDao.updateAnalgesiaData(data);
+        } catch (e) {
+            error.push(`Patient ID ${item.patientId}, timePoint ${item.timePoint} update failure.`);
+        }
+
+    }
+
+    if (error.length > 0) {
+        return Response.buildError(error.join(' '));
+    }
+
+    Response.buildSuccess(data.length);
+
+};
+
+async function createOrUpdateAnalgesiaData(data) {
+
+    Data.verify(data, ['patientId', 'timePoint']);
+
+    const error = [];
+
+    for (let item of data) {
+
+        delete item.id;
+
+        try {
+            await AnalgesiaDao.createOrUpdateAnalgesiaData(data);
+        } catch (e) {
+            error.push(`Patient ID ${item.patientId}, timePoint ${item.timePoint} update failure.`);
+        }
 
     }
 
@@ -56,5 +92,6 @@ async function updateAnalgesiaData(data) {
 
 export default {
     createAnalgesiaData,
-    updateAnalgesiaData
+    updateAnalgesiaData,
+    createOrUpdateAnalgesiaData
 };
