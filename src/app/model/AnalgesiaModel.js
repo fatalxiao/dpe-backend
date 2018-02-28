@@ -3,7 +3,7 @@ import SequelizeGenerator from '../utils/SequelizeGenerator.js';
 
 const sequelizeInstance = SequelizeGenerator(),
 
-    AnalgesiaData = sequelizeInstance.define('analgesia_data', {
+    Analgesia = sequelizeInstance.define('analgesia_data', {
         id: {
             field: 'id',
             type: Sequelize.INTEGER,
@@ -73,4 +73,4 @@ const sequelizeInstance = SequelizeGenerator(),
         paranoid: true
     });
 
-export default AnalgesiaData;
+export default Analgesia;

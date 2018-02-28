@@ -3,7 +3,7 @@ import SequelizeGenerator from '../utils/SequelizeGenerator.js';
 
 const sequelizeInstance = SequelizeGenerator(),
 
-    ObservalData = sequelizeInstance.define('observal_data', {
+    Observal = sequelizeInstance.define('observal_data', {
         id: {
             field: 'id',
             type: Sequelize.INTEGER,
@@ -181,4 +181,4 @@ const sequelizeInstance = SequelizeGenerator(),
         paranoid: true
     });
 
-export default ObservalData;
+export default Observal;

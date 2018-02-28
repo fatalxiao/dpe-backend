@@ -1,8 +1,8 @@
 import Sequelize from 'sequelize';
 
 import PatientModel from '../model/PatientModel.js';
-import AnalgesiaDataModel from '../model/AnalgesiaDataModel.js';
-import ObservalDataModel from '../model/ObservalDataModel.js';
+import AnalgesiaDataModel from '../model/AnalgesiaModel.js';
+import ObservalDataModel from '../model/ObservalModel.js';
 
 async function getPatients() {
     return await PatientModel.findAll();
@@ -16,41 +16,16 @@ async function isPatientInfomationExist(id) {
     }) > 0;
 }
 
-async function createOrUpdatePatientInfomation(data) {
-    if (await isPatientInfomationExist(data.id)) {
-        return await PatientModel.update(data, {
-            where: {
-                id: {[Sequelize.Op.eq]: data.id}
-            }
-        });
-    } else {
-        return await PatientModel.create(data);
-    }
+async function createPatientInfomation(data) {
+    return await PatientModel.create(data);
 }
 
-async function isAnalgesiaDataExist(patientId, timePoint) {
-    return await AnalgesiaDataModel.count({
+async function updatePatientInfomation(data) {
+    return await PatientModel.update(data, {
         where: {
-            patientId: {[Sequelize.Op.eq]: patientId},
-            timePoint: {[Sequelize.Op.eq]: timePoint}
+            id: {[Sequelize.Op.eq]: data.id}
         }
-    }) > 0;
-}
-
-async function createOrUpdateAnalgesiaData(data) {
-    for (let item of data) {
-        if (await isAnalgesiaDataExist(item.patientId, item.timePoint)) {
-            await AnalgesiaDataModel.update(item, {
-                where: {
-                    patientId: {[Sequelize.Op.eq]: item.patientId},
-                    timePoint: {[Sequelize.Op.eq]: item.timePoint}
-                }
-            });
-        } else {
-            await AnalgesiaDataModel.create(item);
-        }
-    }
-    return;
+    });
 }
 
 async function isObservalDataExist(patientId) {

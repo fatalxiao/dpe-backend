@@ -1,8 +1,8 @@
 import Sequelize from 'sequelize';
 
 import PatientModel from '../model/PatientModel.js';
-import AnalgesiaDataModel from '../model/AnalgesiaDataModel.js';
-import ObservalDataModel from '../model/ObservalDataModel.js';
+import AnalgesiaDataModel from '../model/AnalgesiaModel.js';
+import ObservalDataModel from '../model/ObservalModel.js';
 
 async function isAnalgesiaDataExist(patientId, timePoint) {
     return await AnalgesiaDataModel.count({

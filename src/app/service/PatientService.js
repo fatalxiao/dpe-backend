@@ -6,20 +6,6 @@ async function getPatients() {
     return Response.buildSuccess(await PatientDao.getPatients());
 };
 
-// async function addPatient(requestData) {
-//
-//     // try {
-//     await addPatientInfomation({...requestData.patient, id: requestData.id});
-//     await addAnalgesiaData(requestData.analgesia.map(item => ({...item, patientId: requestData.id})));
-//     await addObservalData({...requestData.observal, patientId: requestData.id});
-//     // } catch (e) {
-//     //     return Response.buildError(e);
-//     // }
-//
-//     return Response.buildSuccess();
-//
-// };
-
 async function createPatientInformation(data) {
 
     if (await PatientDao.isPatientInfomationExist(data.id)) {
@@ -27,7 +13,7 @@ async function createPatientInformation(data) {
     }
 
     Data.verify(data, ['id', 'groupId']);
-    return Response.buildSuccess(await PatientDao.createOrUpdatePatientInfomation(data));
+    return Response.buildSuccess(await PatientDao.createPatientInfomation(data));
 
 };
 
@@ -38,7 +24,7 @@ async function updatePatientInformation(data) {
     }
 
     Data.verify(data, ['id', 'groupId']);
-    return Response.buildSuccess(await PatientDao.createOrUpdatePatientInfomation(data));
+    return Response.buildSuccess(await PatientDao.updatePatientInfomation(data));
 
 };
 

@@ -1,4 +1,4 @@
-import PatientService from '../service/PatientService.js';
+import AnalgesiaService from '../service/AnalgesiaService.js';
 import Response from '../utils/Response.js';
 import {Api, ApiOperation, GetMapping, PostMapping, RequestBody} from '../utils/ApiDecorator';
 
@@ -6,7 +6,7 @@ import {Api, ApiOperation, GetMapping, PostMapping, RequestBody} from '../utils/
 class AnalgesiaDataController {
 
     @PostMapping({value: '/dpe/patient/createPatientInformation'})
-    @ApiOperation({value: 'add new patient', notes: 'add new patient'})
+    @ApiOperation({value: 'create new patient', notes: 'create new patient'})
     @RequestBody({value: 'patients'})
     static async createPatientInformation(ctx) {
 
@@ -25,7 +25,7 @@ class AnalgesiaDataController {
             return ctx.response.body = error;
         }
 
-        ctx.response.body = await PatientService.createPatientInformation(requestData);
+        ctx.response.body = await AnalgesiaService.createPatientInformation(requestData);
 
     }
 
