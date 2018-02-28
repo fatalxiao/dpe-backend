@@ -14,8 +14,8 @@ class AnalgesiaController {
      *      analgesiaData: Array
      *  }
      */
-    @PostMapping({value: '/dpe/patient/createOrUpdateAnalgesiaData'})
-    @ApiOperation({value: 'create new analgesia data', notes: 'create new analgesia data'})
+    @PostMapping({value: '/dpe/analgesia/createAnalgesiaData'})
+    @ApiOperation({value: 'add new analgesia data', notes: 'add new analgesia data'})
     @RequestBody({value: 'Analgesia'})
     static async createAnalgesiaData(ctx) {
 
@@ -45,7 +45,7 @@ class AnalgesiaController {
      *      analgesiaData: Array
      *  }
      */
-    @PostMapping({value: '/dpe/patient/updateAnalgesiaData'})
+    @PostMapping({value: '/dpe/analgesia/updateAnalgesiaData'})
     @ApiOperation({value: 'update analgesia data', notes: 'update analgesia data'})
     @RequestBody({value: 'Analgesia'})
     static async updateAnalgesiaData(ctx) {
@@ -53,12 +53,10 @@ class AnalgesiaController {
         const requestData = ctx.request.body;
         let error;
 
-        if (!requestData.id) {
-            error = Response.buildParamError('ID is required');
-        } else if (!requestData.groupId) {
-            error = Response.buildParamError('Group is required');
-        } else if (!requestData.patientName) {
-            error = Response.buildParamError('Patient Name is required');
+        if (!requestData.patientId) {
+            error = Response.buildParamError('Patient ID is required');
+        } else if (!requestData.analgesiaData) {
+            error = Response.buildParamError('Analgesia Data is required');
         }
 
         if (error) {
@@ -66,6 +64,37 @@ class AnalgesiaController {
         }
 
         ctx.response.body = await AnalgesiaService.updateAnalgesiaData(requestData);
+
+    }
+
+    /**
+     * @param ctx
+     * @returns {Promise<*>}
+     *
+     *  requestData: {
+     *      patientId: String
+     *      analgesiaData: Array
+     *  }
+     */
+    @PostMapping({value: '/dpe/analgesia/createOrUpdateAnalgesiaData'})
+    @ApiOperation({value: 'add or update analgesia data', notes: 'add or update analgesia data'})
+    @RequestBody({value: 'Analgesia'})
+    static async createOrUpdateAnalgesiaData(ctx) {
+
+        const requestData = ctx.request.body;
+        let error;
+
+        if (!requestData.patientId) {
+            error = Response.buildParamError('Patient ID is required');
+        } else if (!requestData.analgesiaData) {
+            error = Response.buildParamError('Analgesia Data is required');
+        }
+
+        if (error) {
+            return ctx.response.body = error;
+        }
+
+        ctx.response.body = await AnalgesiaService.createOrUpdateAnalgesiaData(requestData);
 
     }
 
