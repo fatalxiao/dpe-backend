@@ -64,6 +64,10 @@ const sequelizeInstance = SequelizeGenerator(),
         pulseOxygenSaturation: {
             field: 'pulse_oxygen_saturation',
             type: Sequelize.FLOAT
+        },
+        fetalHeartRate: {
+            field: 'fetal_heart_rate',
+            type: Sequelize.INTEGER
         }
     }, {
         freezeTableName: true,
