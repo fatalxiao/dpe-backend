@@ -28,6 +28,8 @@ CREATE TABLE analgesia_data
   COMMENT '心率',
   pulse_oxygen_saturation            FLOAT       NULL
   COMMENT '脉动血氧饱和度',
+  fetal_heart_rate                   INT         NULL
+  COMMENT '胎心率',
   ctime                              DATETIME    NULL,
   utime                              DATETIME    NULL,
   dtime                              DATETIME    NULL,
