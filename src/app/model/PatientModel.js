@@ -57,10 +57,6 @@ const sequelizeInstance = SequelizeGenerator(),
             field: 'diastolic_blood_pressure',
             type: Sequelize.INTEGER(3)
         },
-        foetalHeartRate: {
-            field: 'foetal_heart_rate',
-            type: Sequelize.INTEGER(3)
-        },
         description: {
             field: 'description',
             type: Sequelize.STRING(1000)
