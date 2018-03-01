@@ -27,6 +27,12 @@ class PatientController {
         ctx.response.body = await PatientService.getPatients();
     }
 
+    @GetMapping({value: '/dpe/patient/getPatientById/:id'})
+    @ApiOperation({value: 'get patient by id', notes: 'get patient by id'})
+    static async getPatientById(ctx) {
+        ctx.response.body = await PatientService.getPatientById(ctx.params.id);
+    }
+
     @PostMapping({value: '/dpe/patient/createPatient'})
     @ApiOperation({value: 'create new patient', notes: 'create new patient'})
     @RequestBody({value: 'Patients'})

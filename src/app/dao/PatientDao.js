@@ -14,6 +14,14 @@ async function isPatientExist(id) {
     }) > 0;
 }
 
+async function getPatientById(id) {
+    return await PatientModel.findAll({
+        where: {
+            id: {[Sequelize.Op.eq]: id}
+        }
+    });
+}
+
 async function createPatient(data) {
     return await PatientModel.create(data);
 }
@@ -39,6 +47,8 @@ export default {
     getPatients,
 
     isPatientExist,
+
+    getPatientById,
 
     createPatient,
     updatePatient,

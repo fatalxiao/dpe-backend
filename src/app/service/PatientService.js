@@ -6,6 +6,10 @@ async function getPatients() {
     return Response.buildSuccess(await PatientDao.getPatients());
 };
 
+async function getPatientById(id) {
+    return Response.buildSuccess(await PatientDao.getPatientById(id));
+};
+
 async function createPatient(data) {
 
     if (await PatientDao.isPatientExist(data.id)) {
@@ -62,6 +66,8 @@ async function createOrUpdatePatient(data) {
 export default {
 
     getPatients,
+
+    getPatientById,
 
     createPatient,
     updatePatient,
