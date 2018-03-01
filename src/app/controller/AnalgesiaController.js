@@ -1,6 +1,6 @@
 import AnalgesiaService from '../service/AnalgesiaService.js';
 import Response from '../utils/Response.js';
-import {Api, ApiOperation, PostMapping, RequestBody} from '../utils/ApiDecorator';
+import {Api, ApiOperation, GetMapping, PostMapping, RequestBody} from '../utils/ApiDecorator';
 
 @Api({tags: 'Analgesia'})
 class AnalgesiaController {
@@ -19,6 +19,12 @@ class AnalgesiaController {
 
     }
 
+    @GetMapping({value: '/dpe/analgesia/getAnalgesiaDataByPatientId/:patientId'})
+    @ApiOperation({value: 'get Analgesia Data by Patient Id', notes: ''})
+    static async getAnalgesiaDataByPatientId(ctx) {
+        ctx.response.body = await AnalgesiaService.getAnalgesiaDataByPatientId(ctx.params.patientId);
+    }
+
     /**
      * @param ctx
      * @returns {Promise<*>}
@@ -29,7 +35,7 @@ class AnalgesiaController {
      *  }
      */
     @PostMapping({value: '/dpe/analgesia/createAnalgesiaData'})
-    @ApiOperation({value: 'add new analgesia data', notes: 'add new analgesia data'})
+    @ApiOperation({value: 'add new analgesia data', notes: ''})
     @RequestBody({value: 'Analgesia'})
     static async createAnalgesiaData(ctx) {
 
@@ -54,7 +60,7 @@ class AnalgesiaController {
      *  }
      */
     @PostMapping({value: '/dpe/analgesia/updateAnalgesiaData'})
-    @ApiOperation({value: 'update analgesia data', notes: 'update analgesia data'})
+    @ApiOperation({value: 'update analgesia data', notes: ''})
     @RequestBody({value: 'Analgesia'})
     static async updateAnalgesiaData(ctx) {
 
@@ -79,7 +85,7 @@ class AnalgesiaController {
      *  }
      */
     @PostMapping({value: '/dpe/analgesia/createOrUpdateAnalgesiaData'})
-    @ApiOperation({value: 'add or update analgesia data', notes: 'add or update analgesia data'})
+    @ApiOperation({value: 'add or update analgesia data', notes: ''})
     @RequestBody({value: 'Analgesia'})
     static async createOrUpdateAnalgesiaData(ctx) {
 

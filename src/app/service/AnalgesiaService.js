@@ -2,6 +2,10 @@ import AnalgesiaDao from '../dao/AnalgesiaDao.js';
 import Response from '../utils/Response.js';
 import Data from '../utils/Data.js';
 
+async function getAnalgesiaDataByPatientId(patientId) {
+    return Response.buildSuccess(await AnalgesiaDao.getAnalgesiaDataByPatientId(patientId));
+};
+
 /**
  * @param data
  * @returns {Promise<*>}
