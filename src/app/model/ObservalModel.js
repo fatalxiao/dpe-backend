@@ -16,6 +16,22 @@ const sequelizeInstance = SequelizeGenerator(),
             field: 'patient_id',
             type: Sequelize.STRING(10)
         },
+        testDose: {
+            field: 'test_dose',
+            type: Sequelize.INTEGER
+        },
+        initialDose: {
+            field: 'initial_dose',
+            type: Sequelize.INTEGER
+        },
+        pumpConsumption: {
+            field: 'pump_consumption',
+            type: Sequelize.INTEGER
+        },
+        bolus: {
+            field: 'bolus',
+            type: Sequelize.INTEGER
+        },
         hasCarbetocin: {
             field: 'has_carbetocin',
             type: Sequelize.BOOLEAN
@@ -23,10 +39,6 @@ const sequelizeInstance = SequelizeGenerator(),
         hasHemabate: {
             field: 'has_hemabate',
             type: Sequelize.BOOLEAN
-        },
-        localAnestheticConsumption: {
-            field: 'local_anesthetic_consumption',
-            type: Sequelize.INTEGER
         },
         pcaCount: {
             field: 'pca_count',
