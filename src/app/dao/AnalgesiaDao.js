@@ -1,10 +1,10 @@
 import Sequelize from 'sequelize';
 
-import AnalgesiaModel from '../model/AnalgesiaModel.js';
+import Analgesia from '../model/AnalgesiaModel';
 import SensoryBlock from '../model/SensoryBlockModel';
 
 async function getAnalgesiaDataByPatientId(patientId) {
-    return await AnalgesiaModel.findAll({
+    return await Analgesia.findAll({
         where: {
             patientId: {[Sequelize.Op.eq]: patientId}
         },
@@ -29,7 +29,7 @@ async function getAnalgesiaDataByPatientId(patientId) {
 }
 
 async function isAnalgesiaDataExist(patientId, timePoint) {
-    return await AnalgesiaModel.count({
+    return await Analgesia.count({
         where: {
             patientId: {[Sequelize.Op.eq]: patientId},
             timePoint: {[Sequelize.Op.eq]: timePoint}
@@ -38,11 +38,11 @@ async function isAnalgesiaDataExist(patientId, timePoint) {
 }
 
 async function createAnalgesiaData(data) {
-    return await AnalgesiaModel.create(data);
+    return await Analgesia.create(data);
 }
 
 async function updateAnalgesiaData(data) {
-    return await AnalgesiaModel.update(data, {
+    return await Analgesia.update(data, {
         where: {
             patientId: {[Sequelize.Op.eq]: data.patientId},
             timePoint: {[Sequelize.Op.eq]: data.timePoint}
