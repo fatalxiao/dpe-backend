@@ -131,7 +131,11 @@ async function createOrUpdateAnalgesiaData(data) {
 };
 
 export default {
+
+    getAnalgesiaDataByPatientId,
+
     createAnalgesiaData,
     updateAnalgesiaData,
     createOrUpdateAnalgesiaData
+
 };
