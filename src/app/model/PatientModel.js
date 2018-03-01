@@ -1,6 +1,8 @@
 import Sequelize from 'sequelize';
 import SequelizeGenerator from '../utils/SequelizeGenerator.js';
 
+import Group from './GroupModel';
+
 const sequelizeInstance = SequelizeGenerator(),
 
     Patient = sequelizeInstance.define('patients', {
@@ -71,5 +73,10 @@ const sequelizeInstance = SequelizeGenerator(),
         deletedAt: 'dtime',
         paranoid: true
     });
+
+Patient.belongsTo(Group, {
+    as: 'group',
+    foreignKey: 'groupId'
+});
 
 export default Patient;

@@ -1,6 +1,7 @@
 import Sequelize from 'sequelize';
 
 import PatientModel from '../model/PatientModel.js';
+import Group from '../model/GroupModel.js';
 
 async function getPatients() {
     return await PatientModel.findAll();
@@ -15,10 +16,15 @@ async function isPatientExist(id) {
 }
 
 async function getPatientById(id) {
-    return await PatientModel.findAll({
+    return await PatientModel.find({
         where: {
             id: {[Sequelize.Op.eq]: id}
-        }
+        },
+        include: [{
+            model: Group,
+            as: 'group',
+            where: {id: Sequelize.col('patients.group_id')}
+        }]
     });
 }
 
