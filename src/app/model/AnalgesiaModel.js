@@ -1,5 +1,6 @@
 import Sequelize from 'sequelize';
 import SequelizeGenerator from '../utils/SequelizeGenerator.js';
+import SensoryBlock from './SensoryBlockModel';
 
 const sequelizeInstance = SequelizeGenerator(),
 
@@ -28,20 +29,20 @@ const sequelizeInstance = SequelizeGenerator(),
             field: 'vas_score',
             type: Sequelize.INTEGER
         },
-        thoracicSensoryBlockLeft: {
-            field: 'thoracic_sensory_block_left',
+        thoracicSensoryBlockLeftValue: {
+            field: 'thoracic_sensory_block_left_value',
             type: Sequelize.INTEGER
         },
-        thoracicSensoryBlockRight: {
-            field: 'thoracic_sensory_block_right',
+        thoracicSensoryBlockRightValue: {
+            field: 'thoracic_sensory_block_right_value',
             type: Sequelize.INTEGER
         },
-        sacralSensoryBlockLeft: {
-            field: 'sacral_sensory_block_left',
+        sacralSensoryBlockLeftValue: {
+            field: 'sacral_sensory_block_left_value',
             type: Sequelize.INTEGER
         },
-        sacralSensoryBlockRight: {
-            field: 'sacral_sensory_block_right',
+        sacralSensoryBlockRightValue: {
+            field: 'sacral_sensory_block_right_value',
             type: Sequelize.INTEGER
         },
         bromageScore: {
@@ -72,5 +73,25 @@ const sequelizeInstance = SequelizeGenerator(),
         deletedAt: 'dtime',
         paranoid: true
     });
+
+Analgesia.belongsTo(SensoryBlock, {
+    as: 'thoracicSensoryBlockLeft',
+    foreignKey: 'thoracicSensoryBlockLeftValue'
+});
+
+Analgesia.belongsTo(SensoryBlock, {
+    as: 'thoracicSensoryBlockRight',
+    foreignKey: 'thoracicSensoryBlockRightValue'
+});
+
+Analgesia.belongsTo(SensoryBlock, {
+    as: 'sacralSensoryBlockLeft',
+    foreignKey: 'sacralSensoryBlockLeftValue'
+});
+
+Analgesia.belongsTo(SensoryBlock, {
+    as: 'sacralSensoryBlockRight',
+    foreignKey: 'sacralSensoryBlockRightValue'
+});
 
 export default Analgesia;
