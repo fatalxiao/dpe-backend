@@ -59,12 +59,18 @@ CREATE TABLE observal_data
     PRIMARY KEY,
   patient_id                        VARCHAR(10)   NULL
   COMMENT '孕妇住院号',
+  test_dose                         INT           NULL
+  COMMENT '试验剂量(ml)',
+  initial_dose                      INT           NULL
+  COMMENT '负荷剂量(ml)',
+  pump_consumption                  INT           NULL
+  COMMENT '泵消耗(ml)',
+  bolus                             INT           NULL
+  COMMENT '人工负荷量(ml)',
   has_carbetocin                    TINYINT(1)    NULL
   COMMENT '是否使用巧特欣',
   has_hemabate                      TINYINT(1)    NULL
   COMMENT '是否使用欣母沛',
-  local_anesthetic_consumption      INT           NULL
-  COMMENT '局麻药消耗(ml)',
   pca_count                         INT           NULL
   COMMENT 'PCA次数',
   manual_bolus_count                INT           NULL
