@@ -174,8 +174,6 @@ CREATE TABLE patients
   COMMENT '收缩压',
   diastolic_blood_pressure        INT           NULL
   COMMENT '舒张压',
-  foetal_heart_rate               INT           NULL
-  COMMENT '胎心率',
   description                     VARCHAR(1000) NULL
   COMMENT '备注',
   ctime                           DATETIME      NULL,
