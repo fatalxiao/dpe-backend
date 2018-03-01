@@ -1,5 +1,6 @@
 import PatientDao from '../dao/PatientDao.js';
 import Response from '../utils/Response.js';
+import Data from '../utils/Data.js';
 
 async function getPatients() {
     return Response.buildSuccess(await PatientDao.getPatients());
@@ -15,6 +16,7 @@ async function createPatient(data) {
         return Response.buildError(`Patient ID ${data.id} is exist.`);
     }
 
+    Data.verify(data, ['id', 'groupId']);
     let result;
 
     try {
@@ -33,6 +35,7 @@ async function updatePatient(data) {
         return Response.buildError(`Patient ID ${data.id} is not exist.`);
     }
 
+    Data.verify(data, ['id', 'groupId']);
     let result;
 
     try {
@@ -47,6 +50,7 @@ async function updatePatient(data) {
 
 async function createOrUpdatePatient(data) {
 
+    Data.verify(data, ['id', 'groupId']);
     let result;
 
     try {
