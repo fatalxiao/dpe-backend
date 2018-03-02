@@ -15,28 +15,28 @@ async function getAnalgesiaDataByPatientId(patientId) {
  *      analgesiaData: Array
  *  }
  */
-async function createAnalgesiaData(data) {
+async function createAnalgesiaData(patientId, data) {
 
-    Data.verify(data.analgesiaData, ['timePoint']);
+    Data.verify(data, ['timePoint']);
 
     const error = [];
 
-    for (let item of data.analgesiaData) {
+    for (let item of data) {
 
         const analgesiaData = {
             ...item,
-            patientId: data.patientId
+            patientId
         };
 
-        if (await AnalgesiaDao.isAnalgesiaDataExist(analgesiaData.patientId, analgesiaData.timePoint)) {
-            error.push(`Patient ID ${analgesiaData.patientId}, timePoint ${analgesiaData.timePoint} data is exist.`);
+        if (await AnalgesiaDao.isAnalgesiaDataExist(patientId, analgesiaData.timePoint)) {
+            error.push(`Patient ID ${patientId}, timePoint ${analgesiaData.timePoint} data is exist.`);
             continue;
         }
 
         try {
             await AnalgesiaDao.createAnalgesiaData(analgesiaData);
         } catch (e) {
-            error.push(`Patient ID ${analgesiaData.patientId}, timePoint ${analgesiaData.timePoint} create failure.`);
+            error.push(`Patient ID ${patientId}, timePoint ${analgesiaData.timePoint} create failure.`);
         }
 
     }
@@ -45,7 +45,7 @@ async function createAnalgesiaData(data) {
         return Response.buildError(error.join(' '));
     }
 
-    return Response.buildSuccess(data.analgesiaData.length);
+    return Response.buildSuccess(data.length);
 
 };
 
@@ -58,28 +58,28 @@ async function createAnalgesiaData(data) {
  *      analgesiaData: Array
  *  }
  */
-async function updateAnalgesiaData(data) {
+async function updateAnalgesiaData(patientId, data) {
 
-    Data.verify(data.analgesiaData, ['timePoint']);
+    Data.verify(data, ['timePoint']);
 
     const error = [];
 
-    for (let item of data.analgesiaData) {
+    for (let item of data) {
 
         const analgesiaData = {
             ...item,
-            patientId: data.patientId
+            patientId
         };
 
-        if (!await AnalgesiaDao.isAnalgesiaDataExist(analgesiaData.patientId, analgesiaData.timePoint)) {
-            error.push(`Patient ID ${analgesiaData.patientId}, timePoint ${analgesiaData.timePoint} data is not exist.`);
+        if (!await AnalgesiaDao.isAnalgesiaDataExist(patientId, analgesiaData.timePoint)) {
+            error.push(`Patient ID ${patientId}, timePoint ${analgesiaData.timePoint} data is not exist.`);
             continue;
         }
 
         try {
             await AnalgesiaDao.updateAnalgesiaData(analgesiaData);
         } catch (e) {
-            error.push(`Patient ID ${analgesiaData.patientId}, timePoint ${analgesiaData.timePoint} update failure.`);
+            error.push(`Patient ID ${patientId}, timePoint ${analgesiaData.timePoint} update failure.`);
         }
 
     }
@@ -88,7 +88,7 @@ async function updateAnalgesiaData(data) {
         return Response.buildError(error.join(' '));
     }
 
-    return Response.buildSuccess(data.analgesiaData.length);
+    return Response.buildSuccess(data.length);
 
 };
 
@@ -101,23 +101,23 @@ async function updateAnalgesiaData(data) {
  *      analgesiaData: Array
  *  }
  */
-async function createOrUpdateAnalgesiaData(data) {
+async function createOrUpdateAnalgesiaData(patientId, data) {
 
-    Data.verify(data.analgesiaData, ['timePoint']);
+    Data.verify(data, ['timePoint']);
 
     const error = [];
 
-    for (let item of data.analgesiaData) {
+    for (let item of data) {
 
         const analgesiaData = {
             ...item,
-            patientId: data.patientId
+            patientId
         };
 
         try {
             await AnalgesiaDao.createOrUpdateAnalgesiaData(analgesiaData);
         } catch (e) {
-            error.push(`Patient ID ${analgesiaData.patientId}, timePoint ${analgesiaData.timePoint} update failure.`);
+            error.push(`Patient ID ${patientId}, timePoint ${analgesiaData.timePoint} update failure.`);
         }
 
     }
@@ -126,7 +126,7 @@ async function createOrUpdateAnalgesiaData(data) {
         return Response.buildError(error.join(' '));
     }
 
-    return Response.buildSuccess(data.analgesiaData.length);
+    return Response.buildSuccess(data.length);
 
 };
 
