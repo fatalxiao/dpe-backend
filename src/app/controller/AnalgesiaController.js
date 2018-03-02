@@ -5,13 +5,13 @@ import {Api, ApiOperation, GetMapping, PostMapping, RequestBody} from '../utils/
 @Api({tags: 'Analgesia'})
 class AnalgesiaController {
 
-    static verifyRequestData(requestData) {
+    static verifyRequestData(patientId, requestData) {
 
         if (!requestData) {
             return Response.buildParamError('Request Data is required');
-        } else if (!requestData.patientId) {
+        } else if (!patientId) {
             return Response.buildParamError('Patient ID is required');
-        } else if (!requestData.analgesiaData) {
+        } else if (!requestData) {
             return Response.buildParamError('Analgesia Data is required');
         }
 
