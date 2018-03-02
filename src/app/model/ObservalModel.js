@@ -185,6 +185,7 @@ const sequelizeInstance = SequelizeGenerator(),
             type: Sequelize.STRING(1000)
         }
     }, {
+        freezeTableName: true,
         timestamps: true,
         createdAt: 'ctime',
         updatedAt: 'utime',

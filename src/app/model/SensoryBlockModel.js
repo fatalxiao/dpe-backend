@@ -21,6 +21,7 @@ const sequelizeInstance = SequelizeGenerator(),
             type: Sequelize.INTEGER
         }
     }, {
+        freezeTableName: true,
         timestamps: false
     });
 
