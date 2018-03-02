@@ -164,7 +164,7 @@ function mappingRouterToController(dir) {
 
     // traversal all controll file
     fs.readdirSync(dir + '/app/controller').forEach(file => {
-        console.log(`process controller: ${file}`);
+        // console.log(`process controller: ${file}`);
         mappingController(require(dir + '/app/controller/' + file).default);
     });
 
