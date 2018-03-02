@@ -15,19 +15,19 @@ async function getObservalDataByPatientId(patientId) {
  *      observalData: Object
  *  }
  */
-async function createObservalData(data) {
+async function createObservalData(patientId, data) {
 
-    if (await ObservalDao.isObservalDataExist(data.patientId)) {
-        return Response.buildError(`Patient ID ${data.patientId} Observal Data is exist.`);
+    if (await ObservalDao.isObservalDataExist(patientId)) {
+        return Response.buildError(`Patient ID ${patientId} Observal Data is exist.`);
     }
 
-    Data.verify(data.observalData);
+    Data.verify(data);
     let result;
 
     try {
         result = await ObservalDao.createObservalData({
-            ...data.observalData,
-            patientId: data.patientId
+            ...data,
+            patientId
         });
     } catch (e) {
         return Response.buildError('Add Observal Data failure.');
@@ -46,19 +46,19 @@ async function createObservalData(data) {
  *      observalData: Object
  *  }
  */
-async function updateObservalData(data) {
+async function updateObservalData(patientId, data) {
 
-    if (!await ObservalDao.isObservalDataExist(data.patientId)) {
-        return Response.buildError(`Patient ID ${data.patientId} Observal Data is not exist.`);
+    if (!await ObservalDao.isObservalDataExist(patientId)) {
+        return Response.buildError(`Patient ID ${patientId} Observal Data is not exist.`);
     }
 
-    Data.verify(data.observalData);
+    Data.verify(data);
     let result;
 
     try {
         result = await ObservalDao.updateObservalData({
-            ...data.observalData,
-            patientId: data.patientId
+            ...data,
+            patientId
         });
     } catch (e) {
         return Response.buildError('Update Observal Data failure.');
@@ -77,15 +77,15 @@ async function updateObservalData(data) {
  *      observalData: Object
  *  }
  */
-async function createOrUpdateObservalData(data) {
+async function createOrUpdateObservalData(patientId, data) {
 
-    Data.verify(data.observalData);
+    Data.verify(data);
     let result;
 
     try {
         result = await ObservalDao.createOrUpdateObservalData({
-            ...data.observalData,
-            patientId: data.patientId
+            ...data,
+            patientId
         });
     } catch (e) {
         return Response.buildError('Update Observal Data failure.');
