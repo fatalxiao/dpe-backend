@@ -2,6 +2,10 @@ import ObservalDao from '../dao/ObservalDao.js';
 import Response from '../utils/Response.js';
 import Data from '../utils/Data';
 
+async function getObservalDataByPatientId(patientId) {
+    return Response.buildSuccess(await ObservalDao.getObservalDataByPatientId(patientId));
+};
+
 /**
  * @param data
  * @returns {Promise<*>}
@@ -92,7 +96,11 @@ async function createOrUpdateObservalData(data) {
 };
 
 export default {
+
+    getObservalDataByPatientId,
+
     createObservalData,
     updateObservalData,
     createOrUpdateObservalData
+
 };
