@@ -17,7 +17,6 @@ const sequelizeInstance = SequelizeGenerator(),
             type: Sequelize.STRING(20)
         }
     }, {
-        freezeTableName: true,
         timestamps: false
     });
 

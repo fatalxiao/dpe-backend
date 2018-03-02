@@ -70,7 +70,6 @@ const sequelizeInstance = SequelizeGenerator(),
             type: Sequelize.INTEGER
         }
     }, {
-        freezeTableName: true,
         timestamps: true,
         createdAt: 'ctime',
         updatedAt: 'utime',

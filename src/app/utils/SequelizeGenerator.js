@@ -18,6 +18,8 @@ function generateSequelize() {
             host: databaseConfig.host,
             port: databaseConfig.port,
             dialect: 'mysql',
+            freezeTableName: true,
+            operatorsAliases: false,
 
             pool: {
                 max: 5,
