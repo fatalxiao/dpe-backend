@@ -1,6 +1,6 @@
 import ObservalService from '../service/ObservalService.js';
 import Response from '../utils/Response.js';
-import {Api, ApiOperation, PostMapping, RequestBody} from '../utils/ApiDecorator';
+import {Api, ApiOperation, GetMapping, PostMapping, RequestBody} from '../utils/ApiDecorator';
 
 @Api({tags: 'Observal'})
 class ObservalController {
@@ -17,6 +17,12 @@ class ObservalController {
 
         return;
 
+    }
+
+    @GetMapping({value: '/dpe/observal/getObservalDataByPatientId/:patientId'})
+    @ApiOperation({value: 'get Observal Data by Patient Id', notes: ''})
+    static async getObservalDataByPatientId(ctx) {
+        ctx.response.body = await ObservalService.getObservalDataByPatientId(ctx.params.patientId);
     }
 
     @PostMapping({value: '/dpe/observal/createObservalData'})
