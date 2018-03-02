@@ -5,13 +5,13 @@ import {Api, ApiOperation, GetMapping, PostMapping, RequestBody} from '../utils/
 @Api({tags: 'Observal'})
 class ObservalController {
 
-    static verifyRequestData(requestData) {
+    static verifyRequestData(patientId, requestData) {
 
         if (!requestData) {
             return Response.buildParamError('Request Data is required');
-        } else if (!requestData.patientId) {
+        } else if (!patientId) {
             return Response.buildParamError('Patient ID is required');
-        } else if (!requestData.observalData) {
+        } else if (!requestData) {
             return Response.buildParamError('Observal Data is required');
         }
 
@@ -25,51 +25,54 @@ class ObservalController {
         ctx.response.body = await ObservalService.getObservalDataByPatientId(ctx.params.patientId);
     }
 
-    @PostMapping({value: '/dpe/observal/createObservalData'})
+    @PostMapping({value: '/dpe/observal/createObservalData/:patientId'})
     @ApiOperation({value: 'add new observal data', notes: 'add new observal data'})
     @RequestBody({value: 'Observal'})
     static async createObservalData(ctx) {
 
-        const requestData = ctx.request.body;
+        const patientId = ctx.params.patientId,
+            requestData = ctx.request.body;
 
-        let error = ObservalController.verifyRequestData(requestData);
+        let error = ObservalController.verifyRequestData(patientId, requestData);
         if (error) {
             return ctx.response.body = error;
         }
 
-        ctx.response.body = await ObservalService.createObservalData(requestData);
+        ctx.response.body = await ObservalService.createObservalData(patientId, requestData);
 
     }
 
-    @PostMapping({value: '/dpe/observal/updateObservalData'})
+    @PostMapping({value: '/dpe/observal/updateObservalData/:patientId'})
     @ApiOperation({value: 'update observal data', notes: 'update observal data'})
     @RequestBody({value: 'Observal'})
     static async updateObservalData(ctx) {
 
-        const requestData = ctx.request.body;
+        const patientId = ctx.params.patientId,
+            requestData = ctx.request.body;
 
-        let error = ObservalController.verifyRequestData(requestData);
+        let error = ObservalController.verifyRequestData(patientId, requestData);
         if (error) {
             return ctx.response.body = error;
         }
 
-        ctx.response.body = await ObservalService.updateObservalData(requestData);
+        ctx.response.body = await ObservalService.updateObservalData(patientId, requestData);
 
     }
 
-    @PostMapping({value: '/dpe/observal/createOrUpdateObservalData'})
+    @PostMapping({value: '/dpe/observal/createOrUpdateObservalData/:patientId'})
     @ApiOperation({value: 'add or update observal data', notes: 'add or update observal data'})
     @RequestBody({value: 'Observal'})
     static async createOrUpdateObservalData(ctx) {
 
-        const requestData = ctx.request.body;
+        const patientId = ctx.params.patientId,
+            requestData = ctx.request.body;
 
-        let error = ObservalController.verifyRequestData(requestData);
+        let error = ObservalController.verifyRequestData(patientId, requestData);
         if (error) {
             return ctx.response.body = error;
         }
 
-        ctx.response.body = await ObservalService.createOrUpdateObservalData(requestData);
+        ctx.response.body = await ObservalService.createOrUpdateObservalData(patientId, requestData);
 
     }
 
