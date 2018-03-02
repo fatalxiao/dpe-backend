@@ -1,9 +1,17 @@
 import Sequelize from 'sequelize';
 
-import ObservalModel from '../model/ObservalModel.js';
+import Observal from '../model/ObservalModel.js';
+
+async function getObservalDataByPatientId(patientId) {
+    return await Observal.findAll({
+        where: {
+            patientId: {[Sequelize.Op.eq]: patientId}
+        }
+    });
+}
 
 async function isObservalDataExist(patientId) {
-    return await ObservalModel.count({
+    return await Observal.count({
         where: {
             patientId: {[Sequelize.Op.eq]: patientId}
         }
@@ -11,11 +19,11 @@ async function isObservalDataExist(patientId) {
 }
 
 async function createObservalData(data) {
-    return await ObservalModel.create(data);
+    return await Observal.create(data);
 }
 
 async function updateObservalData(data) {
-    return await ObservalModel.update(data, {
+    return await Observal.update(data, {
         where: {
             patientId: {[Sequelize.Op.eq]: data.patientId}
         }
@@ -31,8 +39,13 @@ async function createOrUpdateObservalData(data) {
 }
 
 export default {
+
+    getObservalDataByPatientId,
+
     isObservalDataExist,
+
     createObservalData,
     updateObservalData,
     createOrUpdateObservalData
+
 };
