@@ -81,7 +81,7 @@ function mappingMethod(controller, method) {
     mappingPaths(controller, method, requestMethod, requestRoute);
 
     // add mapping route
-    console.log(`register URL mapping: ${requestMethod.toUpperCase()} ${requestRoute}`);
+    // console.log(`register URL mapping: ${requestMethod.toUpperCase()} ${requestRoute}`);
     router[requestMethod](requestRoute, method);
 
 }
