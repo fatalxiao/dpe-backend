@@ -34,19 +34,20 @@ class AnalgesiaController {
      *      analgesiaData: Array
      *  }
      */
-    @PostMapping({value: '/dpe/analgesia/createAnalgesiaData'})
+    @PostMapping({value: '/dpe/analgesia/createAnalgesiaData/:patientId'})
     @ApiOperation({value: 'add new analgesia data', notes: ''})
     @RequestBody({value: 'Analgesia'})
     static async createAnalgesiaData(ctx) {
 
-        const requestData = ctx.request.body;
+        const patientId = ctx.params.patientId,
+            requestData = ctx.request.body;
 
-        let error = AnalgesiaController.verifyRequestData(requestData);
+        let error = AnalgesiaController.verifyRequestData(patientId, requestData);
         if (error) {
             return ctx.response.body = error;
         }
 
-        ctx.response.body = await AnalgesiaService.createAnalgesiaData(requestData);
+        ctx.response.body = await AnalgesiaService.createAnalgesiaData(patientId, requestData);
 
     }
 
@@ -59,19 +60,20 @@ class AnalgesiaController {
      *      analgesiaData: Array
      *  }
      */
-    @PostMapping({value: '/dpe/analgesia/updateAnalgesiaData'})
+    @PostMapping({value: '/dpe/analgesia/updateAnalgesiaData/:patientId'})
     @ApiOperation({value: 'update analgesia data', notes: ''})
     @RequestBody({value: 'Analgesia'})
     static async updateAnalgesiaData(ctx) {
 
-        const requestData = ctx.request.body;
+        const patientId = ctx.params.patientId,
+            requestData = ctx.request.body;
 
-        let error = AnalgesiaController.verifyRequestData(requestData);
+        let error = AnalgesiaController.verifyRequestData(patientId, requestData);
         if (error) {
             return ctx.response.body = error;
         }
 
-        ctx.response.body = await AnalgesiaService.updateAnalgesiaData(requestData);
+        ctx.response.body = await AnalgesiaService.updateAnalgesiaData(patientId, requestData);
 
     }
 
@@ -84,21 +86,20 @@ class AnalgesiaController {
      *      analgesiaData: Array
      *  }
      */
-    @PostMapping({value: '/dpe/analgesia/createOrUpdateAnalgesiaData'})
+    @PostMapping({value: '/dpe/analgesia/createOrUpdateAnalgesiaData/:patientId'})
     @ApiOperation({value: 'add or update analgesia data', notes: ''})
     @RequestBody({value: 'Analgesia'})
     static async createOrUpdateAnalgesiaData(ctx) {
 
-        const requestData = ctx.request.body;
+        const patientId = ctx.params.patientId,
+            requestData = ctx.request.body;
 
-        console.log(requestData);
-
-        let error = AnalgesiaController.verifyRequestData(requestData);
+        let error = AnalgesiaController.verifyRequestData(patientId, requestData);
         if (error) {
             return ctx.response.body = error;
         }
 
-        ctx.response.body = await AnalgesiaService.createOrUpdateAnalgesiaData(requestData);
+        ctx.response.body = await AnalgesiaService.createOrUpdateAnalgesiaData(patientId, requestData);
 
     }
 
