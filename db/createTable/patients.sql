@@ -36,4 +36,3 @@ CREATE TABLE patients
   COMMENT '孕妇'
   ENGINE = InnoDB
   CHARSET = utf8;
-

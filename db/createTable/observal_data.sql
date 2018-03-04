@@ -4,6 +4,8 @@ CREATE TABLE observal_data
     PRIMARY KEY,
   patient_id                        VARCHAR(10)   NULL
   COMMENT '孕妇住院号',
+  initial_time                      DATETIME      NULL
+  COMMENT '麻醉开始时间',
   test_dose                         INT           NULL
   COMMENT '试验剂量(ml)',
   initial_dose                      INT           NULL
@@ -22,8 +24,8 @@ CREATE TABLE observal_data
   COMMENT '人工硬膜外追加次数',
   first_pca_time                    DATETIME      NULL
   COMMENT '首次PCA时间',
-  first_manual_bolus_time           DATETIME      NULL
-  COMMENT '首次人工硬膜外追加时间',
+  duration_of_first_pca             INT           NULL
+  COMMENT '第一次PCA时长',
   duration_of_second_stage_of_labor INT           NULL
   COMMENT '第二产程时长',
   has_epidural_catheter_adjuestment TINYINT(1)    NULL
@@ -36,6 +38,10 @@ CREATE TABLE observal_data
   COMMENT '是否使用血管活性药物',
   is_unabled_to_puncture_dura       TINYINT(1)    NULL
   COMMENT '是否穿刺未见脑脊液',
+  first_manual_bolus_time           DATETIME      NULL
+  COMMENT '首次人工硬膜外追加时间',
+  duration_of_first_manual_bolus    INT           NULL
+  COMMENT '首次人工硬膜外追加时长',
   has_nausea                        TINYINT(1)    NULL
   COMMENT '是否有恶心',
   has_vomit                         TINYINT(1)    NULL
@@ -66,6 +72,8 @@ CREATE TABLE observal_data
   COMMENT '是否有侧切',
   birth_time                        DATETIME      NULL
   COMMENT '分娩时间',
+  duration_of_analgesia             INT           NULL
+  COMMENT '镇痛时长',
   foetal_height                     INT           NULL
   COMMENT '胎儿身长',
   foetal_weight                     INT           NULL
@@ -97,4 +105,3 @@ CREATE TABLE observal_data
   COMMENT '观察数据'
   ENGINE = InnoDB
   CHARSET = utf8;
-

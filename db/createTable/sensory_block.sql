@@ -10,4 +10,3 @@ CREATE TABLE sensory_block
   COMMENT '阻滞平面'
   ENGINE = InnoDB
   CHARSET = utf8;
-

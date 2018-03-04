@@ -39,4 +39,3 @@ CREATE TABLE analgesia_data
   COMMENT '麻醉数据'
   ENGINE = InnoDB
   CHARSET = utf8;
-

@@ -10,4 +10,3 @@ CREATE TABLE dpe_group
   COMMENT '分组'
   ENGINE = InnoDB
   CHARSET = utf8;
-
