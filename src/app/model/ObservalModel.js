@@ -16,6 +16,10 @@ const sequelizeInstance = SequelizeGenerator(),
             field: 'patient_id',
             type: Sequelize.STRING(10)
         },
+        initialTime: {
+            field: 'initial_time',
+            type: Sequelize.DATE
+        },
         testDose: {
             field: 'test_dose',
             type: Sequelize.INTEGER
