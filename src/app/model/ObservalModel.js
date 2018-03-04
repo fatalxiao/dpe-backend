@@ -44,21 +44,21 @@ const sequelizeInstance = SequelizeGenerator(),
             field: 'has_hemabate',
             type: Sequelize.BOOLEAN
         },
-        pcaCount: {
-            field: 'pca_count',
-            type: Sequelize.INTEGER
-        },
-        manualBolusCount: {
-            field: 'manual_bolus_count',
-            type: Sequelize.INTEGER
-        },
         firstPcaTime: {
             field: 'first_pca_time',
             type: Sequelize.DATE
         },
+        pcaCount: {
+            field: 'pca_count',
+            type: Sequelize.INTEGER
+        },
         firstManualBolusTime: {
             field: 'first_manual_bolus_time',
             type: Sequelize.DATE
+        },
+        manualBolusCount: {
+            field: 'manual_bolus_count',
+            type: Sequelize.INTEGER
         },
         durationOfSecondStageOfLabor: {
             field: 'duration_of_second_stage_of_labor',
