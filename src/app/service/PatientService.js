@@ -1,6 +1,23 @@
 import PatientDao from '../dao/PatientDao.js';
 import Response from '../utils/Response.js';
-import Data from '../utils/Data.js';
+
+function formatData(data) {
+
+    if (!data) {
+        return
+    }
+
+    data.age = data.age ? data.age : null;
+    data.gestationalDays = data.gestationalDays ? data.gestationalDays : null;
+    data.weight = data.weight ? data.weight : null;
+    data.height = data.height ? data.height : null;
+    data.initialVasScore = data.initialVasScore ? data.initialVasScore : null;
+    data.cervicalDilationAtTimeOfEA = data.cervicalDilationAtTimeOfEA ? data.cervicalDilationAtTimeOfEA : null;
+    data.heartRate = data.heartRate ? data.heartRate : null;
+    data.systolicBloodPressure = data.systolicBloodPressure ? data.systolicBloodPressure : null;
+    data.diastolicBloodPressure = data.diastolicBloodPressure ? data.diastolicBloodPressure : null;
+
+}
 
 async function getPatients() {
     return Response.buildSuccess(await PatientDao.getPatients());
@@ -16,10 +33,10 @@ async function createPatient(data) {
         return Response.buildError(`Patient ID ${data.id} is exist.`);
     }
 
-    Data.verify(data, ['id', 'groupId']);
     let result;
 
     try {
+        formatData(data);
         result = await PatientDao.createPatient(data);
     } catch (e) {
         return Response.buildError('Create Patient failure.');
@@ -35,10 +52,10 @@ async function updatePatient(data) {
         return Response.buildError(`Patient ID ${data.id} is not exist.`);
     }
 
-    Data.verify(data, ['id', 'groupId']);
     let result;
 
     try {
+        formatData(data);
         result = await PatientDao.updatePatient(data);
     } catch (e) {
         return Response.buildError('Update Patient failure.');
@@ -50,10 +67,10 @@ async function updatePatient(data) {
 
 async function createOrUpdatePatient(data) {
 
-    Data.verify(data, ['id', 'groupId']);
     let result;
 
     try {
+        formatData(data);
         result = await PatientDao.createOrUpdatePatient(data);
     } catch (e) {
         return Response.buildError('Update Patient failure.');
