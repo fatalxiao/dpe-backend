@@ -1,4 +1,5 @@
 import _ from 'lodash';
+import moment from 'moment';
 
 function doVerify(data, excludes) {
 
@@ -35,7 +36,7 @@ function number(data, fields) {
     }
 
     for (let field of fields) {
-        data[field] = data[field] ? data[field] : null;
+        data[field] = data[field] === '' || data[field] === undefined ? data[field] : null;
     }
 
 }
@@ -47,7 +48,7 @@ function date(data, fields) {
     }
 
     for (let field of fields) {
-        data[field] = data[field] ? data[field] : null;
+        data[field] = moment(data[field]).isValid() ? data[field] : null;
     }
 
 }

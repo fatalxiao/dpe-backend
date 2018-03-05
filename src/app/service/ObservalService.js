@@ -5,7 +5,8 @@ import DataFormat from "../utils/DataFormat";
 function formatData(data) {
     DataFormat.number(data, ['testDose', 'initialDose', 'pumpConsumption', 'bolus', 'pcaCount', 'manualBolusCount',
         'durationOfSecondStageOfLabor', 'durationOfLaborAnalgesia', 'bloodLose', 'patientSatisfactionScore',
-        'lateralEpisiotomyVasScore', 'foetalHeight', 'foetalWeight', 'oneMinuteApgarScore', 'fiveMinuteApgarScore']);
+        'lateralEpisiotomyVasScore', 'foetalHeight', 'foetalWeight', 'oneMinuteApgarScore', 'fiveMinuteApgarScore',
+        'arterialPh', 'arterialBe', 'venousPh', 'venousBe']);
     DataFormat.date(data, ['initialTime', 'firstPcaTime', 'firstManualBolusTime', 'birthTime']);
 }
 
@@ -88,15 +89,15 @@ async function createOrUpdateObservalData(patientId, data) {
 
     let result;
 
-    try {
-        formatData(data)
-        result = await ObservalDao.createOrUpdateObservalData({
-            ...data,
-            patientId
-        });
-    } catch (e) {
-        return Response.buildError('Update Observal Data failure.');
-    }
+    // try {
+    formatData(data)
+    result = await ObservalDao.createOrUpdateObservalData({
+        ...data,
+        patientId
+    });
+    // } catch (e) {
+    //     return Response.buildError('Update Observal Data failure.');
+    // }
 
     return Response.buildSuccess(result);
 
