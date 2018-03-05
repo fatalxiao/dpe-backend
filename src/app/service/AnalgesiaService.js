@@ -58,8 +58,6 @@ async function createAnalgesiaData(patientId, data) {
  */
 async function updateAnalgesiaData(patientId, data) {
 
-    Data.verify(data, ['timePoint']);
-
     const error = [];
 
     for (let item of data) {
@@ -100,8 +98,6 @@ async function updateAnalgesiaData(patientId, data) {
  *  }
  */
 async function createOrUpdateAnalgesiaData(patientId, data) {
-
-    Data.verify(data, ['timePoint']);
 
     const error = [];
 
