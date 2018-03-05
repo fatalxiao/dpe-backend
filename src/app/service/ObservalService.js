@@ -1,6 +1,18 @@
 import ObservalDao from '../dao/ObservalDao.js';
 import Response from '../utils/Response.js';
-import Data from '../utils/Data';
+
+function formatData(data) {
+
+    if (!data) {
+        return
+    }
+
+    data.initialTime = data.initialTime ? data.initialTime : null;
+    data.firstPcaTime = data.firstPcaTime ? data.firstPcaTime : null;
+    data.firstManualBolusTime = data.firstManualBolusTime ? data.firstManualBolusTime : null;
+    data.birthTime = data.birthTime ? data.birthTime : null;
+
+}
 
 async function getObservalDataByPatientId(patientId) {
     return Response.buildSuccess(await ObservalDao.getObservalDataByPatientId(patientId));
@@ -21,10 +33,10 @@ async function createObservalData(patientId, data) {
         return Response.buildError(`Patient ID ${patientId} Observal Data is exist.`);
     }
 
-    Data.verify(data);
     let result;
 
     try {
+        formatData(data)
         result = await ObservalDao.createObservalData({
             ...data,
             patientId
@@ -52,10 +64,10 @@ async function updateObservalData(patientId, data) {
         return Response.buildError(`Patient ID ${patientId} Observal Data is not exist.`);
     }
 
-    Data.verify(data);
     let result;
 
     try {
+        formatData(data)
         result = await ObservalDao.updateObservalData({
             ...data,
             patientId
@@ -79,10 +91,10 @@ async function updateObservalData(patientId, data) {
  */
 async function createOrUpdateObservalData(patientId, data) {
 
-    Data.verify(data);
     let result;
 
     try {
+        formatData(data)
         result = await ObservalDao.createOrUpdateObservalData({
             ...data,
             patientId
