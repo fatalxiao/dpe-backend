@@ -1,22 +1,10 @@
 import PatientDao from '../dao/PatientDao.js';
 import Response from '../utils/Response.js';
+import DataFormat from "../utils/DataFormat";
 
 function formatData(data) {
-
-    if (!data) {
-        return
-    }
-
-    data.age = data.age ? data.age : null;
-    data.gestationalDays = data.gestationalDays ? data.gestationalDays : null;
-    data.weight = data.weight ? data.weight : null;
-    data.height = data.height ? data.height : null;
-    data.initialVasScore = data.initialVasScore ? data.initialVasScore : null;
-    data.cervicalDilationAtTimeOfEA = data.cervicalDilationAtTimeOfEA ? data.cervicalDilationAtTimeOfEA : null;
-    data.heartRate = data.heartRate ? data.heartRate : null;
-    data.systolicBloodPressure = data.systolicBloodPressure ? data.systolicBloodPressure : null;
-    data.diastolicBloodPressure = data.diastolicBloodPressure ? data.diastolicBloodPressure : null;
-
+    DataFormat.number(data, ['age', 'gestationalDays', 'weight', 'height', 'initialVasScore',
+        'cervicalDilationAtTimeOfEA', 'heartRate', 'systolicBloodPressure', 'diastolicBloodPressure']);
 }
 
 async function getPatients() {
