@@ -1,9 +1,11 @@
 CREATE TABLE sensory_block
 (
-  id                  INT AUTO_INCREMENT
+  id    INT AUTO_INCREMENT
     PRIMARY KEY,
-  sensory_block_name  VARCHAR(20) NULL,
-  sensory_block_value INT         NULL,
+  name  VARCHAR(20) NULL,
+  value INT         NULL,
+  type  INT         NULL
+  COMMENT '阻滞平面类型，1：头端阻滞平面，2：尾端阻滞平面',
   CONSTRAINT sensory_block_id_uindex
   UNIQUE (id)
 )

@@ -12,12 +12,16 @@ const sequelizeInstance = SequelizeGenerator(),
             primaryKey: true,
             autoIncrement: true
         },
-        sensoryBlockName: {
-            field: 'sensory_block_name',
+        name: {
+            field: 'name',
             type: Sequelize.STRING(20)
         },
-        sensoryBlockValue: {
-            field: 'sensory_block_value',
+        value: {
+            field: 'value',
+            type: Sequelize.INTEGER
+        },
+        type: {
+            field: 'type',
             type: Sequelize.INTEGER
         }
     }, {
