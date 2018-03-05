@@ -37,9 +37,12 @@ class ObservalController {
     @RequestBody({value: 'Observal'})
     static async createObservalData(ctx) {
 
-        const patientId = ctx.params.patientId,
-            requestData = ctx.request.body;
+        const patientId = ctx.params.patientId;
+        if (!patientId) {
+            return ctx.response.body = Response.buildParamError('Patient ID is required');
+        }
 
+        const requestData = ctx.request.body;
         let error = ObservalController.verifyRequestData(patientId, requestData);
         if (error) {
             return ctx.response.body = error;
@@ -54,9 +57,12 @@ class ObservalController {
     @RequestBody({value: 'Observal'})
     static async updateObservalData(ctx) {
 
-        const patientId = ctx.params.patientId,
-            requestData = ctx.request.body;
+        const patientId = ctx.params.patientId;
+        if (!patientId) {
+            return ctx.response.body = Response.buildParamError('Patient ID is required');
+        }
 
+        const requestData = ctx.request.body;
         let error = ObservalController.verifyRequestData(patientId, requestData);
         if (error) {
             return ctx.response.body = error;
@@ -71,9 +77,12 @@ class ObservalController {
     @RequestBody({value: 'Observal'})
     static async createOrUpdateObservalData(ctx) {
 
-        const patientId = ctx.params.patientId,
-            requestData = ctx.request.body;
+        const patientId = ctx.params.patientId;
+        if (!patientId) {
+            return ctx.response.body = Response.buildParamError('Patient ID is required');
+        }
 
+        const requestData = ctx.request.body;
         let error = ObservalController.verifyRequestData(patientId, requestData);
         if (error) {
             return ctx.response.body = error;
