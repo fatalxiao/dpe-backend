@@ -12,8 +12,8 @@ const sequelizeInstance = SequelizeGenerator(),
             primaryKey: true,
             autoIncrement: true
         },
-        groupName: {
-            field: 'group_name',
+        name: {
+            field: 'name',
             type: Sequelize.STRING(20)
         }
     }, {
