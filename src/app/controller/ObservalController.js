@@ -22,7 +22,14 @@ class ObservalController {
     @GetMapping({value: '/dpe/observal/getObservalDataByPatientId/:patientId'})
     @ApiOperation({value: 'get Observal Data by Patient Id', notes: ''})
     static async getObservalDataByPatientId(ctx) {
-        ctx.response.body = await ObservalService.getObservalDataByPatientId(ctx.params.patientId);
+
+        const patientId = ctx.params.patientId;
+        if (!patientId) {
+            return ctx.response.body = Response.buildParamError('Patient ID is required');
+        }
+
+        ctx.response.body = await ObservalService.getObservalDataByPatientId(patientId);
+
     }
 
     @PostMapping({value: '/dpe/observal/createObservalData/:patientId'})

@@ -48,6 +48,26 @@ async function createOrUpdatePatient(data) {
     }
 }
 
+async function enablePatient(id) {
+    return await PatientModel.update({
+        disabled: false
+    }, {
+        where: {
+            id: {[Sequelize.Op.eq]: id}
+        }
+    });
+}
+
+async function disablePatient(id) {
+    return await PatientModel.update({
+        disabled: true
+    }, {
+        where: {
+            id: {[Sequelize.Op.eq]: id}
+        }
+    });
+}
+
 export default {
 
     getPatients,
@@ -58,6 +78,9 @@ export default {
 
     createPatient,
     updatePatient,
-    createOrUpdatePatient
+    createOrUpdatePatient,
+
+    enablePatient,
+    disablePatient
 
 };
