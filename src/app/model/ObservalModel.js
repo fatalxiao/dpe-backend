@@ -1,6 +1,8 @@
 import Sequelize from 'sequelize';
 import moment from 'moment';
+
 import SequelizeGenerator from '../utils/SequelizeGenerator.js';
+import DateUtil from '../utils/DateUtil.js';
 
 const sequelizeInstance = SequelizeGenerator(),
 
@@ -21,8 +23,7 @@ const sequelizeInstance = SequelizeGenerator(),
             field: 'initial_time',
             type: Sequelize.DATE,
             get() {
-                const time = this.getDataValue('initialTime');
-                return time ? moment(time).format('YYYY-MM-DD HH:mm:ss') : '';
+                return DateUtil.formatResDateTime(this.getDataValue('initialTime'));
             }
         },
         testDose: {
@@ -53,8 +54,7 @@ const sequelizeInstance = SequelizeGenerator(),
             field: 'first_pca_time',
             type: Sequelize.DATE,
             get() {
-                const time = this.getDataValue('firstPcaTime');
-                return time ? moment(time).format('YYYY-MM-DD HH:mm:ss') : '';
+                return DateUtil.formatResDateTime(this.getDataValue('firstPcaTime'));
             }
         },
         pcaCount: {
@@ -65,8 +65,7 @@ const sequelizeInstance = SequelizeGenerator(),
             field: 'first_manual_bolus_time',
             type: Sequelize.DATE,
             get() {
-                const time = this.getDataValue('firstManualBolusTime');
-                return time ? moment(time).format('YYYY-MM-DD HH:mm:ss') : '';
+                return DateUtil.formatResDateTime(this.getDataValue('firstManualBolusTime'));
             }
         },
         manualBolusCount: {
@@ -161,8 +160,7 @@ const sequelizeInstance = SequelizeGenerator(),
             field: 'birth_time',
             type: Sequelize.DATE,
             get() {
-                const time = this.getDataValue('birthTime');
-                return time ? moment(time).format('YYYY-MM-DD HH:mm:ss') : '';
+                return DateUtil.formatResDateTime(this.getDataValue('birthTime'));
             }
         },
         foetalHeight: {
