@@ -57,6 +57,10 @@ const sequelizeInstance = SequelizeGenerator(),
             field: 'diastolic_blood_pressure',
             type: Sequelize.INTEGER(3)
         },
+        disabled: {
+            field: 'disabled',
+            type: Sequelize.BOOLEAN
+        },
         description: {
             field: 'description',
             type: Sequelize.STRING(1000)
