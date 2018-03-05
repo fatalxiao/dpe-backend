@@ -40,7 +40,20 @@ function number(data, fields) {
 
 }
 
+function date(data, fields) {
+
+    if (!data || !fields) {
+        return;
+    }
+
+    for (let field of fields) {
+        data[field] = data[field] ? data[field] : null;
+    }
+
+}
+
 export default {
     verify,
-    number
+    number,
+    date
 };

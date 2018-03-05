@@ -1,17 +1,12 @@
 import ObservalDao from '../dao/ObservalDao.js';
 import Response from '../utils/Response.js';
+import DataFormat from "../utils/DataFormat";
 
 function formatData(data) {
-
-    if (!data) {
-        return
-    }
-
-    data.initialTime = data.initialTime ? data.initialTime : null;
-    data.firstPcaTime = data.firstPcaTime ? data.firstPcaTime : null;
-    data.firstManualBolusTime = data.firstManualBolusTime ? data.firstManualBolusTime : null;
-    data.birthTime = data.birthTime ? data.birthTime : null;
-
+    DataFormat.number(data, ['testDose', 'initialDose', 'pumpConsumption', 'bolus', 'pcaCount', 'manualBolusCount',
+        'durationOfSecondStageOfLabor', 'durationOfLaborAnalgesia', 'bloodLose', 'patientSatisfactionScore',
+        'lateralEpisiotomyVasScore', 'foetalHeight', 'foetalWeight', 'oneMinuteApgarScore', 'fiveMinuteApgarScore']);
+    DataFormat.date(data, ['initialTime', 'firstPcaTime', 'firstManualBolusTime', 'birthTime']);
 }
 
 async function getObservalDataByPatientId(patientId) {
