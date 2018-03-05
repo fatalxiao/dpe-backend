@@ -17,8 +17,6 @@ async function getAnalgesiaDataByPatientId(patientId) {
  */
 async function createAnalgesiaData(patientId, data) {
 
-    Data.verify(data, ['timePoint']);
-
     const error = [];
 
     for (let item of data) {
