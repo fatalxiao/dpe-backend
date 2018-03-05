@@ -28,6 +28,19 @@ function verify(data, excludes) {
 
 }
 
+function number(data, fields) {
+
+    if (!data || !fields) {
+        return;
+    }
+
+    for (let field of fields) {
+        data[field] = data[field] ? data[field] : null;
+    }
+
+}
+
 export default {
-    verify
+    verify,
+    number
 };
