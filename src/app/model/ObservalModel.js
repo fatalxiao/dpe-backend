@@ -1,5 +1,4 @@
 import Sequelize from 'sequelize';
-import moment from 'moment';
 
 import SequelizeGenerator from '../utils/SequelizeGenerator.js';
 import DateUtil from '../utils/DateUtil.js';
