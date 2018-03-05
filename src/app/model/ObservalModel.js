@@ -137,6 +137,10 @@ const sequelizeInstance = SequelizeGenerator(),
             field: 'duration_of_labor_analgesia',
             type: Sequelize.INTEGER
         },
+        bloodLose: {
+            field: 'blood_lose',
+            type: Sequelize.INTEGER
+        },
         patientSatisfactionScore: {
             field: 'patient_satisfaction_score',
             type: Sequelize.INTEGER
