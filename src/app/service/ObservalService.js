@@ -78,14 +78,14 @@ async function createOrUpdateObservalData(patientId, data) {
 
     let result;
 
-    // try {
-    result = await ObservalDao.createOrUpdateObservalData({
-        ...data,
-        patientId
-    });
-    // } catch (e) {
-    //     return Response.buildError('Update Observal Data failure.');
-    // }
+    try {
+        result = await ObservalDao.createOrUpdateObservalData({
+            ...data,
+            patientId
+        });
+    } catch (e) {
+        return Response.buildError('Update Observal Data failure.');
+    }
 
     return Response.buildSuccess(result);
 
