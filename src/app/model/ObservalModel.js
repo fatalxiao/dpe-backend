@@ -23,6 +23,9 @@ const sequelizeInstance = SequelizeGenerator(),
             type: Sequelize.DATE,
             get() {
                 return DataFormat.formatResDateTime(this.getDataValue('initialTime'));
+            },
+            set(value) {
+                this.setDataValue('initialTime', DataFormat.formatDateTimeField(value));
             }
         },
         testDose: {
@@ -66,6 +69,9 @@ const sequelizeInstance = SequelizeGenerator(),
             type: Sequelize.DATE,
             get() {
                 return DataFormat.formatResDateTime(this.getDataValue('firstPcaTime'));
+            },
+            set(value) {
+                this.setDataValue('firstPcaTime', DataFormat.formatDateTimeField(value));
             }
         },
         pcaCount: {
@@ -80,6 +86,9 @@ const sequelizeInstance = SequelizeGenerator(),
             type: Sequelize.DATE,
             get() {
                 return DataFormat.formatResDateTime(this.getDataValue('firstManualBolusTime'));
+            },
+            set(value) {
+                this.setDataValue('firstManualBolusTime', DataFormat.formatDateTimeField(value));
             }
         },
         manualBolusCount: {
@@ -193,6 +202,9 @@ const sequelizeInstance = SequelizeGenerator(),
             type: Sequelize.DATE,
             get() {
                 return DataFormat.formatResDateTime(this.getDataValue('birthTime'));
+            },
+            set(value) {
+                this.setDataValue('birthTime', DataFormat.formatDateTimeField(value));
             }
         },
         foetalHeight: {
