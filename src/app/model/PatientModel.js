@@ -18,8 +18,8 @@ const sequelizeInstance = SequelizeGenerator(),
         groupId: {
             field: 'group_id',
             type: Sequelize.INTEGER(1),
-            get() {
-                return DataFormat.formatNumberField(this.getDataValue('groupId'));
+            set(value) {
+                this.setDataValue('groupId', DataFormat.formatNumberField(value));
             }
         },
         patientName: {
@@ -29,64 +29,64 @@ const sequelizeInstance = SequelizeGenerator(),
         age: {
             field: 'age',
             type: Sequelize.INTEGER(3),
-            get() {
-                return DataFormat.formatNumberField(this.getDataValue('age'));
+            set(value) {
+                this.setDataValue('age', DataFormat.formatNumberField(value));
             }
         },
         gestationalDays: {
             field: 'gestational_days',
             type: Sequelize.INTEGER(3),
-            get() {
-                return DataFormat.formatNumberField(this.getDataValue('gestationalDays'));
+            set(value) {
+                this.setDataValue('gestationalDays', DataFormat.formatNumberField(value));
             }
         },
         height: {
             field: 'height',
             type: Sequelize.FLOAT,
-            get() {
-                return DataFormat.formatNumberField(this.getDataValue('height'));
+            set(value) {
+                this.setDataValue('height', DataFormat.formatNumberField(value));
             }
         },
         weight: {
             field: 'weight',
             type: Sequelize.FLOAT,
-            get() {
-                return DataFormat.formatNumberField(this.getDataValue('weight'));
+            set(value) {
+                this.setDataValue('weight', DataFormat.formatNumberField(value));
             }
         },
         initialVasScore: {
             field: 'initial_vas_score',
             type: Sequelize.INTEGER(3),
-            get() {
-                return DataFormat.formatNumberField(this.getDataValue('initialVasScore'));
+            set(value) {
+                this.setDataValue('initialVasScore', DataFormat.formatNumberField(value));
             }
         },
         cervicalDilationAtTimeOfEA: {
             field: 'cervical_dilation_at_time_of_ea',
             type: Sequelize.INTEGER(3),
-            get() {
-                return DataFormat.formatNumberField(this.getDataValue('cervicalDilationAtTimeOfEA'));
+            set(value) {
+                this.setDataValue('cervicalDilationAtTimeOfEA', DataFormat.formatNumberField(value));
             }
         },
         heartRate: {
             field: 'heart_rate',
             type: Sequelize.INTEGER(3),
-            get() {
-                return DataFormat.formatNumberField(this.getDataValue('heartRate'));
+            set(value) {
+                this.setDataValue('heartRate', DataFormat.formatNumberField(value));
             }
         },
         systolicBloodPressure: {
             field: 'systolic_blood_pressure',
             type: Sequelize.INTEGER(3),
-            get() {
-                return DataFormat.formatNumberField(this.getDataValue('systolicBloodPressure'));
+            set(value) {
+                this.setDataValue('systolicBloodPressure', DataFormat.formatNumberField(value));
             }
         },
         diastolicBloodPressure: {
             field: 'diastolic_blood_pressure',
             type: Sequelize.INTEGER(3),
-            get() {
-                return DataFormat.formatNumberField(this.getDataValue('diastolicBloodPressure'));
+            set(value) {
+                this.setDataValue('diastolicBloodPressure', DataFormat.formatNumberField(value));
             }
         },
         disabled: {
