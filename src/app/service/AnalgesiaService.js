@@ -107,11 +107,11 @@ async function createOrUpdateAnalgesiaData(patientId, data) {
             patientId
         };
 
-        // try {
-        await AnalgesiaDao.createOrUpdateAnalgesiaData(analgesiaData);
-        // } catch (e) {
-        //     error.push(`Patient ID ${patientId}, timePoint ${analgesiaData.timePoint} update failure.`);
-        // }
+        try {
+            await AnalgesiaDao.createOrUpdateAnalgesiaData(analgesiaData);
+        } catch (e) {
+            error.push(`Patient ID ${patientId}, timePoint ${analgesiaData.timePoint} update failure.`);
+        }
 
     }
 
