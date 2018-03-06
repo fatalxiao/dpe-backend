@@ -11,22 +11,30 @@ async function getAnalgesiaDataByPatientId(patientId) {
         include: [{
             model: SensoryBlock,
             as: 'thoracicSensoryBlockLeft',
-            where: {sensoryBlockValue: Sequelize.col('analgesia_data.thoracic_sensory_block_left_value')},
+            where: {
+                type: {[Sequelize.Op.eq]: 1}
+            },
             required: false
         }, {
             model: SensoryBlock,
             as: 'thoracicSensoryBlockRight',
-            where: {sensoryBlockValue: Sequelize.col('analgesia_data.thoracic_sensory_block_right_value')},
+            where: {
+                type: {[Sequelize.Op.eq]: 1}
+            },
             required: false
         }, {
             model: SensoryBlock,
             as: 'sacralSensoryBlockLeft',
-            where: {sensoryBlockValue: Sequelize.col('analgesia_data.sacral_sensory_block_left_value')},
+            where: {
+                type: {[Sequelize.Op.eq]: 2}
+            },
             required: false
         }, {
             model: SensoryBlock,
             as: 'sacralSensoryBlockRight',
-            where: {sensoryBlockValue: Sequelize.col('analgesia_data.sacral_sensory_block_right_value')},
+            where: {
+                type: {[Sequelize.Op.eq]: 2}
+            },
             required: false
         }]
     });

@@ -119,22 +119,26 @@ const sequelizeInstance = SequelizeGenerator(),
 
 Analgesia.belongsTo(SensoryBlock, {
     as: 'thoracicSensoryBlockLeft',
-    foreignKey: 'thoracicSensoryBlockLeftValue'
+    foreignKey: 'thoracicSensoryBlockLeftValue',
+    targetKey: 'value'
 });
 
 Analgesia.belongsTo(SensoryBlock, {
     as: 'thoracicSensoryBlockRight',
-    foreignKey: 'thoracicSensoryBlockRightValue'
+    foreignKey: 'thoracicSensoryBlockRightValue',
+    targetKey: 'value'
 });
 
 Analgesia.belongsTo(SensoryBlock, {
     as: 'sacralSensoryBlockLeft',
-    foreignKey: 'sacralSensoryBlockLeftValue'
+    foreignKey: 'sacralSensoryBlockLeftValue',
+    targetKey: 'value'
 });
 
 Analgesia.belongsTo(SensoryBlock, {
     as: 'sacralSensoryBlockRight',
-    foreignKey: 'sacralSensoryBlockRightValue'
+    foreignKey: 'sacralSensoryBlockRightValue',
+    targetKey: 'value'
 });
 
 export default Analgesia;
