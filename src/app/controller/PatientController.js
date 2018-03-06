@@ -5,7 +5,7 @@ import {Api, ApiOperation, GetMapping, PostMapping} from '../utils/ApiDecorator'
 @Api({tags: 'Patient'})
 class PatientController {
 
-    static verifyRequestData(requestData) {
+    static verifyCreateData(requestData) {
 
         if (!requestData) {
             return Response.buildParamError('Request Data is required');
@@ -15,6 +15,18 @@ class PatientController {
             return Response.buildParamError('Group is required');
         } else if (!requestData.patientName) {
             return Response.buildParamError('Patient Name is required');
+        }
+
+        return;
+
+    }
+
+    static verifyUpdateData(requestData) {
+
+        if (!requestData) {
+            return Response.buildParamError('Request Data is required');
+        } else if (!requestData.id) {
+            return Response.buildParamError('ID is required');
         }
 
         return;
@@ -46,7 +58,7 @@ class PatientController {
 
         const requestData = ctx.request.body;
 
-        let error = PatientController.verifyRequestData(requestData);
+        let error = PatientController.verifyCreateData(requestData);
         if (error) {
             return ctx.response.body = error;
         }
@@ -61,7 +73,7 @@ class PatientController {
 
         const requestData = ctx.request.body;
 
-        let error = PatientController.verifyRequestData(requestData);
+        let error = PatientController.verifyUpdateData(requestData);
         if (error) {
             return ctx.response.body = error;
         }
@@ -76,7 +88,7 @@ class PatientController {
 
         const requestData = ctx.request.body;
 
-        let error = PatientController.verifyRequestData(requestData);
+        let error = PatientController.verifyUpdateData(requestData);
         if (error) {
             return ctx.response.body = error;
         }
