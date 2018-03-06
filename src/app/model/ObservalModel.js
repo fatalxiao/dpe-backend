@@ -2,6 +2,7 @@ import Sequelize from 'sequelize';
 
 import SequelizeGenerator from '../utils/SequelizeGenerator.js';
 import DateUtil from '../utils/DateUtil.js';
+import DataFormat from '../utils/DataFormat';
 
 const sequelizeInstance = SequelizeGenerator(),
 
@@ -27,19 +28,31 @@ const sequelizeInstance = SequelizeGenerator(),
         },
         testDose: {
             field: 'test_dose',
-            type: Sequelize.INTEGER
+            type: Sequelize.INTEGER,
+            set(value) {
+                this.setDataValue('testDose', DataFormat.formatNumberField(value));
+            }
         },
         initialDose: {
             field: 'initial_dose',
-            type: Sequelize.INTEGER
+            type: Sequelize.INTEGER,
+            set(value) {
+                this.setDataValue('initialDose', DataFormat.formatNumberField(value));
+            }
         },
         pumpConsumption: {
             field: 'pump_consumption',
-            type: Sequelize.INTEGER
+            type: Sequelize.INTEGER,
+            set(value) {
+                this.setDataValue('pumpConsumption', DataFormat.formatNumberField(value));
+            }
         },
         bolus: {
             field: 'bolus',
-            type: Sequelize.INTEGER
+            type: Sequelize.INTEGER,
+            set(value) {
+                this.setDataValue('bolus', DataFormat.formatNumberField(value));
+            }
         },
         hasCarbetocin: {
             field: 'has_carbetocin',
@@ -58,7 +71,10 @@ const sequelizeInstance = SequelizeGenerator(),
         },
         pcaCount: {
             field: 'pca_count',
-            type: Sequelize.INTEGER
+            type: Sequelize.INTEGER,
+            set(value) {
+                this.setDataValue('pcaCount', DataFormat.formatNumberField(value));
+            }
         },
         firstManualBolusTime: {
             field: 'first_manual_bolus_time',
@@ -69,11 +85,17 @@ const sequelizeInstance = SequelizeGenerator(),
         },
         manualBolusCount: {
             field: 'manual_bolus_count',
-            type: Sequelize.INTEGER
+            type: Sequelize.INTEGER,
+            set(value) {
+                this.setDataValue('manualBolusCount', DataFormat.formatNumberField(value));
+            }
         },
         durationOfSecondStageOfLabor: {
             field: 'duration_of_second_stage_of_labor',
-            type: Sequelize.INTEGER
+            type: Sequelize.INTEGER,
+            set(value) {
+                this.setDataValue('durationOfSecondStageOfLabor', DataFormat.formatNumberField(value));
+            }
         },
         hasEpiduralCatheterAdjuestment: {
             field: 'has_epidural_catheter_adjuestment',
@@ -133,15 +155,24 @@ const sequelizeInstance = SequelizeGenerator(),
         },
         durationOfLaborAnalgesia: {
             field: 'duration_of_labor_analgesia',
-            type: Sequelize.INTEGER
+            type: Sequelize.INTEGER,
+            set(value) {
+                this.setDataValue('durationOfLaborAnalgesia', DataFormat.formatNumberField(value));
+            }
         },
         bloodLose: {
             field: 'blood_lose',
-            type: Sequelize.INTEGER
+            type: Sequelize.INTEGER,
+            set(value) {
+                this.setDataValue('bloodLose', DataFormat.formatNumberField(value));
+            }
         },
         patientSatisfactionScore: {
             field: 'patient_satisfaction_score',
-            type: Sequelize.INTEGER
+            type: Sequelize.INTEGER,
+            set(value) {
+                this.setDataValue('patientSatisfactionScore', DataFormat.formatNumberField(value));
+            }
         },
         hasAccidentalDuralPunture: {
             field: 'has_accidental_dural_punture',
@@ -149,7 +180,10 @@ const sequelizeInstance = SequelizeGenerator(),
         },
         lateralEpisiotomyVasScore: {
             field: 'lateral_episiotomy_vas_score',
-            type: Sequelize.INTEGER
+            type: Sequelize.INTEGER,
+            set(value) {
+                this.setDataValue('lateralEpisiotomyVasScore', DataFormat.formatNumberField(value));
+            }
         },
         hasLateralEpisiotomy: {
             field: 'has_lateral_episiotomy',
@@ -164,19 +198,31 @@ const sequelizeInstance = SequelizeGenerator(),
         },
         foetalHeight: {
             field: 'foetal_height',
-            type: Sequelize.INTEGER
+            type: Sequelize.INTEGER,
+            set(value) {
+                this.setDataValue('foetalHeight', DataFormat.formatNumberField(value));
+            }
         },
         foetalWeight: {
             field: 'foetal_weight',
-            type: Sequelize.INTEGER
+            type: Sequelize.INTEGER,
+            set(value) {
+                this.setDataValue('foetalWeight', DataFormat.formatNumberField(value));
+            }
         },
         oneMinuteApgarScore: {
             field: 'one_minute_apgar_score',
-            type: Sequelize.INTEGER
+            type: Sequelize.INTEGER,
+            set(value) {
+                this.setDataValue('oneMinuteApgarScore', DataFormat.formatNumberField(value));
+            }
         },
         fiveMinuteApgarScore: {
             field: 'five_minute_apgar_score',
-            type: Sequelize.INTEGER
+            type: Sequelize.INTEGER,
+            set(value) {
+                this.setDataValue('fiveMinuteApgarScore', DataFormat.formatNumberField(value));
+            }
         },
         hasNicu: {
             field: 'has_nicu',
@@ -188,19 +234,31 @@ const sequelizeInstance = SequelizeGenerator(),
         },
         arterialPh: {
             field: 'arterial_ph',
-            type: Sequelize.FLOAT
+            type: Sequelize.FLOAT,
+            set(value) {
+                this.setDataValue('arterialPh', DataFormat.formatNumberField(value));
+            }
         },
         arterialBe: {
             field: 'arterial_be',
-            type: Sequelize.FLOAT
+            type: Sequelize.FLOAT,
+            set(value) {
+                this.setDataValue('arterialBe', DataFormat.formatNumberField(value));
+            }
         },
         venousPh: {
             field: 'venous_ph',
-            type: Sequelize.FLOAT
+            type: Sequelize.FLOAT,
+            set(value) {
+                this.setDataValue('venousPh', DataFormat.formatNumberField(value));
+            }
         },
         venousBe: {
             field: 'venous_be',
-            type: Sequelize.FLOAT
+            type: Sequelize.FLOAT,
+            set(value) {
+                this.setDataValue('venousBe', DataFormat.formatNumberField(value));
+            }
         },
         description: {
             field: 'description',

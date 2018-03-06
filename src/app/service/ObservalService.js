@@ -1,14 +1,5 @@
 import ObservalDao from '../dao/ObservalDao.js';
 import Response from '../utils/Response.js';
-import DataFormat from "../utils/DataFormat";
-
-function formatData(data) {
-    DataFormat.number(data, ['testDose', 'initialDose', 'pumpConsumption', 'bolus', 'pcaCount', 'manualBolusCount',
-        'durationOfSecondStageOfLabor', 'durationOfLaborAnalgesia', 'bloodLose', 'patientSatisfactionScore',
-        'lateralEpisiotomyVasScore', 'foetalHeight', 'foetalWeight', 'oneMinuteApgarScore', 'fiveMinuteApgarScore',
-        'arterialPh', 'arterialBe', 'venousPh', 'venousBe']);
-    DataFormat.date(data, ['initialTime', 'firstPcaTime', 'firstManualBolusTime', 'birthTime']);
-}
 
 async function getObservalDataByPatientId(patientId) {
     return Response.buildSuccess(await ObservalDao.getObservalDataByPatientId(patientId));
@@ -32,7 +23,6 @@ async function createObservalData(patientId, data) {
     let result;
 
     try {
-        formatData(data)
         result = await ObservalDao.createObservalData({
             ...data,
             patientId
@@ -63,7 +53,6 @@ async function updateObservalData(patientId, data) {
     let result;
 
     try {
-        formatData(data)
         result = await ObservalDao.updateObservalData({
             ...data,
             patientId
@@ -90,7 +79,6 @@ async function createOrUpdateObservalData(patientId, data) {
     let result;
 
     // try {
-    formatData(data)
     result = await ObservalDao.createOrUpdateObservalData({
         ...data,
         patientId
