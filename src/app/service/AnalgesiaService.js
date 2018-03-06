@@ -1,12 +1,5 @@
 import AnalgesiaDao from '../dao/AnalgesiaDao.js';
 import Response from '../utils/Response.js';
-import DataFormat from '../utils/DataFormat.js';
-
-function formatData(data) {
-    DataFormat.number(data, ['timePoint', 'vasScore', 'thoracicSensoryBlockLeftValue', 'thoracicSensoryBlockRightValue',
-        'thoracicSensoryBlockRightValue', 'sacralSensoryBlockRightValue', 'bromageScore', 'systolicBloodPressure',
-        'diastolicBloodPressure', 'heartRate', 'pulseOxygenSaturation', 'fetalHeartRate']);
-}
 
 async function getAnalgesiaDataByPatientId(patientId) {
     return Response.buildSuccess(await AnalgesiaDao.getAnalgesiaDataByPatientId(patientId));
@@ -38,7 +31,6 @@ async function createAnalgesiaData(patientId, data) {
         }
 
         try {
-            formatData(analgesiaData);
             await AnalgesiaDao.createAnalgesiaData(analgesiaData);
         } catch (e) {
             error.push(`Patient ID ${patientId}, timePoint ${analgesiaData.timePoint} create failure.`);
@@ -80,7 +72,6 @@ async function updateAnalgesiaData(patientId, data) {
         }
 
         try {
-            formatData(analgesiaData);
             await AnalgesiaDao.updateAnalgesiaData(analgesiaData);
         } catch (e) {
             error.push(`Patient ID ${patientId}, timePoint ${analgesiaData.timePoint} update failure.`);
@@ -116,12 +107,11 @@ async function createOrUpdateAnalgesiaData(patientId, data) {
             patientId
         };
 
-        try {
-            formatData(analgesiaData);
-            await AnalgesiaDao.createOrUpdateAnalgesiaData(analgesiaData);
-        } catch (e) {
-            error.push(`Patient ID ${patientId}, timePoint ${analgesiaData.timePoint} update failure.`);
-        }
+        // try {
+        await AnalgesiaDao.createOrUpdateAnalgesiaData(analgesiaData);
+        // } catch (e) {
+        //     error.push(`Patient ID ${patientId}, timePoint ${analgesiaData.timePoint} update failure.`);
+        // }
 
     }
 
