@@ -1,11 +1,5 @@
 import PatientDao from '../dao/PatientDao.js';
 import Response from '../utils/Response.js';
-import DataFormat from "../utils/DataFormat";
-
-function formatData(data) {
-    DataFormat.number(data, ['age', 'gestationalDays', 'weight', 'height', 'initialVasScore',
-        'cervicalDilationAtTimeOfEA', 'heartRate', 'systolicBloodPressure', 'diastolicBloodPressure']);
-}
 
 async function getPatients() {
     return Response.buildSuccess(await PatientDao.getPatients());
@@ -24,7 +18,6 @@ async function createPatient(data) {
     let result;
 
     try {
-        formatData(data);
         result = await PatientDao.createPatient(data);
     } catch (e) {
         return Response.buildError('Create Patient failure.');
@@ -43,7 +36,6 @@ async function updatePatient(data) {
     let result;
 
     try {
-        formatData(data);
         result = await PatientDao.updatePatient(data);
     } catch (e) {
         return Response.buildError('Update Patient failure.');
@@ -58,7 +50,6 @@ async function createOrUpdatePatient(data) {
     let result;
 
     try {
-        formatData(data);
         result = await PatientDao.createOrUpdatePatient(data);
     } catch (e) {
         return Response.buildError('Update Patient failure.');

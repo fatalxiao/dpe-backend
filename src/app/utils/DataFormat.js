@@ -53,8 +53,13 @@ function date(data, fields) {
 
 }
 
+function formatNumberField(value) {
+    return value !== '' && value !== undefined ? value : null;
+}
+
 export default {
     verify,
     number,
-    date
+    date,
+    formatNumberField
 };
