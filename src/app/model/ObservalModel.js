@@ -1,7 +1,6 @@
 import Sequelize from 'sequelize';
 
 import SequelizeGenerator from '../utils/SequelizeGenerator.js';
-import DateUtil from '../utils/DateUtil.js';
 import DataFormat from '../utils/DataFormat';
 
 const sequelizeInstance = SequelizeGenerator(),
@@ -23,7 +22,7 @@ const sequelizeInstance = SequelizeGenerator(),
             field: 'initial_time',
             type: Sequelize.DATE,
             get() {
-                return DateUtil.formatResDateTime(this.getDataValue('initialTime'));
+                return DataFormat.formatResDateTime(this.getDataValue('initialTime'));
             }
         },
         testDose: {
@@ -66,7 +65,7 @@ const sequelizeInstance = SequelizeGenerator(),
             field: 'first_pca_time',
             type: Sequelize.DATE,
             get() {
-                return DateUtil.formatResDateTime(this.getDataValue('firstPcaTime'));
+                return DataFormat.formatResDateTime(this.getDataValue('firstPcaTime'));
             }
         },
         pcaCount: {
@@ -80,7 +79,7 @@ const sequelizeInstance = SequelizeGenerator(),
             field: 'first_manual_bolus_time',
             type: Sequelize.DATE,
             get() {
-                return DateUtil.formatResDateTime(this.getDataValue('firstManualBolusTime'));
+                return DataFormat.formatResDateTime(this.getDataValue('firstManualBolusTime'));
             }
         },
         manualBolusCount: {
@@ -193,7 +192,7 @@ const sequelizeInstance = SequelizeGenerator(),
             field: 'birth_time',
             type: Sequelize.DATE,
             get() {
-                return DateUtil.formatResDateTime(this.getDataValue('birthTime'));
+                return DataFormat.formatResDateTime(this.getDataValue('birthTime'));
             }
         },
         foetalHeight: {
