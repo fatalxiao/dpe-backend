@@ -197,6 +197,13 @@ const sequelizeInstance = SequelizeGenerator(),
             field: 'has_lateral_episiotomy',
             type: Sequelize.BOOLEAN
         },
+        foetalGender: {
+            field: 'foetal_gender',
+            type: Sequelize.INTEGER,
+            set(value) {
+                this.setDataValue('foetalGender', DataFormat.formatNumberField(value));
+            }
+        },
         birthTime: {
             field: 'birth_time',
             type: Sequelize.DATE,
