@@ -91,10 +91,7 @@ const sequelizeInstance = SequelizeGenerator(),
         },
         hasOxytocinAtTimeOfEA: {
             field: 'has_oxytocin_at_time_of_ea',
-            type: Sequelize.INTEGER,
-            set(value) {
-                this.setDataValue('hasOxytocinAtTimeOfEA', DataFormat.formatNumberField(value));
-            }
+            type: Sequelize.BOOLEAN
         },
         status: {
             field: 'status',
