@@ -50,7 +50,7 @@ async function createOrUpdatePatient(data) {
 
 async function enablePatient(id) {
     return await PatientModel.update({
-        disabled: false
+        status: 1
     }, {
         where: {
             id: {[Sequelize.Op.eq]: id}
@@ -60,7 +60,7 @@ async function enablePatient(id) {
 
 async function disablePatient(id) {
     return await PatientModel.update({
-        disabled: true
+        status: 0
     }, {
         where: {
             id: {[Sequelize.Op.eq]: id}
