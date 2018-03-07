@@ -17,7 +17,7 @@ const sequelizeInstance = SequelizeGenerator(),
         },
         groupId: {
             field: 'group_id',
-            type: Sequelize.INTEGER(1),
+            type: Sequelize.INTEGER,
             set(value) {
                 this.setDataValue('groupId', DataFormat.formatNumberField(value));
             }
@@ -28,14 +28,14 @@ const sequelizeInstance = SequelizeGenerator(),
         },
         age: {
             field: 'age',
-            type: Sequelize.INTEGER(3),
+            type: Sequelize.INTEGER,
             set(value) {
                 this.setDataValue('age', DataFormat.formatNumberField(value));
             }
         },
         gestationalDays: {
             field: 'gestational_days',
-            type: Sequelize.INTEGER(3),
+            type: Sequelize.INTEGER,
             set(value) {
                 this.setDataValue('gestationalDays', DataFormat.formatNumberField(value));
             }
@@ -56,42 +56,49 @@ const sequelizeInstance = SequelizeGenerator(),
         },
         initialVasScore: {
             field: 'initial_vas_score',
-            type: Sequelize.INTEGER(3),
+            type: Sequelize.INTEGER,
             set(value) {
                 this.setDataValue('initialVasScore', DataFormat.formatNumberField(value));
             }
         },
-        cervicalDilationAtTimeOfEA: {
-            field: 'cervical_dilation_at_time_of_ea',
-            type: Sequelize.INTEGER(3),
-            set(value) {
-                this.setDataValue('cervicalDilationAtTimeOfEA', DataFormat.formatNumberField(value));
-            }
-        },
         heartRate: {
             field: 'heart_rate',
-            type: Sequelize.INTEGER(3),
+            type: Sequelize.INTEGER,
             set(value) {
                 this.setDataValue('heartRate', DataFormat.formatNumberField(value));
             }
         },
         systolicBloodPressure: {
             field: 'systolic_blood_pressure',
-            type: Sequelize.INTEGER(3),
+            type: Sequelize.INTEGER,
             set(value) {
                 this.setDataValue('systolicBloodPressure', DataFormat.formatNumberField(value));
             }
         },
         diastolicBloodPressure: {
             field: 'diastolic_blood_pressure',
-            type: Sequelize.INTEGER(3),
+            type: Sequelize.INTEGER,
             set(value) {
                 this.setDataValue('diastolicBloodPressure', DataFormat.formatNumberField(value));
             }
         },
-        disabled: {
-            field: 'disabled',
-            type: Sequelize.BOOLEAN
+        cervicalDilationAtTimeOfEA: {
+            field: 'cervical_dilation_at_time_of_ea',
+            type: Sequelize.INTEGER,
+            set(value) {
+                this.setDataValue('cervicalDilationAtTimeOfEA', DataFormat.formatNumberField(value));
+            }
+        },
+        hasOxytocinAtTimeOfEA: {
+            field: 'has_oxytocin_at_time_of_ea',
+            type: Sequelize.INTEGER,
+            set(value) {
+                this.setDataValue('hasOxytocinAtTimeOfEA', DataFormat.formatNumberField(value));
+            }
+        },
+        status: {
+            field: 'status',
+            type: Sequelize.INTEGER
         },
         description: {
             field: 'description',
