@@ -7,7 +7,12 @@ async function getPatients() {
     return await PatientModel.findAll({
         order: [
             ['ctime', 'DESC']
-        ]
+        ],
+        include: [{
+            model: Group,
+            as: 'group',
+            where: {id: Sequelize.col('patients.group_id')}
+        }]
     });
 }
 
