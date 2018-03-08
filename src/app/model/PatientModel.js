@@ -22,8 +22,8 @@ const sequelizeInstance = SequelizeGenerator(),
                 this.setDataValue('groupId', DataFormat.formatNumberField(value));
             }
         },
-        patientName: {
-            field: 'patient_name',
+        name: {
+            field: 'name',
             type: Sequelize.STRING(30)
         },
         age: {
