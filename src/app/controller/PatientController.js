@@ -13,8 +13,8 @@ class PatientController {
             return Response.buildParamError('ID is required');
         } else if (!requestData.groupId) {
             return Response.buildParamError('Group is required');
-        } else if (!requestData.patientName) {
-            return Response.buildParamError('Patient Name is required');
+        } else if (!requestData.name) {
+            return Response.buildParamError('Name is required');
         }
 
         return;
