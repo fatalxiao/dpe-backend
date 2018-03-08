@@ -26,6 +26,8 @@ CREATE TABLE observal_data
   COMMENT '首次PCA时间',
   duration_of_second_stage_of_labor INT           NULL
   COMMENT '第二产程时长',
+  blood_lose                        INT           NULL
+  COMMENT '总出血量',
   has_epidural_catheter_adjuestment TINYINT(1)    NULL
   COMMENT '是否有硬膜外导管调整',
   has_epidural_catheter_replacement TINYINT(1)    NULL
@@ -68,6 +70,8 @@ CREATE TABLE observal_data
   COMMENT '是否有侧切',
   birth_time                        DATETIME      NULL
   COMMENT '分娩时间',
+  foetal_gender                     INT           NULL
+  COMMENT '新生儿性别，1：男，2：女',
   foetal_height                     INT           NULL
   COMMENT '胎儿身长',
   foetal_weight                     INT           NULL
