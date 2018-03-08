@@ -4,7 +4,11 @@ import PatientModel from '../model/PatientModel.js';
 import Group from '../model/GroupModel.js';
 
 async function getPatients() {
-    return await PatientModel.findAll();
+    return await PatientModel.findAll({
+        order: [
+            ['ctime', 'DESC']
+        ]
+    });
 }
 
 async function isPatientExist(id) {
