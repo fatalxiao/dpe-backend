@@ -98,6 +98,13 @@ const sequelizeInstance = SequelizeGenerator(),
                 this.setDataValue('manualBolusCount', DataFormat.formatNumberField(value));
             }
         },
+        durationOfFirstStageOfLabor: {
+            field: 'duration_of_first_stage_of_labor',
+            type: Sequelize.INTEGER,
+            set(value) {
+                this.setDataValue('durationOfFirstStageOfLabor', DataFormat.formatNumberField(value));
+            }
+        },
         durationOfSecondStageOfLabor: {
             field: 'duration_of_second_stage_of_labor',
             type: Sequelize.INTEGER,
@@ -160,13 +167,6 @@ const sequelizeInstance = SequelizeGenerator(),
         hasParesthesia: {
             field: 'has_paresthesia',
             type: Sequelize.BOOLEAN
-        },
-        durationOfLaborAnalgesia: {
-            field: 'duration_of_labor_analgesia',
-            type: Sequelize.INTEGER,
-            set(value) {
-                this.setDataValue('durationOfLaborAnalgesia', DataFormat.formatNumberField(value));
-            }
         },
         bloodLose: {
             field: 'blood_lose',
