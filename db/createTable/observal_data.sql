@@ -24,6 +24,8 @@ CREATE TABLE observal_data
   COMMENT '人工硬膜外追加次数',
   first_pca_time                    DATETIME      NULL
   COMMENT '首次PCA时间',
+  duration_of_first_stage_of_labor  INT           NULL
+  COMMENT '第一产程时长',
   duration_of_second_stage_of_labor INT           NULL
   COMMENT '第二产程时长',
   blood_lose                        INT           NULL
@@ -58,8 +60,6 @@ CREATE TABLE observal_data
   COMMENT '是否有背痛',
   has_paresthesia                   TINYINT(1)    NULL
   COMMENT '是否有感觉异常',
-  duration_of_labor_analgesia       INT           NULL
-  COMMENT '镇痛时长',
   patient_satisfaction_score        INT           NULL
   COMMENT '孕妇满意度',
   has_accidental_dural_punture      TINYINT(1)    NULL
