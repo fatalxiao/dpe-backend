@@ -133,9 +133,7 @@ function isSacralSensoryInTime(analgesiaData, sensory, timePoint, position) {
 }
 
 function maxThoracicSensoryBlock(analgesiaData, position) {
-
-
-
+    return Math.max(...analgesiaData.map(item => item[`thoracicSensoryBlock${position}Value`]));
 }
 
 export default {
