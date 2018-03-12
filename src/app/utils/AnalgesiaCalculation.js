@@ -1,4 +1,11 @@
-const BASE_DATA = {
+const
+
+    Position = {
+        LEFT: 'Left',
+        RIGHT: 'Right'
+    },
+
+    BASE_DATA = {
         hasContraction: false,
         vasScore: '',
         thoracicSensoryBlockLeft: null,
@@ -12,6 +19,7 @@ const BASE_DATA = {
         pulseOxygenSaturation: '',
         fetalHeartRate: ''
     },
+
     DEFAULT_TIMEPOINTS = [0, 2, 4, 6, 8, 10, 12, 14, 16, 18,
         20, 30, 2 * 60, 3.5 * 60, 5 * 60, 6.5 * 60, 8 * 60];
 
@@ -65,7 +73,7 @@ function isVasLessThan1(analgesiaData, timePoint) {
     for (let item of analgesiaData) {
 
         if (item > timePoint) {
-            break;
+            return false;
         }
 
         if (item.vasScore !== null && item.vasScore <= 1) {
@@ -73,8 +81,6 @@ function isVasLessThan1(analgesiaData, timePoint) {
         }
 
     }
-
-    return false;
 
 }
 
@@ -110,13 +116,29 @@ function timePointOfVasLessThan1(analgesiaData) {
 
 }
 
-function isS1In20(analgesiaData, timePoint) {
+function isS1In20(analgesiaData, timePoint, position) {
+
+    for (let item of analgesiaData) {
+
+        if (item.timePoint > timePoint) {
+            return false;
+        }
+
+        if (item[`sacralSensoryBlock${position}Value`] >= 6) {
+            return true;
+        }
+
+    }
 
 }
 
 export default {
+
+    Position,
+
     fullFillAnalgesiaData,
     isVasLessThan1,
     timePointOfVasLessThan1,
     isS1In20
+
 };

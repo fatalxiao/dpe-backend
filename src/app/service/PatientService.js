@@ -1,7 +1,7 @@
 import PatientDao from '../dao/PatientDao.js';
 
 import Response from '../utils/Response.js';
-import AnalgesiaCalculation from '../utils/AnalgesiaCalculation.js';
+import AC from '../utils/AnalgesiaCalculation.js';
 
 async function getPatients() {
     return Response.buildSuccess(await PatientDao.getPatients());
@@ -17,7 +17,7 @@ async function exportPatients() {
 
     data.map(item => {
 
-        const analgesiaData = AnalgesiaCalculation.fullFillAnalgesiaData(item.analgesia);
+        const analgesiaData = AC.fullFillAnalgesiaData(item.analgesia);
 
         return {
             group: item.group ? item.group.name : '',
@@ -36,10 +36,11 @@ async function exportPatients() {
             pulseOxygenSaturation: item.pulseOxygenSaturation || '',
             fetalHeartRate: item.fetalHeartRate || '',
             hasOxytocinAtTimeOfEA: item.hasOxytocinAtTimeOfEA ? 1 : 0,
-            isVasLessThan1In20: AnalgesiaCalculation.isVasLessThan1(analgesiaData, 20),
-            isVasLessThan1In30: AnalgesiaCalculation.isVasLessThan1(analgesiaData, 30),
-            timePointOfVasLessThan1: AnalgesiaCalculation.timePointOfVasLessThan1(analgesiaData),
-            isS1In20: AnalgesiaCalculation.isS1In20(analgesiaData, 20)
+            isVasLessThan1In20: AC.isVasLessThan1(analgesiaData, 20),
+            isVasLessThan1In30: AC.isVasLessThan1(analgesiaData, 30),
+            timePointOfVasLessThan1: AC.timePointOfVasLessThan1(analgesiaData),
+            isS1In20Left: AC.isS1In20(analgesiaData, 20, AC.Position.LEFT),
+            isS1In20Right: AC.isS1In20(analgesiaData, 20, AC.Position.RIGHT)
         };
 
     });
