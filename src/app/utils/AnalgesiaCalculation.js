@@ -64,6 +64,20 @@ function isVasLessThan1(analgesiaData, timePoint) {
 
     const data = fullFillAnalgesiaData(analgesiaData);
 
+    for (let item of data) {
+
+        if (item > timePoint) {
+            break;
+        }
+
+        if (item.vasScore !== null && item.vasScore <= 1) {
+            return true;
+        }
+
+    }
+
+    return false;
+
 }
 
 export default {
