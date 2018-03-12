@@ -10,7 +10,29 @@ async function getFullPatients() {
 };
 
 async function exportPatients() {
-    return Response.buildSuccess(await PatientDao.getFullPatients());
+
+    const data = await PatientDao.getFullPatients();
+
+    return data;
+
+    return data.map(item => {
+        return {
+            group: item.group ? item.group.name : '',
+            name: item.name || '',
+            id: item.id || '',
+            age: item.age || '',
+            height: item.height || '',
+            weight: item.weight || '',
+            bmi: (item.weight / ((item.height / 100) ** 2)) || '',
+            gestationalDays: item.gestationalDays || 0,
+            initialVasScore: item.initialVasScore || 0,
+            cervicalDilationAtTimeOfEA: item.cervicalDilationAtTimeOfEA || 0,
+            systolicBloodPressure: item.systolicBloodPressure || 0,
+            diastolicBloodPressure: item.diastolicBloodPressure || 0,
+            heartRate: item.heartRate || 0
+        };
+    });
+
 };
 
 async function getPatientById(id) {
