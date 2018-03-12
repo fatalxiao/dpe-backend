@@ -1,6 +1,8 @@
 import Sequelize from 'sequelize';
 
 import Group from './GroupModel';
+import Analgesia from './AnalgesiaModel';
+import Observal from './ObservalModel';
 
 import SequelizeGenerator from '../utils/SequelizeGenerator.js';
 import DataFormat from '../utils/DataFormat.js';
@@ -113,6 +115,18 @@ const sequelizeInstance = SequelizeGenerator(),
 Patient.belongsTo(Group, {
     as: 'group',
     foreignKey: 'groupId'
+});
+
+Patient.hasMany(Analgesia, {
+    as: 'analgesia',
+    foreignKey: 'id',
+    targetKey: 'patient_id'
+});
+
+Patient.hasOne(Observal, {
+    as: 'observal',
+    foreignKey: 'id',
+    targetKey: 'patient_id'
 });
 
 export default Patient;
