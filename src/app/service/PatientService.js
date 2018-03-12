@@ -78,7 +78,12 @@ async function exportPatients() {
             timePointOfT8: AC.timePointOfThoracicSensoryBlock(analgesiaData, t8Value),
             timePointOfT10: AC.timePointOfThoracicSensoryBlock(analgesiaData, t10Value),
             timePointOfS1: AC.timePointOfSacralSensoryBlock(analgesiaData, s1Value),
-            timePointOfS2: AC.timePointOfSacralSensoryBlock(analgesiaData, s2Value)
+            timePointOfS2: AC.timePointOfSacralSensoryBlock(analgesiaData, s2Value),
+            pcaCount: (item.observal && item.observal.pcaCount) || '',
+            firstPcaTime: (item.observal && item.observal.firstPcaTime) || '',
+            manualBolusCount: (item.observal && item.observal.manualBolusCount) || '',
+            hasEpiduralCatheterAdjuestment: (item.observal && item.observal.hasEpiduralCatheterAdjuestment) || '',
+            hasEpiduralCatheterReplacement: (item.observal && item.observal.hasEpiduralCatheterReplacement) || '',
         };
 
     });
