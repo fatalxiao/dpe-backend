@@ -82,8 +82,10 @@ async function exportPatients() {
             pcaCount: (item.observal && item.observal.pcaCount) || '',
             firstPcaTime: (item.observal && item.observal.firstPcaTime) || '',
             manualBolusCount: (item.observal && item.observal.manualBolusCount) || '',
-            hasEpiduralCatheterAdjuestment: (item.observal && item.observal.hasEpiduralCatheterAdjuestment) || '',
-            hasEpiduralCatheterReplacement: (item.observal && item.observal.hasEpiduralCatheterReplacement) || '',
+            firstManualBolusTime: (item.observal && item.observal.firstManualBolusTime) || '',
+            hasEpiduralCatheterAdjuestment: item.observal && item.observal.hasEpiduralCatheterAdjuestment,
+            hasEpiduralCatheterReplacement: item.observal && item.observal.hasEpiduralCatheterReplacement,
+            isUnabledToPunctureDura: item.observal && item.observal.isUnabledToPunctureDura
         };
 
     });
