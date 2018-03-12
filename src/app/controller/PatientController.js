@@ -45,6 +45,12 @@ class PatientController {
         ctx.response.body = await PatientService.getFullPatients();
     }
 
+    @GetMapping({value: '/dpe/patient/exportPatients'})
+    @ApiOperation({value: 'export patients', notes: ''})
+    static async exportPatients(ctx) {
+        ctx.response.body = await PatientService.exportPatients();
+    }
+
     @GetMapping({value: '/dpe/patient/getPatientById/:id'})
     @ApiOperation({value: 'get patient by id', notes: ''})
     static async getPatientById(ctx) {

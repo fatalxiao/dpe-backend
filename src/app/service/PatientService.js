@@ -9,6 +9,10 @@ async function getFullPatients() {
     return Response.buildSuccess(await PatientDao.getFullPatients());
 };
 
+async function exportPatients() {
+    return Response.buildSuccess(await PatientDao.getFullPatients());
+};
+
 async function getPatientById(id) {
     return Response.buildSuccess(await PatientDao.getPatientById(id));
 };
@@ -103,6 +107,7 @@ export default {
 
     getPatients,
     getFullPatients,
+    exportPatients,
 
     getPatientById,
 
