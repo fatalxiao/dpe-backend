@@ -128,7 +128,7 @@ const sequelizeInstance = SequelizeGenerator(),
             field: 'has_vasoactive_agent',
             type: Sequelize.BOOLEAN
         },
-        isUnabled_ToPunctureDura: {
+        isUnabledToPunctureDura: {
             field: 'is_unabled_to_puncture_dura',
             type: Sequelize.BOOLEAN
         },
