@@ -154,9 +154,15 @@ function isUnilateralSensoryBlock(analgesiaData) {
 }
 
 function timePointOfThoracicSensoryBlock(analgesiaData, sensoryBlock) {
-    for (let item of analgesiaData) {
 
+    for (let item of analgesiaData) {
+        if (item.thoracicSensoryBlockLeftValue >= sensoryBlock && item.thoracicSensoryBlockRightValue >= sensoryBlock) {
+            return item.timePoint;
+        }
     }
+
+    return '';
+
 }
 
 export default {
