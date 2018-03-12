@@ -84,6 +84,20 @@ const sequelizeInstance = SequelizeGenerator(),
                 this.setDataValue('diastolicBloodPressure', DataFormat.formatNumberField(value));
             }
         },
+        fetalHeartRate: {
+            field: 'fetal_heart_rate',
+            type: Sequelize.INTEGER,
+            set(value) {
+                this.setDataValue('fetalHeartRate', DataFormat.formatNumberField(value));
+            }
+        },
+        pulseOxygenSaturation: {
+            field: 'pulse_oxygen_saturation',
+            type: Sequelize.FLOAT,
+            set(value) {
+                this.setDataValue('pulseOxygenSaturation', DataFormat.formatNumberField(value));
+            }
+        },
         cervicalDilationAtTimeOfEA: {
             field: 'cervical_dilation_at_time_of_ea',
             type: Sequelize.INTEGER,
