@@ -55,7 +55,8 @@ async function exportPatients() {
             maxThoracicSensoryBlockLeft: AC.maxThoracicSensoryBlock(analgesiaData, AC.Position.LEFT),
             maxThoracicSensoryBlockRight: AC.maxThoracicSensoryBlock(analgesiaData, AC.Position.RIGHT),
             minSacralSensoryBlockLeft: AC.minSacralSensoryBlock(analgesiaData, AC.Position.LEFT),
-            minSacralSensoryBlockRight: AC.minSacralSensoryBlock(analgesiaData, AC.Position.RIGHT)
+            minSacralSensoryBlockRight: AC.minSacralSensoryBlock(analgesiaData, AC.Position.RIGHT),
+            isUnilateralSensoryBlock: AC.isUnilateralSensoryBlock(analgesiaData)
         };
 
     });

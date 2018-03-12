@@ -140,6 +140,19 @@ function minSacralSensoryBlock(analgesiaData, position) {
     return Math.min(...analgesiaData.map(item => item[`sacralSensoryBlock${position}Value`]));
 }
 
+function isUnilateralSensoryBlock(analgesiaData) {
+
+    for (let item of analgesiaData) {
+        if (Math.abs(item.sacralSensoryBlockLeftValue - item.sacralSensoryBlockRightValue) > 2
+            || Math.abs(item.thoracicSensoryBlockLeftValue - item.thoracicSensoryBlockRightValue) > 2) {
+            return true;
+        }
+    }
+
+    return false;
+
+}
+
 export default {
 
     Position,
@@ -149,6 +162,7 @@ export default {
     timePointOfVasLessThan1,
     isSacralSensoryInTime,
     maxThoracicSensoryBlock,
-    minSacralSensoryBlock
+    minSacralSensoryBlock,
+    isUnilateralSensoryBlock
 
 };
