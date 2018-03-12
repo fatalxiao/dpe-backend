@@ -168,6 +168,14 @@ const sequelizeInstance = SequelizeGenerator(),
             field: 'has_paresthesia',
             type: Sequelize.BOOLEAN
         },
+        isIVEpiduralCatheterInsertion: {
+            field: 'is_iv_epidural_catheter_insertion',
+            type: Sequelize.BOOLEAN
+        },
+        isIntrathecalEpiduralCatheterInsertion: {
+            field: 'is_intrathecal_epidural_catheter_insertion',
+            type: Sequelize.BOOLEAN
+        },
         bloodLose: {
             field: 'blood_lose',
             type: Sequelize.INTEGER,
