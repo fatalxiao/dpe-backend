@@ -119,14 +119,14 @@ Patient.belongsTo(Group, {
 
 Patient.hasMany(Analgesia, {
     as: 'analgesia',
-    foreignKey: 'id',
-    targetKey: 'patient_id'
+    foreignKey: 'patient_id',
+    targetKey: 'id'
 });
 
 Patient.hasOne(Observal, {
     as: 'observal',
-    foreignKey: 'id',
-    targetKey: 'patient_id'
+    foreignKey: 'patient_id',
+    targetKey: 'id'
 });
 
 export default Patient;

@@ -21,7 +21,7 @@ async function getFullPatients() {
         order: [
             ['ctime', 'DESC']
         ],
-        include: 'all'
+        include: [{all: true}]
     });
 }
 
