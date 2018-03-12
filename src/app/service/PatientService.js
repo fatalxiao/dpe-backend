@@ -40,6 +40,7 @@ async function exportPatients() {
             isVasLessThan1In30: AnalgesiaCalculation.isVasLessThan1(analgesiaData, 30),
             timePointOfVasLessThan1: AnalgesiaCalculation.timePointOfVasLessThan1(analgesiaData)
         };
+
     });
 
     return data;
