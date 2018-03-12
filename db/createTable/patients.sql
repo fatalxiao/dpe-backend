@@ -23,6 +23,10 @@ CREATE TABLE patients
   COMMENT '收缩压',
   diastolic_blood_pressure        INT             NULL
   COMMENT '舒张压',
+  fetal_heart_rate                INT             NULL
+  COMMENT '胎心率',
+  pulse_oxygen_saturation         FLOAT           NULL
+  COMMENT '氧饱和度',
   cervical_dilation_at_time_of_ea INT             NULL
   COMMENT '镇痛前宫口',
   has_oxytocin_at_time_of_ea      TINYINT(1)      NULL
