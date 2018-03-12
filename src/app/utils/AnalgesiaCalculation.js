@@ -132,6 +132,12 @@ function isSacralSensoryInTime(analgesiaData, sensory, timePoint, position) {
 
 }
 
+function maxThoracicSensoryBlock(analgesiaData, position) {
+
+
+
+}
+
 export default {
 
     Position,
@@ -139,6 +145,7 @@ export default {
     fullFillAnalgesiaData,
     isVasLessThan1,
     timePointOfVasLessThan1,
-    isSacralSensoryInTime
+    isSacralSensoryInTime,
+    maxThoracicSensoryBlock
 
 };
