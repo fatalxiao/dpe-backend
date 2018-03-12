@@ -5,6 +5,10 @@ async function getPatients() {
     return Response.buildSuccess(await PatientDao.getPatients());
 };
 
+async function getFullPatients() {
+    return Response.buildSuccess(await PatientDao.getFullPatients());
+};
+
 async function getPatientById(id) {
     return Response.buildSuccess(await PatientDao.getPatientById(id));
 };
@@ -98,6 +102,7 @@ async function disablePatient(id) {
 export default {
 
     getPatients,
+    getFullPatients,
 
     getPatientById,
 
