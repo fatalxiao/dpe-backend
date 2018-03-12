@@ -17,12 +17,26 @@ async function exportPatients() {
     const data = await PatientDao.getFullPatients(),
         sensoryBlocks = await SensoryBlockDao.getSensoryBlocks(),
 
-        s1Value = sensoryBlocks.find(item => item.type === 2 && item.value === 6),
-        s2Value = sensoryBlocks.find(item => item.type === 2 && item.value === 7);
+        s1Value = sensoryBlocks.find(item => item.type === 2 && item.name === 'S1').value,
+        s2Value = sensoryBlocks.find(item => item.type === 2 && item.name === 'S2').value,
+        t8Value = sensoryBlocks.find(item => item.type === 1 && item.name === 'T8').value,
+        t10Value = sensoryBlocks.find(item => item.type === 1 && item.name === 'T10').value;
 
     data.map(item => {
 
-        const analgesiaData = AC.fullFillAnalgesiaData(item.analgesia);
+        const analgesiaData = AC.fullFillAnalgesiaData(item.analgesia),
+
+            isS1In20Left = AC.isSacralSensoryInTime(analgesiaData, s1Value, 20, AC.Position.LEFT),
+            isS1In20Right = AC.isSacralSensoryInTime(analgesiaData, s1Value, 20, AC.Position.RIGHT),
+
+            isS2In20Left = AC.isSacralSensoryInTime(analgesiaData, s2Value, 20, AC.Position.LEFT),
+            isS2In20Right = AC.isSacralSensoryInTime(analgesiaData, s2Value, 20, AC.Position.RIGHT),
+
+            isS1In30Left = AC.isSacralSensoryInTime(analgesiaData, s1Value, 30, AC.Position.LEFT),
+            isS1In30Right = AC.isSacralSensoryInTime(analgesiaData, s1Value, 30, AC.Position.RIGHT),
+
+            isS2In30Left = AC.isSacralSensoryInTime(analgesiaData, s2Value, 30, AC.Position.LEFT),
+            isS2In30Right = AC.isSacralSensoryInTime(analgesiaData, s2Value, 30, AC.Position.RIGHT);
 
         return {
             group: item.group ? item.group.name : '',
@@ -44,19 +58,24 @@ async function exportPatients() {
             isVasLessThan1In20: AC.isVasLessThan1(analgesiaData, 20),
             isVasLessThan1In30: AC.isVasLessThan1(analgesiaData, 30),
             timePointOfVasLessThan1: AC.timePointOfVasLessThan1(analgesiaData),
-            isS1In20Left: AC.isSacralSensoryInTime(analgesiaData, s1Value, 20, AC.Position.LEFT),
-            isS1In20Right: AC.isSacralSensoryInTime(analgesiaData, s1Value, 20, AC.Position.RIGHT),
-            isS2In20Left: AC.isSacralSensoryInTime(analgesiaData, s2Value, 20, AC.Position.LEFT),
-            isS2In20Right: AC.isSacralSensoryInTime(analgesiaData, s2Value, 20, AC.Position.RIGHT),
-            isS1In30Left: AC.isSacralSensoryInTime(analgesiaData, s1Value, 30, AC.Position.LEFT),
-            isS1In30Right: AC.isSacralSensoryInTime(analgesiaData, s1Value, 30, AC.Position.RIGHT),
-            isS2In30Left: AC.isSacralSensoryInTime(analgesiaData, s2Value, 30, AC.Position.LEFT),
-            isS2In30Right: AC.isSacralSensoryInTime(analgesiaData, s2Value, 30, AC.Position.RIGHT),
+            isS1In20Left,
+            isS1In20Right,
+            isS1In20Both: isS1In20Left && isS1In20Right,
+            isS2In20Left,
+            isS2In20Right,
+            isS2In20Both: isS2In20Left && isS2In20Right,
+            isS1In30Left,
+            isS1In30Right,
+            isS1In30Both: isS1In30Left && isS1In30Right,
+            isS2In30Left,
+            isS2In30Right,
+            isS2In30Both: isS2In30Left && isS2In30Right,
             maxThoracicSensoryBlockLeft: AC.maxThoracicSensoryBlock(analgesiaData, AC.Position.LEFT),
             maxThoracicSensoryBlockRight: AC.maxThoracicSensoryBlock(analgesiaData, AC.Position.RIGHT),
             minSacralSensoryBlockLeft: AC.minSacralSensoryBlock(analgesiaData, AC.Position.LEFT),
             minSacralSensoryBlockRight: AC.minSacralSensoryBlock(analgesiaData, AC.Position.RIGHT),
-            isUnilateralSensoryBlock: AC.isUnilateralSensoryBlock(analgesiaData)
+            isUnilateralSensoryBlock: AC.isUnilateralSensoryBlock(analgesiaData),
+            timePointOfT8: AC.timePointOfThoracicSensoryBlock(analgesiaData, t8Value)
         };
 
     });

@@ -153,6 +153,12 @@ function isUnilateralSensoryBlock(analgesiaData) {
 
 }
 
+function timePointOfThoracicSensoryBlock(analgesiaData, sensoryBlock) {
+    for (let item of analgesiaData) {
+
+    }
+}
+
 export default {
 
     Position,
@@ -163,6 +169,7 @@ export default {
     isSacralSensoryInTime,
     maxThoracicSensoryBlock,
     minSacralSensoryBlock,
-    isUnilateralSensoryBlock
+    isUnilateralSensoryBlock,
+    timePointOfThoracicSensoryBlock
 
 };
