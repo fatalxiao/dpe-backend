@@ -165,6 +165,18 @@ function timePointOfThoracicSensoryBlock(analgesiaData, sensoryBlock) {
 
 }
 
+function timePointOfSacralSensoryBlock(analgesiaData, sensoryBlock) {
+
+    for (let item of analgesiaData) {
+        if (item.sacralSensoryBlockLeftValue >= sensoryBlock && item.sacralSensoryBlockRightValue >= sensoryBlock) {
+            return item.timePoint;
+        }
+    }
+
+    return '';
+
+}
+
 export default {
 
     Position,
@@ -176,6 +188,7 @@ export default {
     maxThoracicSensoryBlock,
     minSacralSensoryBlock,
     isUnilateralSensoryBlock,
-    timePointOfThoracicSensoryBlock
+    timePointOfThoracicSensoryBlock,
+    timePointOfSacralSensoryBlock
 
 };

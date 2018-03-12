@@ -76,7 +76,9 @@ async function exportPatients() {
             minSacralSensoryBlockRight: AC.minSacralSensoryBlock(analgesiaData, AC.Position.RIGHT),
             isUnilateralSensoryBlock: AC.isUnilateralSensoryBlock(analgesiaData),
             timePointOfT8: AC.timePointOfThoracicSensoryBlock(analgesiaData, t8Value),
-            timePointOfT10: AC.timePointOfThoracicSensoryBlock(analgesiaData, t10Value)
+            timePointOfT10: AC.timePointOfThoracicSensoryBlock(analgesiaData, t10Value),
+            timePointOfS1: AC.timePointOfSacralSensoryBlock(analgesiaData, s1Value),
+            timePointOfS2: AC.timePointOfSacralSensoryBlock(analgesiaData, s2Value)
         };
 
     });
