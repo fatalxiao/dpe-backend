@@ -16,6 +16,9 @@ async function exportPatients() {
     const data = await PatientDao.getFullPatients();
 
     data.map(item => {
+
+        const analgesiaData = AnalgesiaCalculation.fullFillAnalgesiaData(item.analgesia);
+
         return {
             group: item.group ? item.group.name : '',
             name: item.name || '',
@@ -33,9 +36,9 @@ async function exportPatients() {
             pulseOxygenSaturation: item.pulseOxygenSaturation || '',
             fetalHeartRate: item.fetalHeartRate || '',
             hasOxytocinAtTimeOfEA: item.hasOxytocinAtTimeOfEA ? 1 : 0,
-            isVasLessThan1In20: AnalgesiaCalculation.isVasLessThan1(item.analgesia, 20),
-            isVasLessThan1In30: AnalgesiaCalculation.isVasLessThan1(item.analgesia, 30)
-            // timePointOfVasLessThan1
+            isVasLessThan1In20: AnalgesiaCalculation.isVasLessThan1(analgesiaData, 20),
+            isVasLessThan1In30: AnalgesiaCalculation.isVasLessThan1(analgesiaData, 30),
+            timePointOfVasLessThan1: AnalgesiaCalculation.timePointOfVasLessThan1(analgesiaData)
         };
     });
 

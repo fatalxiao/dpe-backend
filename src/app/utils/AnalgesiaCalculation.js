@@ -62,9 +62,7 @@ function fullFillAnalgesiaData(analgesiaData) {
 
 function isVasLessThan1(analgesiaData, timePoint) {
 
-    const data = fullFillAnalgesiaData(analgesiaData);
-
-    for (let item of data) {
+    for (let item of analgesiaData) {
 
         if (item > timePoint) {
             break;
@@ -80,7 +78,12 @@ function isVasLessThan1(analgesiaData, timePoint) {
 
 }
 
+function timePointOfVasLessThan1(analgesiaData) {
+
+}
+
 export default {
     fullFillAnalgesiaData,
-    isVasLessThan1
+    isVasLessThan1,
+    timePointOfVasLessThan1
 };
