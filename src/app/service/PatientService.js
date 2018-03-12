@@ -1,5 +1,7 @@
 import PatientDao from '../dao/PatientDao.js';
+
 import Response from '../utils/Response.js';
+import AnalgesiaCalculation from '../utils/AnalgesiaCalculation.js';
 
 async function getPatients() {
     return Response.buildSuccess(await PatientDao.getPatients());
@@ -12,10 +14,9 @@ async function getFullPatients() {
 async function exportPatients() {
 
     const data = await PatientDao.getFullPatients();
-
     return data;
 
-    return data.map(item => {
+    data.map(item => {
         return {
             group: item.group ? item.group.name : '',
             name: item.name || '',
@@ -30,7 +31,12 @@ async function exportPatients() {
             systolicBloodPressure: item.systolicBloodPressure || '',
             diastolicBloodPressure: item.diastolicBloodPressure || '',
             heartRate: item.heartRate || '',
-            pulseOxygenSaturation: item.pulseOxygenSaturation || ''
+            pulseOxygenSaturation: item.pulseOxygenSaturation || '',
+            fetalHeartRate: item.fetalHeartRate || '',
+            hasOxytocinAtTimeOfEA: item.hasOxytocinAtTimeOfEA ? 1 : 0,
+            isVasLessThan1In20: AnalgesiaCalculation.isVasLessThan1(item.analgesia, 20),
+            isVasLessThan1In30: AnalgesiaCalculation.isVasLessThan1(item.analgesia, 30)
+            // timePointOfVasLessThan1
         };
     });
 
