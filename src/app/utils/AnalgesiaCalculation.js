@@ -116,7 +116,7 @@ function timePointOfVasLessThan1(analgesiaData) {
 
 }
 
-function isS1In20(analgesiaData, timePoint, position) {
+function isSacralSensoryInTime(analgesiaData, sensory, timePoint, position) {
 
     for (let item of analgesiaData) {
 
@@ -124,7 +124,7 @@ function isS1In20(analgesiaData, timePoint, position) {
             return false;
         }
 
-        if (item[`sacralSensoryBlock${position}Value`] >= 6) {
+        if (item[`sacralSensoryBlock${position}Value`] >= sensory) {
             return true;
         }
 
@@ -139,6 +139,6 @@ export default {
     fullFillAnalgesiaData,
     isVasLessThan1,
     timePointOfVasLessThan1,
-    isS1In20
+    isSacralSensoryInTime
 
 };

@@ -39,8 +39,10 @@ async function exportPatients() {
             isVasLessThan1In20: AC.isVasLessThan1(analgesiaData, 20),
             isVasLessThan1In30: AC.isVasLessThan1(analgesiaData, 30),
             timePointOfVasLessThan1: AC.timePointOfVasLessThan1(analgesiaData),
-            isS1In20Left: AC.isS1In20(analgesiaData, 20, AC.Position.LEFT),
-            isS1In20Right: AC.isS1In20(analgesiaData, 20, AC.Position.RIGHT)
+            isS1In20Left: AC.isSacralSensoryInTime(analgesiaData, 6, 20, AC.Position.LEFT),
+            isS1In20Right: AC.isSacralSensoryInTime(analgesiaData, 6, 20, AC.Position.RIGHT),
+            isS2In20Left: AC.isSacralSensoryInTime(analgesiaData, 7, 20, AC.Position.LEFT),
+            isS2In20Right: AC.isSacralSensoryInTime(analgesiaData, 7, 20, AC.Position.RIGHT)
         };
 
     });
