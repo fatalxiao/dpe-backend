@@ -14,7 +14,6 @@ async function getFullPatients() {
 async function exportPatients() {
 
     const data = await PatientDao.getFullPatients();
-    return data;
 
     data.map(item => {
         return {
@@ -39,6 +38,8 @@ async function exportPatients() {
             // timePointOfVasLessThan1
         };
     });
+
+    return data;
 
 };
 

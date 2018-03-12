@@ -25,6 +25,7 @@ function getDefaultData(timePoints = DEFAULT_TIMEPOINTS) {
 function fullFillAnalgesiaData(analgesiaData) {
 
     const data = getDefaultData();
+    analgesiaData.sort((a, b) => a.timePoint - b.timePoint);
 
     if (analgesiaData && analgesiaData.length > 0) {
 
