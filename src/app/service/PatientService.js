@@ -85,7 +85,9 @@ async function exportPatients() {
             firstManualBolusTime: (item.observal && item.observal.firstManualBolusTime) || '',
             hasEpiduralCatheterAdjuestment: item.observal && item.observal.hasEpiduralCatheterAdjuestment,
             hasEpiduralCatheterReplacement: item.observal && item.observal.hasEpiduralCatheterReplacement,
-            isUnabledToPunctureDura: item.observal && item.observal.isUnabledToPunctureDura
+            isUnabledToPunctureDura: item.observal && item.observal.isUnabledToPunctureDura,
+
+            durationOfAnalgesia: ~~(timeStamp / 1000 / 60) + 60
         };
 
     });
