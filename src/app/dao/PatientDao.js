@@ -16,6 +16,15 @@ async function getPatients() {
     });
 }
 
+async function getFullPatients() {
+    return await PatientModel.findAll({
+        order: [
+            ['ctime', 'DESC']
+        ],
+        include: 'all'
+    });
+}
+
 async function isPatientExist(id) {
     return await PatientModel.count({
         where: {
@@ -80,6 +89,7 @@ async function disablePatient(id) {
 export default {
 
     getPatients,
+    getFullPatients,
 
     isPatientExist,
 
