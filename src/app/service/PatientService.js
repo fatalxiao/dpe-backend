@@ -42,7 +42,11 @@ async function exportPatients() {
             isS1In20Left: AC.isSacralSensoryInTime(analgesiaData, 6, 20, AC.Position.LEFT),
             isS1In20Right: AC.isSacralSensoryInTime(analgesiaData, 6, 20, AC.Position.RIGHT),
             isS2In20Left: AC.isSacralSensoryInTime(analgesiaData, 7, 20, AC.Position.LEFT),
-            isS2In20Right: AC.isSacralSensoryInTime(analgesiaData, 7, 20, AC.Position.RIGHT)
+            isS2In20Right: AC.isSacralSensoryInTime(analgesiaData, 7, 20, AC.Position.RIGHT),
+            isS1In30Left: AC.isSacralSensoryInTime(analgesiaData, 6, 30, AC.Position.LEFT),
+            isS1In30Right: AC.isSacralSensoryInTime(analgesiaData, 6, 30, AC.Position.RIGHT),
+            isS2In30Left: AC.isSacralSensoryInTime(analgesiaData, 7, 30, AC.Position.LEFT),
+            isS2In30Right: AC.isSacralSensoryInTime(analgesiaData, 7, 30, AC.Position.RIGHT)
         };
 
     });
