@@ -38,7 +38,8 @@ async function exportPatients() {
             hasOxytocinAtTimeOfEA: item.hasOxytocinAtTimeOfEA ? 1 : 0,
             isVasLessThan1In20: AnalgesiaCalculation.isVasLessThan1(analgesiaData, 20),
             isVasLessThan1In30: AnalgesiaCalculation.isVasLessThan1(analgesiaData, 30),
-            timePointOfVasLessThan1: AnalgesiaCalculation.timePointOfVasLessThan1(analgesiaData)
+            timePointOfVasLessThan1: AnalgesiaCalculation.timePointOfVasLessThan1(analgesiaData),
+            isS1In20: AnalgesiaCalculation.isS1In20(analgesiaData, 20)
         };
 
     });

@@ -110,8 +110,13 @@ function timePointOfVasLessThan1(analgesiaData) {
 
 }
 
+function isS1In20(analgesiaData, timePoint) {
+
+}
+
 export default {
     fullFillAnalgesiaData,
     isVasLessThan1,
-    timePointOfVasLessThan1
+    timePointOfVasLessThan1,
+    isS1In20
 };
