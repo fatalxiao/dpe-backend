@@ -136,6 +136,10 @@ function maxThoracicSensoryBlock(analgesiaData, position) {
     return Math.max(...analgesiaData.map(item => item[`thoracicSensoryBlock${position}Value`]));
 }
 
+function minSacralSensoryBlock(analgesiaData, position) {
+    return Math.min(...analgesiaData.map(item => item[`sacralSensoryBlock${position}Value`]));
+}
+
 export default {
 
     Position,
@@ -144,6 +148,7 @@ export default {
     isVasLessThan1,
     timePointOfVasLessThan1,
     isSacralSensoryInTime,
-    maxThoracicSensoryBlock
+    maxThoracicSensoryBlock,
+    minSacralSensoryBlock
 
 };

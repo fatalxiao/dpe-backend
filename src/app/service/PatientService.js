@@ -52,7 +52,10 @@ async function exportPatients() {
             isS1In30Right: AC.isSacralSensoryInTime(analgesiaData, s1Value, 30, AC.Position.RIGHT),
             isS2In30Left: AC.isSacralSensoryInTime(analgesiaData, s2Value, 30, AC.Position.LEFT),
             isS2In30Right: AC.isSacralSensoryInTime(analgesiaData, s2Value, 30, AC.Position.RIGHT),
-            maxThoracicSensoryBlockLeft: AC.maxThoracicSensoryBlock(analgesiaData, AC.Position.RIGHT)
+            maxThoracicSensoryBlockLeft: AC.maxThoracicSensoryBlock(analgesiaData, AC.Position.LEFT),
+            maxThoracicSensoryBlockRight: AC.maxThoracicSensoryBlock(analgesiaData, AC.Position.RIGHT),
+            minSacralSensoryBlockLeft: AC.minSacralSensoryBlock(analgesiaData, AC.Position.LEFT),
+            minSacralSensoryBlockRight: AC.minSacralSensoryBlock(analgesiaData, AC.Position.RIGHT)
         };
 
     });
