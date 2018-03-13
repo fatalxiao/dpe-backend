@@ -105,6 +105,11 @@ async function exportPatients() {
             result.isIntrathecalEpiduralCatheterInsertion = boolHandler(item.observal.isIntrathecalEpiduralCatheterInsertion);
             result.durationOfAnalgesia = OC.durationOfAnalgesia(item.observal);
             result.anestheticsConsumption = OC.anestheticsConsumption(item.observal);
+            result.durationOfFirstStageOfLabor = strHandler(item.observal.durationOfFirstStageOfLabor);
+            result.durationOfSecondStageOfLabor = strHandler(item.observal.durationOfSecondStageOfLabor);
+            // 单位时间局麻药消耗
+            result.blood_lose = strHandler(item.observal.blood_lose);
+            // 是否胎心下降
         }
 
     });
