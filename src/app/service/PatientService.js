@@ -105,7 +105,6 @@ async function exportPatients() {
             result.durationOfAnalgesia = ~~(Time.duration(item.observal.initialTime, item.observal.birthTime) / 1000 / 60) + 60;
         }
 
-
     });
 
     return data;
