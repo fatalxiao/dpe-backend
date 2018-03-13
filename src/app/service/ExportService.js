@@ -75,10 +75,10 @@ async function exportPatients() {
             {name: '血管活性药物使用', key: 'hasVasoactiveAgent'},
             {name: '恶心', key: 'hasNausea'},
             {name: '呕吐', key: 'hasVomit'},
-            {name: '瘙痒', key: ''},
-            {name: '头痛', key: ''},
-            {name: '背痛', key: ''},
-            {name: '感觉异常', key: ''},
+            {name: '瘙痒', key: 'hasPruritus'},
+            {name: '头痛', key: 'hasPostduralPunctureHeadache'},
+            {name: '背痛', key: 'hasBackPain'},
+            {name: '感觉异常', key: 'hasParesthesia'},
             {name: '镇痛满意度评分', key: ''},
             {name: '其他不适', key: ''},
             {name: '总出血量', key: ''},
@@ -198,6 +198,10 @@ async function exportPatients() {
                 result.hasVasoactiveAgent = boolHandler(item.observal.hasVasoactiveAgent);
                 result.hasNausea = boolHandler(item.observal.hasNausea);
                 result.hasVomit = boolHandler(item.observal.hasVomit);
+                result.hasPruritus = boolHandler(item.observal.hasPruritus);
+                result.hasPostduralPunctureHeadache = boolHandler(item.observal.hasPostduralPunctureHeadache);
+                result.hasBackPain = boolHandler(item.observal.hasBackPain);
+                result.hasParesthesia = boolHandler(item.observal.hasParesthesia);
             }
 
             return header.map(item => result[item.key] || null);
