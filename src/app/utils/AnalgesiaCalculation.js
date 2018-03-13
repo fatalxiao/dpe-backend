@@ -70,6 +70,10 @@ function fullFillAnalgesiaData(analgesiaData) {
 
 function isVasLessThan1(analgesiaData, timePoint) {
 
+    if (!analgesiaData || analgesiaData.length < 1) {
+        return null;
+    }
+
     for (let item of analgesiaData) {
 
         if (item > timePoint) {
@@ -85,6 +89,10 @@ function isVasLessThan1(analgesiaData, timePoint) {
 }
 
 function timePointOfVasLessThan1(analgesiaData) {
+
+    if (!analgesiaData || analgesiaData.length < 1) {
+        return null;
+    }
 
     let index;
 
@@ -118,6 +126,10 @@ function timePointOfVasLessThan1(analgesiaData) {
 
 function isSacralSensoryInTime(analgesiaData, sensory, timePoint, position) {
 
+    if (!analgesiaData || analgesiaData.length < 1) {
+        return null;
+    }
+
     for (let item of analgesiaData) {
 
         if (item.timePoint > timePoint) {
@@ -133,14 +145,30 @@ function isSacralSensoryInTime(analgesiaData, sensory, timePoint, position) {
 }
 
 function maxThoracicSensoryBlock(analgesiaData, position) {
+
+    if (!analgesiaData || analgesiaData.length < 1) {
+        return null;
+    }
+
     return Math.max(...analgesiaData.map(item => item[`thoracicSensoryBlock${position}Value`]));
+
 }
 
 function minSacralSensoryBlock(analgesiaData, position) {
+
+    if (!analgesiaData || analgesiaData.length < 1) {
+        return null;
+    }
+
     return Math.min(...analgesiaData.map(item => item[`sacralSensoryBlock${position}Value`]));
+
 }
 
 function isUnilateralSensoryBlock(analgesiaData) {
+
+    if (!analgesiaData || analgesiaData.length < 1) {
+        return null;
+    }
 
     for (let item of analgesiaData) {
         if (Math.abs(item.sacralSensoryBlockLeftValue - item.sacralSensoryBlockRightValue) > 2
@@ -155,17 +183,25 @@ function isUnilateralSensoryBlock(analgesiaData) {
 
 function timePointOfThoracicSensoryBlock(analgesiaData, sensoryBlock) {
 
+    if (!analgesiaData || analgesiaData.length < 1) {
+        return null;
+    }
+
     for (let item of analgesiaData) {
         if (item.thoracicSensoryBlockLeftValue >= sensoryBlock && item.thoracicSensoryBlockRightValue >= sensoryBlock) {
             return item.timePoint;
         }
     }
 
-    return '';
+    return null;
 
 }
 
 function timePointOfSacralSensoryBlock(analgesiaData, sensoryBlock) {
+
+    if (!analgesiaData || analgesiaData.length < 1) {
+        return null;
+    }
 
     for (let item of analgesiaData) {
         if (item.sacralSensoryBlockLeftValue >= sensoryBlock && item.sacralSensoryBlockRightValue >= sensoryBlock) {
@@ -173,7 +209,11 @@ function timePointOfSacralSensoryBlock(analgesiaData, sensoryBlock) {
         }
     }
 
-    return '';
+    return null;
+
+}
+
+function isFetalHeartRateDecreased(analgesiaData) {
 
 }
 
@@ -189,6 +229,7 @@ export default {
     minSacralSensoryBlock,
     isUnilateralSensoryBlock,
     timePointOfThoracicSensoryBlock,
-    timePointOfSacralSensoryBlock
+    timePointOfSacralSensoryBlock,
+    isFetalHeartRateDecreased
 
 };

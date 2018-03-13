@@ -49,6 +49,7 @@ async function exportPatients() {
             {header: '到达T10时间', key: 'timePointOfT10'},
             {header: '到达S1时间', key: 'timePointOfS1'},
             {header: '到达S2时间', key: 'timePointOfS2'},
+            {header: '是否胎心下降', key: 'name'},
             {header: 'PCA次数', key: 'pcaCount'},
             {header: '首次PCA时间', key: 'firstPcaTime'},
             {header: 'bolus次数', key: 'manualBolusCount'},
@@ -64,7 +65,6 @@ async function exportPatients() {
             {header: '第二产程时长', key: 'durationOfSecondStageOfLabor'},
             {header: '单位时间局麻药消耗', key: 'anestheticsConsumptionPerTime'},
             {header: '出血量', key: 'bloodLose'},
-            {header: '是否胎心下降', key: 'name'},
             {header: '是否转剖宫产', key: 'name'},
             {header: '剖宫产原因', key: 'name'},
             {header: '是否器械助产', key: 'name'},
@@ -102,98 +102,100 @@ async function exportPatients() {
         s1Value = sensoryBlocks.find(item => item.type === 2 && item.name === 'S1').value,
         s2Value = sensoryBlocks.find(item => item.type === 2 && item.name === 'S2').value,
         t8Value = sensoryBlocks.find(item => item.type === 1 && item.name === 'T8').value,
-        t10Value = sensoryBlocks.find(item => item.type === 1 && item.name === 'T10').value;
+        t10Value = sensoryBlocks.find(item => item.type === 1 && item.name === 'T10').value,
 
-    data.map(item => {
+        excelData = data.map(item => {
 
-        const result = {
-            groupName: item.group ? item.group.name : '',
-            name: item.name,
-            id: item.id,
-            age: item.age,
-            height: item.height,
-            weight: item.weight,
-            bmi: item.weight / ((item.height / 100) ** 2),
-            gestationalDays: item.gestationalDays,
-            initialVasScore: item.initialVasScore,
-            cervicalDilationAtTimeOfEA: item.cervicalDilationAtTimeOfEA,
-            systolicBloodPressure: item.systolicBloodPressure,
-            diastolicBloodPressure: item.diastolicBloodPressure,
-            heartRate: item.heartRate,
-            pulseOxygenSaturation: item.pulseOxygenSaturation,
-            fetalHeartRate: item.fetalHeartRate,
-            hasOxytocinAtTimeOfEA: boolHandler(item.hasOxytocinAtTimeOfEA)
-        };
+            const result = {
+                groupName: item.group ? item.group.name : '',
+                name: item.name,
+                id: item.id,
+                age: item.age,
+                height: item.height,
+                weight: item.weight,
+                bmi: item.weight / ((item.height / 100) ** 2),
+                gestationalDays: item.gestationalDays,
+                initialVasScore: item.initialVasScore,
+                cervicalDilationAtTimeOfEA: item.cervicalDilationAtTimeOfEA,
+                systolicBloodPressure: item.systolicBloodPressure,
+                diastolicBloodPressure: item.diastolicBloodPressure,
+                heartRate: item.heartRate,
+                pulseOxygenSaturation: item.pulseOxygenSaturation,
+                fetalHeartRate: item.fetalHeartRate,
+                hasOxytocinAtTimeOfEA: boolHandler(item.hasOxytocinAtTimeOfEA)
+            };
 
-        if (item.analgesia) {
+            if (item.analgesia) {
 
-            const analgesiaData = AC.fullFillAnalgesiaData(item.analgesia),
+                const analgesiaData = AC.fullFillAnalgesiaData(item.analgesia),
 
-                isS1In20Left = AC.isSacralSensoryInTime(analgesiaData, s1Value, 20, AC.Position.LEFT),
-                isS1In20Right = AC.isSacralSensoryInTime(analgesiaData, s1Value, 20, AC.Position.RIGHT),
+                    isS1In20Left = AC.isSacralSensoryInTime(analgesiaData, s1Value, 20, AC.Position.LEFT),
+                    isS1In20Right = AC.isSacralSensoryInTime(analgesiaData, s1Value, 20, AC.Position.RIGHT),
 
-                isS2In20Left = AC.isSacralSensoryInTime(analgesiaData, s2Value, 20, AC.Position.LEFT),
-                isS2In20Right = AC.isSacralSensoryInTime(analgesiaData, s2Value, 20, AC.Position.RIGHT),
+                    isS2In20Left = AC.isSacralSensoryInTime(analgesiaData, s2Value, 20, AC.Position.LEFT),
+                    isS2In20Right = AC.isSacralSensoryInTime(analgesiaData, s2Value, 20, AC.Position.RIGHT),
 
-                isS1In30Left = AC.isSacralSensoryInTime(analgesiaData, s1Value, 30, AC.Position.LEFT),
-                isS1In30Right = AC.isSacralSensoryInTime(analgesiaData, s1Value, 30, AC.Position.RIGHT),
+                    isS1In30Left = AC.isSacralSensoryInTime(analgesiaData, s1Value, 30, AC.Position.LEFT),
+                    isS1In30Right = AC.isSacralSensoryInTime(analgesiaData, s1Value, 30, AC.Position.RIGHT),
 
-                isS2In30Left = AC.isSacralSensoryInTime(analgesiaData, s2Value, 30, AC.Position.LEFT),
-                isS2In30Right = AC.isSacralSensoryInTime(analgesiaData, s2Value, 30, AC.Position.RIGHT);
+                    isS2In30Left = AC.isSacralSensoryInTime(analgesiaData, s2Value, 30, AC.Position.LEFT),
+                    isS2In30Right = AC.isSacralSensoryInTime(analgesiaData, s2Value, 30, AC.Position.RIGHT);
 
-            result.isVasLessThan1In20 = boolHandler(AC.isVasLessThan1(analgesiaData, 20));
-            result.isVasLessThan1In30 = boolHandler(AC.isVasLessThan1(analgesiaData, 30));
-            result.timePointOfVasLessThan1 = AC.timePointOfVasLessThan1(analgesiaData);
-            result.isS1In20Left = boolHandler(isS1In20Left);
-            result.isS1In20Right = boolHandler(isS1In20Right);
-            result.isS1In20Both = boolHandler(isS1In20Left && isS1In20Right);
-            result.isS2In20Left = boolHandler(isS2In20Left);
-            result.isS2In20Right = boolHandler(isS2In20Right);
-            result.isS2In20Both = boolHandler(isS2In20Left && isS2In20Right);
-            result.isS1In30Left = boolHandler(isS1In30Left);
-            result.isS1In30Right = boolHandler(isS1In30Right);
-            result.isS1In30Both = boolHandler(isS1In30Left && isS1In30Right);
-            result.isS2In30Left = boolHandler(isS2In30Left);
-            result.isS2In30Right = boolHandler(isS2In30Right);
-            result.isS2In30Both = boolHandler(isS2In30Left && isS2In30Right);
-            result.maxThoracicSensoryBlockLeft = AC.maxThoracicSensoryBlock(analgesiaData, AC.Position.LEFT);
-            result.maxThoracicSensoryBlockRight = AC.maxThoracicSensoryBlock(analgesiaData, AC.Position.RIGHT);
-            result.minSacralSensoryBlockLeft = AC.minSacralSensoryBlock(analgesiaData, AC.Position.LEFT);
-            result.minSacralSensoryBlockRight = AC.minSacralSensoryBlock(analgesiaData, AC.Position.RIGHT);
-            result.isUnilateralSensoryBlock = boolHandler(AC.isUnilateralSensoryBlock(analgesiaData));
-            result.timePointOfT8 = AC.timePointOfThoracicSensoryBlock(analgesiaData, t8Value);
-            result.timePointOfT10 = AC.timePointOfThoracicSensoryBlock(analgesiaData, t10Value);
-            result.timePointOfS1 = AC.timePointOfSacralSensoryBlock(analgesiaData, s1Value);
-            result.timePointOfS2 = AC.timePointOfSacralSensoryBlock(analgesiaData, s2Value);
+                result.isVasLessThan1In20 = boolHandler(AC.isVasLessThan1(analgesiaData, 20));
+                result.isVasLessThan1In30 = boolHandler(AC.isVasLessThan1(analgesiaData, 30));
+                result.timePointOfVasLessThan1 = AC.timePointOfVasLessThan1(analgesiaData);
+                result.isS1In20Left = boolHandler(isS1In20Left);
+                result.isS1In20Right = boolHandler(isS1In20Right);
+                result.isS1In20Both = boolHandler(isS1In20Left && isS1In20Right);
+                result.isS2In20Left = boolHandler(isS2In20Left);
+                result.isS2In20Right = boolHandler(isS2In20Right);
+                result.isS2In20Both = boolHandler(isS2In20Left && isS2In20Right);
+                result.isS1In30Left = boolHandler(isS1In30Left);
+                result.isS1In30Right = boolHandler(isS1In30Right);
+                result.isS1In30Both = boolHandler(isS1In30Left && isS1In30Right);
+                result.isS2In30Left = boolHandler(isS2In30Left);
+                result.isS2In30Right = boolHandler(isS2In30Right);
+                result.isS2In30Both = boolHandler(isS2In30Left && isS2In30Right);
+                result.maxThoracicSensoryBlockLeft = AC.maxThoracicSensoryBlock(analgesiaData, AC.Position.LEFT);
+                result.maxThoracicSensoryBlockRight = AC.maxThoracicSensoryBlock(analgesiaData, AC.Position.RIGHT);
+                result.minSacralSensoryBlockLeft = AC.minSacralSensoryBlock(analgesiaData, AC.Position.LEFT);
+                result.minSacralSensoryBlockRight = AC.minSacralSensoryBlock(analgesiaData, AC.Position.RIGHT);
+                result.isUnilateralSensoryBlock = boolHandler(AC.isUnilateralSensoryBlock(analgesiaData));
+                result.timePointOfT8 = AC.timePointOfThoracicSensoryBlock(analgesiaData, t8Value);
+                result.timePointOfT10 = AC.timePointOfThoracicSensoryBlock(analgesiaData, t10Value);
+                result.timePointOfS1 = AC.timePointOfSacralSensoryBlock(analgesiaData, s1Value);
+                result.timePointOfS2 = AC.timePointOfSacralSensoryBlock(analgesiaData, s2Value);
+                result.isFetalHeartRateDecreased = AC.isFetalHeartRateDecreased(analgesiaData);
 
-        }
+            }
 
-        if (item.observal) {
+            if (item.observal) {
 
-            const durationOfAnalgesia = OC.durationOfAnalgesia(item.observal),
-                anestheticsConsumption = OC.anestheticsConsumption(item.observal);
+                const durationOfAnalgesia = OC.durationOfAnalgesia(item.observal),
+                    anestheticsConsumption = OC.anestheticsConsumption(item.observal);
 
-            result.pcaCount = item.observal.pcaCount;
-            result.firstPcaTime = item.observal.firstPcaTime;
-            result.manualBolusCount = item.observal.manualBolusCount;
-            result.firstManualBolusTime = item.observal.firstManualBolusTime;
-            result.hasEpiduralCatheterAdjuestment = boolHandler(item.observal.hasEpiduralCatheterAdjuestment);
-            result.hasEpiduralCatheterReplacement = boolHandler(item.observal.hasEpiduralCatheterReplacement);
-            result.isUnabledToPunctureDura = boolHandler(item.observal.isUnabledToPunctureDura);
-            result.isIVEpiduralCatheterInsertion = boolHandler(item.observal.isIVEpiduralCatheterInsertion);
-            result.isIntrathecalEpiduralCatheterInsertion = boolHandler(item.observal.isIntrathecalEpiduralCatheterInsertion);
-            result.durationOfAnalgesia = durationOfAnalgesia;
-            result.anestheticsConsumption = anestheticsConsumption;
-            result.durationOfFirstStageOfLabor = item.observal.durationOfFirstStageOfLabor;
-            result.durationOfSecondStageOfLabor = item.observal.durationOfSecondStageOfLabor;
-            result.anestheticsConsumptionPerTime = anestheticsConsumption !== null && durationOfAnalgesia !== null ? anestheticsConsumption / durationOfAnalgesia : null;
-            result.bloodLose = item.observal.blood_lose;
-            // 是否胎心下降
-        }
+                result.pcaCount = item.observal.pcaCount;
+                result.firstPcaTime = item.observal.firstPcaTime;
+                result.manualBolusCount = item.observal.manualBolusCount;
+                result.firstManualBolusTime = item.observal.firstManualBolusTime;
+                result.hasEpiduralCatheterAdjuestment = boolHandler(item.observal.hasEpiduralCatheterAdjuestment);
+                result.hasEpiduralCatheterReplacement = boolHandler(item.observal.hasEpiduralCatheterReplacement);
+                result.isUnabledToPunctureDura = boolHandler(item.observal.isUnabledToPunctureDura);
+                result.isIVEpiduralCatheterInsertion = boolHandler(item.observal.isIVEpiduralCatheterInsertion);
+                result.isIntrathecalEpiduralCatheterInsertion = boolHandler(item.observal.isIntrathecalEpiduralCatheterInsertion);
+                result.durationOfAnalgesia = durationOfAnalgesia;
+                result.anestheticsConsumption = anestheticsConsumption;
+                result.durationOfFirstStageOfLabor = item.observal.durationOfFirstStageOfLabor;
+                result.durationOfSecondStageOfLabor = item.observal.durationOfSecondStageOfLabor;
+                result.anestheticsConsumptionPerTime = anestheticsConsumption !== null && durationOfAnalgesia !== null ? anestheticsConsumption / durationOfAnalgesia : null;
+                result.bloodLose = item.observal.blood_lose;
+            }
 
-    });
+            return header.map(item => result[item.key] || null);
 
-    return data;
+        });
+
+    return excelData;
 
 };
 
