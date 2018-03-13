@@ -3,6 +3,7 @@ import SensoryBlockDao from '../dao/SensoryBlockDao.js';
 
 import Response from '../utils/Response.js';
 import AC from '../utils/AnalgesiaCalculation.js';
+import OC from '../utils/ObservalCalculation.js';
 import Time from '../utils/Time.js';
 import DataFormat from '../utils/DataFormat.js';
 
@@ -102,7 +103,7 @@ async function exportPatients() {
             result.isUnabledToPunctureDura = boolHandler(item.observal.isUnabledToPunctureDura);
             result.isIVEpiduralCatheterInsertion = boolHandler(item.observal.isIVEpiduralCatheterInsertion);
             result.isIntrathecalEpiduralCatheterInsertion = boolHandler(item.observal.isIntrathecalEpiduralCatheterInsertion);
-            result.durationOfAnalgesia = ~~(Time.duration(item.observal.initialTime, item.observal.birthTime) / 1000 / 60) + 60;
+            result.durationOfAnalgesia = OC.durationOfAnalgesia(item.observal);
         }
 
     });
