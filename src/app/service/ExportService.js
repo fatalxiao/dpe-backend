@@ -113,7 +113,7 @@ async function exportPatients() {
                 age: item.age,
                 height: item.height,
                 weight: item.weight,
-                bmi: (item.weight / ((item.height / 100) ** 2)).toFixed(2),
+                bmi: item.weight && item.height ? (item.weight / ((item.height / 100) ** 2)).toFixed(2) : null,
                 gestationalDays: item.gestationalDays,
                 initialVasScore: item.initialVasScore,
                 cervicalDilationAtTimeOfEA: item.cervicalDilationAtTimeOfEA,
