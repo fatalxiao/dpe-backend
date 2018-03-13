@@ -6,13 +6,19 @@ function durationOfAnalgesia(observalData) {
 
 function anestheticsConsumption(observalData) {
 
-    let result = 0;
+    let result;
 
     if (!isNaN(observalData.pumpConsumption)) {
+        if (!result) {
+            result = 0;
+        }
         result += +observalData.pumpConsumption;
     }
 
     if (!isNaN(observalData.bolus)) {
+        if (!result) {
+            result = 0;
+        }
         result += +observalData.bolus;
     }
 

@@ -169,6 +169,10 @@ async function exportPatients() {
         }
 
         if (item.observal) {
+
+            const durationOfAnalgesia = OC.durationOfAnalgesia(item.observal),
+                anestheticsConsumption = OC.anestheticsConsumption(item.observal);
+
             result.pcaCount = item.observal.pcaCount;
             result.firstPcaTime = item.observal.firstPcaTime;
             result.manualBolusCount = item.observal.manualBolusCount;
@@ -178,11 +182,11 @@ async function exportPatients() {
             result.isUnabledToPunctureDura = boolHandler(item.observal.isUnabledToPunctureDura);
             result.isIVEpiduralCatheterInsertion = boolHandler(item.observal.isIVEpiduralCatheterInsertion);
             result.isIntrathecalEpiduralCatheterInsertion = boolHandler(item.observal.isIntrathecalEpiduralCatheterInsertion);
-            result.durationOfAnalgesia = OC.durationOfAnalgesia(item.observal);
-            result.anestheticsConsumption = OC.anestheticsConsumption(item.observal);
+            result.durationOfAnalgesia = durationOfAnalgesia;
+            result.anestheticsConsumption = anestheticsConsumption;
             result.durationOfFirstStageOfLabor = item.observal.durationOfFirstStageOfLabor;
             result.durationOfSecondStageOfLabor = item.observal.durationOfSecondStageOfLabor;
-            // 单位时间局麻药消耗
+            result.anestheticsConsumptionPerTime = anestheticsConsumption !== null && durationOfAnalgesia !== null ? anestheticsConsumption / durationOfAnalgesia : null;
             result.blood_lose = item.observal.blood_lose;
             // 是否胎心下降
         }
