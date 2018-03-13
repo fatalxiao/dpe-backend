@@ -52,13 +52,12 @@ class PatientController {
     static async exportPatients(ctx) {
 
         const data = [[1, 2, 3], [true, false, null, 'sheetjs'],
-                ['foo', 'bar', new Date('2014-02-19T14:30Z'), '0.3'], ['baz', null, 'qux']],
-            buffer = xlsx.build([{name: 'mySheetName', data: data}]);
+            ['foo', 'bar', new Date('2014-02-19T14:30Z'), '0.3'], ['baz', null, 'qux']];
 
         ctx.set('Content-Type', 'application/vnd.openxmlformats');
         ctx.set('Content-Disposition', `attachment; filename=dpe-data.xlsx`);
 
-        ctx.response.body = buffer;
+        ctx.response.body = xlsx.build([{name: 'mySheetName', data: data}]);
 
     }
 

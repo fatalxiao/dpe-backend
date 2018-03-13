@@ -17,8 +17,7 @@ async function getFullPatients() {
 
 async function exportPatients() {
 
-    const boolHandler = DataFormat.formatBooleanToNumber,
-        strHandler = DataFormat.formatString;
+    const boolHandler = DataFormat.formatBooleanToNumber;
 
     const data = await PatientDao.getFullPatients(),
         sensoryBlocks = await SensoryBlockDao.getSensoryBlocks(),
@@ -32,20 +31,20 @@ async function exportPatients() {
 
         const result = {
             group: item.group ? item.group.name : '',
-            name: strHandler(item.name),
-            id: strHandler(item.id),
-            age: strHandler(item.age),
-            height: strHandler(item.height),
-            weight: strHandler(item.weight),
-            bmi: strHandler(item.weight / ((item.height / 100) ** 2)),
-            gestationalDays: strHandler(item.gestationalDays),
-            initialVasScore: strHandler(item.initialVasScore),
-            cervicalDilationAtTimeOfEA: strHandler(item.cervicalDilationAtTimeOfEA),
-            systolicBloodPressure: strHandler(item.systolicBloodPressure),
-            diastolicBloodPressure: strHandler(item.diastolicBloodPressure),
-            heartRate: strHandler(item.heartRate),
-            pulseOxygenSaturation: strHandler(item.pulseOxygenSaturation),
-            fetalHeartRate: strHandler(item.fetalHeartRate),
+            name: item.name,
+            id: item.id,
+            age: item.age,
+            height: item.height,
+            weight: item.weight,
+            bmi: item.weight / ((item.height / 100) ** 2),
+            gestationalDays: item.gestationalDays,
+            initialVasScore: item.initialVasScore,
+            cervicalDilationAtTimeOfEA: item.cervicalDilationAtTimeOfEA,
+            systolicBloodPressure: item.systolicBloodPressure,
+            diastolicBloodPressure: item.diastolicBloodPressure,
+            heartRate: item.heartRate,
+            pulseOxygenSaturation: item.pulseOxygenSaturation,
+            fetalHeartRate: item.fetalHeartRate,
             hasOxytocinAtTimeOfEA: boolHandler(item.hasOxytocinAtTimeOfEA)
 
         };
@@ -94,10 +93,10 @@ async function exportPatients() {
         }
 
         if (item.observal) {
-            result.pcaCount = strHandler(item.observal.pcaCount);
-            result.firstPcaTime = strHandler(item.observal.firstPcaTime);
-            result.manualBolusCount = strHandler(item.observal.manualBolusCount);
-            result.firstManualBolusTime = strHandler(item.observal.firstManualBolusTime);
+            result.pcaCount = item.observal.pcaCount;
+            result.firstPcaTime = item.observal.firstPcaTime;
+            result.manualBolusCount = item.observal.manualBolusCount;
+            result.firstManualBolusTime = item.observal.firstManualBolusTime;
             result.hasEpiduralCatheterAdjuestment = boolHandler(item.observal.hasEpiduralCatheterAdjuestment);
             result.hasEpiduralCatheterReplacement = boolHandler(item.observal.hasEpiduralCatheterReplacement);
             result.isUnabledToPunctureDura = boolHandler(item.observal.isUnabledToPunctureDura);
@@ -105,10 +104,10 @@ async function exportPatients() {
             result.isIntrathecalEpiduralCatheterInsertion = boolHandler(item.observal.isIntrathecalEpiduralCatheterInsertion);
             result.durationOfAnalgesia = OC.durationOfAnalgesia(item.observal);
             result.anestheticsConsumption = OC.anestheticsConsumption(item.observal);
-            result.durationOfFirstStageOfLabor = strHandler(item.observal.durationOfFirstStageOfLabor);
-            result.durationOfSecondStageOfLabor = strHandler(item.observal.durationOfSecondStageOfLabor);
+            result.durationOfFirstStageOfLabor = item.observal.durationOfFirstStageOfLabor;
+            result.durationOfSecondStageOfLabor = item.observal.durationOfSecondStageOfLabor;
             // 单位时间局麻药消耗
-            result.blood_lose = strHandler(item.observal.blood_lose);
+            result.blood_lose = item.observal.blood_lose;
             // 是否胎心下降
         }
 
