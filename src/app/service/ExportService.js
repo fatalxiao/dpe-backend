@@ -165,7 +165,7 @@ async function exportPatients() {
                 result.timePointOfT10 = AC.timePointOfThoracicSensoryBlock(analgesiaData, t10Value);
                 result.timePointOfS1 = AC.timePointOfSacralSensoryBlock(analgesiaData, s1Value);
                 result.timePointOfS2 = AC.timePointOfSacralSensoryBlock(analgesiaData, s2Value);
-                result.isFetalHeartRateDecreased = AC.isFetalHeartRateDecreased(analgesiaData);
+                result.isFetalHeartRateDecreased = boolHandler(AC.isFetalHeartRateDecreased(analgesiaData));
 
             }
 
