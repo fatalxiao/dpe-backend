@@ -63,7 +63,6 @@ async function exportPatients() {
             {name: '第一产程时长', key: 'durationOfFirstStageOfLabor'},
             {name: '第二产程时长', key: 'durationOfSecondStageOfLabor'},
             {name: '单位时间局麻药消耗', key: 'anestheticsConsumptionPerTime'},
-            {name: '出血量', key: 'bloodLose'},
             {name: '是否胎心下降', key: 'isFetalHeartRateDecreased'},
             {name: '是否转剖宫产', key: 'hasCaesareanSection'},
             {name: '剖宫产原因', key: 'caesareanSectionReason'},
@@ -79,11 +78,11 @@ async function exportPatients() {
             {name: '头痛', key: 'hasPostduralPunctureHeadache'},
             {name: '背痛', key: 'hasBackPain'},
             {name: '感觉异常', key: 'hasParesthesia'},
-            {name: '镇痛满意度评分', key: ''},
-            {name: '其他不适', key: ''},
-            {name: '总出血量', key: ''},
-            {name: '新生儿体重', key: ''},
-            {name: '新生儿身高', key: ''},
+            {name: '镇痛满意度评分', key: 'patientSatisfactionScore'},
+            {name: '其他不适', key: 'otherdiscomfort'},
+            {name: '总出血量', key: 'bloodLose'},
+            {name: '新生儿体重', key: 'foetalWeight'},
+            {name: '新生儿身高', key: 'foetalHeight'},
             {name: '性别', key: ''},
             {name: '1minapgar评分', key: ''},
             {name: '5minapgar评分', key: ''},
@@ -188,7 +187,6 @@ async function exportPatients() {
                 result.durationOfFirstStageOfLabor = item.observal.durationOfFirstStageOfLabor;
                 result.durationOfSecondStageOfLabor = item.observal.durationOfSecondStageOfLabor;
                 result.anestheticsConsumptionPerTime = anestheticsConsumption !== null && durationOfAnalgesia !== null ? anestheticsConsumption / durationOfAnalgesia : null;
-                result.bloodLose = item.observal.bloodLose;
                 result.hasCaesareanSection = boolHandler(item.observal.hasCaesareanSection);
                 result.hasInstrumental = boolHandler(item.observal.hasInstrumental);
                 result.hasLateralEpisiotomy = boolHandler(item.observal.hasLateralEpisiotomy);
@@ -202,6 +200,10 @@ async function exportPatients() {
                 result.hasPostduralPunctureHeadache = boolHandler(item.observal.hasPostduralPunctureHeadache);
                 result.hasBackPain = boolHandler(item.observal.hasBackPain);
                 result.hasParesthesia = boolHandler(item.observal.hasParesthesia);
+                result.patientSatisfactionScore = item.observal.patientSatisfactionScore;
+                result.bloodLose = item.observal.bloodLose;
+                result.foetalWeight = item.observal.foetalWeight;
+                result.foetalHeight = item.observal.foetalHeight;
             }
 
             return header.map(item => result[item.key] || null);
