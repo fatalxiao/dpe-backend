@@ -62,8 +62,8 @@ async function exportPatients() {
             {header: '局麻药消耗量', key: 'anestheticsConsumption'},
             {header: '第一产程时长', key: 'durationOfFirstStageOfLabor'},
             {header: '第二产程时长', key: 'durationOfSecondStageOfLabor'},
-            {header: '单位时间局麻药消耗', key: 'name'},
-            {header: '出血量', key: 'name'},
+            {header: '单位时间局麻药消耗', key: 'anestheticsConsumptionPerTime'},
+            {header: '出血量', key: 'bloodLose'},
             {header: '是否胎心下降', key: 'name'},
             {header: '是否转剖宫产', key: 'name'},
             {header: '剖宫产原因', key: 'name'},
@@ -187,7 +187,7 @@ async function exportPatients() {
             result.durationOfFirstStageOfLabor = item.observal.durationOfFirstStageOfLabor;
             result.durationOfSecondStageOfLabor = item.observal.durationOfSecondStageOfLabor;
             result.anestheticsConsumptionPerTime = anestheticsConsumption !== null && durationOfAnalgesia !== null ? anestheticsConsumption / durationOfAnalgesia : null;
-            result.blood_lose = item.observal.blood_lose;
+            result.bloodLose = item.observal.blood_lose;
             // 是否胎心下降
         }
 
