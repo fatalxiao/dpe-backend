@@ -83,15 +83,15 @@ async function exportPatients() {
             {name: '总出血量', key: 'bloodLose'},
             {name: '新生儿体重', key: 'foetalWeight'},
             {name: '新生儿身高', key: 'foetalHeight'},
-            {name: '性别', key: ''},
-            {name: '1minapgar评分', key: ''},
-            {name: '5minapgar评分', key: ''},
-            {name: '是否去儿科观察室', key: ''},
-            {name: '儿科观察室原因', key: ''},
-            {name: '脐动脉PH', key: ''},
-            {name: '脐动脉BE', key: ''},
-            {name: '脐静脉PH', key: ''},
-            {name: '脐静脉BE', key: ''}],
+            {name: '性别', key: 'foetalGender'},
+            {name: '1minapgar评分', key: 'oneMinuteApgarScore'},
+            {name: '5minapgar评分', key: 'fiveMinuteApgarScore'},
+            {name: '是否去儿科观察室', key: 'hasNicu'},
+            {name: '儿科观察室原因', key: 'nicuReason'},
+            {name: '脐动脉PH', key: 'arterialPh'},
+            {name: '脐动脉BE', key: 'arterialBe'},
+            {name: '脐静脉PH', key: 'venousPh'},
+            {name: '脐静脉BE', key: 'venousBe'}],
 
         boolHandler = DataFormat.formatBooleanToNumber,
 
@@ -204,6 +204,15 @@ async function exportPatients() {
                 result.bloodLose = item.observal.bloodLose;
                 result.foetalWeight = item.observal.foetalWeight;
                 result.foetalHeight = item.observal.foetalHeight;
+                result.foetalGender = item.observal.foetalGender;
+                result.oneMinuteApgarScore = item.observal.oneMinuteApgarScore;
+                result.fiveMinuteApgarScore = item.observal.fiveMinuteApgarScore;
+                result.hasNicu = boolHandler(item.observal.hasNicu);
+                result.nicuReason = item.observal.nicuReason;
+                result.arterialPh = item.observal.arterialPh;
+                result.arterialBe = item.observal.arterialBe;
+                result.venousPh = item.observal.venousPh;
+                result.venousBe = item.observal.venousBe;
             }
 
             return header.map(item => result[item.key] || null);
