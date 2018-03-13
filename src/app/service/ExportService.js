@@ -9,45 +9,90 @@ import DataFormat from '../utils/DataFormat.js';
 
 async function exportPatients() {
 
-    const header = [{
-            header: '组别', key: 'groupName'
-        }, {
-            header: '姓名', key: 'name'
-        }, {
-            header: '住院号', key: 'name'
-        }, {
-            header: '年龄', key: 'name'
-        }, {
-            header: '身高', key: 'name'
-        }, {
-            header: '姓名', key: 'name'
-        }, {
-            header: '姓名', key: 'name'
-        }, {
-            header: '姓名', key: 'name'
-        }, {
-            header: '姓名', key: 'name'
-        }, {
-            header: '姓名', key: 'name'
-        }, {
-            header: '姓名', key: 'name'
-        }, {
-            header: '姓名', key: 'name'
-        }, {
-            header: '姓名', key: 'name'
-        }, '住院号', '年龄', '身高', '体重', 'BMI', '孕周', '镇痛前VAS评分 ', '镇痛前宫口大小',
-            '基础收缩压', '基础舒张压', '基础心率', '基础氧饱和度', '基础胎心率', '镇痛前缩宫素使用', '20min内VAS≤1',
-            '30min内VAS≤1', 'VAS≤1的时间', '20min内左侧是否达到S1', '20min内右侧是否达到S1', '20min内是否双侧是否达到S1',
-            '20min内左侧是否达到S2', '20min内右侧是否达到S2', '20min内是否双侧是否达到S2', '30min内左侧是否达到S1',
-            '30min内右侧是否达到S1', '30min内是否双侧是否达到S1', '30min内左侧是否达到S2', '30min内右侧是否达到S2',
-            '30min内是否双侧是否达到S2', '左侧最高头端阻滞平面', '右侧最高头端阻滞平面', '左侧尾端最低阻滞平面',
-            '右侧尾端最低阻滞平面', '是否单侧阻滞', '达到T8时间', '到达T10时间', '到达S1时间', '到达S2时间', 'PCA次数',
-            '首次PCA时间', 'bolus次数', '首次bolus时间', '硬膜外导管重置', '硬膜外导管调整', 'DPE未见脑脊液', '血性置管',
-            '蛛网膜下腔置管', '镇痛时长', '局麻药消耗量(Pump + Bolus)', '第一产程时长', '第二产程时长', '单位时间局麻药消耗',
-            '出血量', '是否胎心下降', '是否转剖宫产', '剖宫产原因', '是否器械助产', '是否侧切', '侧切时的VAS评分', '产前发热',
-            '低血压的发生', '血管活性药物使用', '恶心', '呕吐 ', '瘙痒', '头痛', '背痛', '感觉异常', '镇痛满意度评分',
-            '其他不适', '总出血量', '新生儿体重', '新生儿身高', '性别', '1minapgar评分', '5minapgar评分', '是否去儿科观察室',
-            '儿科观察室原因', '脐动脉PH', '脐动脉BE', '脐静脉PH', '脐静脉BE'],
+    const header = [{header: '组别', key: 'groupName'},
+            {header: '姓名', key: 'name'},
+            {header: '住院号', key: 'name'},
+            {header: '年龄', key: 'name'},
+            {header: '身高', key: 'name'},
+            {header: '体重', key: 'name'},
+            {header: 'BMI', key: 'name'},
+            {header: '孕周', key: 'name'},
+            {header: '镇痛前VAS评分', key: 'name'},
+            {header: '镇痛前宫口大小', key: 'name'},
+            {header: '基础收缩压', key: 'name'},
+            {header: '基础舒张压', key: 'name'},
+            {header: '基础心率', key: 'name'},
+            {header: '基础氧饱和度', key: 'name'},
+            {header: '基础胎心率', key: 'name'},
+            {header: '镇痛前缩宫素使用', key: 'name'},
+            {header: '20min内VAS≤1', key: 'name'},
+            {header: '30min内VAS≤1', key: 'name'},
+            {header: 'VAS≤1的时间', key: 'name'},
+            {header: '20min内左侧是否达到S1', key: 'name'},
+            {header: '20min内右侧是否达到S1', key: 'name'},
+            {header: '20min内是否双侧是否达到S1', key: 'name'},
+            {header: '20min内左侧是否达到S2', key: 'name'},
+            {header: '20min内右侧是否达到S2', key: 'name'},
+            {header: '20min内是否双侧是否达到S2', key: 'name'},
+            {header: '30min内左侧是否达到S1', key: 'name'},
+            {header: '30min内右侧是否达到S1', key: 'name'},
+            {header: '30min内是否双侧是否达到S1', key: 'name'},
+            {header: '30min内左侧是否达到S2', key: 'name'},
+            {header: '30min内右侧是否达到S2', key: 'name'},
+            {header: '30min内是否双侧是否达到S2', key: 'name'},
+            {header: '左侧最高头端阻滞平面', key: 'name'},
+            {header: '右侧最高头端阻滞平面', key: 'name'},
+            {header: '左侧尾端最低阻滞平面', key: 'name'},
+            {header: '右侧尾端最低阻滞平面', key: 'name'},
+            {header: '是否单侧阻滞', key: 'name'},
+            {header: '达到T8时间', key: 'name'},
+            {header: '到达T10时间', key: 'name'},
+            {header: '到达S1时间', key: 'name'},
+            {header: '到达S2时间', key: 'name'},
+            {header: 'PCA次数', key: 'name'},
+            {header: '首次PCA时间', key: 'name'},
+            {header: 'bolus次数', key: 'name'},
+            {header: '首次bolus时间', key: 'name'},
+            {header: '硬膜外导管重置', key: 'name'},
+            {header: '硬膜外导管调整', key: 'name'},
+            {header: 'DPE未见脑脊液', key: 'name'},
+            {header: '血性置管', key: 'name'},
+            {header: '蛛网膜下腔置管', key: 'name'},
+            {header: '镇痛时长', key: 'name'},
+            {header: '局麻药消耗量', key: 'name'},
+            {header: '第一产程时长', key: 'name'},
+            {header: '第二产程时长', key: 'name'},
+            {header: '单位时间局麻药消耗', key: 'name'},
+            {header: '出血量', key: 'name'},
+            {header: '是否胎心下降', key: 'name'},
+            {header: '是否转剖宫产', key: 'name'},
+            {header: '剖宫产原因', key: 'name'},
+            {header: '是否器械助产', key: 'name'},
+            {header: '是否侧切', key: 'name'},
+            {header: '侧切时的VAS评分', key: 'name'},
+            {header: '产前发热', key: 'name'},
+            {header: '低血压的发生', key: 'name'},
+            {header: '血管活性药物使用', key: 'name'},
+            {header: '恶心', key: 'name'},
+            {header: '呕吐', key: 'name'},
+            {header: '瘙痒', key: 'name'},
+            {header: '头痛', key: 'name'},
+            {header: '背痛', key: 'name'},
+            {header: '感觉异常', key: 'name'},
+            {header: '镇痛满意度评分', key: 'name'},
+            {header: '其他不适', key: 'name'},
+            {header: '总出血量', key: 'name'},
+            {header: '新生儿体重', key: 'name'},
+            {header: '新生儿身高', key: 'name'},
+            {header: '性别', key: 'name'},
+            {header: '1minapgar评分', key: 'name'},
+            {header: '5minapgar评分', key: 'name'},
+            {header: '是否去儿科观察室', key: 'name'},
+            {header: '儿科观察室原因', key: 'name'},
+            {header: '脐动脉PH', key: 'name'},
+            {header: '脐动脉BE', key: 'name'},
+            {header: '脐静脉PH', key: 'name'},
+            {header: '脐静脉BE', key: 'name'}],
 
         boolHandler = DataFormat.formatBooleanToNumber,
 
