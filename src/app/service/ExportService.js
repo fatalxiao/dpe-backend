@@ -65,12 +65,12 @@ async function exportPatients() {
             {name: '单位时间局麻药消耗', key: 'anestheticsConsumptionPerTime'},
             {name: '出血量', key: 'bloodLose'},
             {name: '是否胎心下降', key: 'isFetalHeartRateDecreased'},
-            {name: '是否转剖宫产', key: ''},
-            {name: '剖宫产原因', key: ''},
-            {name: '是否器械助产', key: ''},
-            {name: '是否侧切', key: ''},
-            {name: '侧切时的VAS评分', key: ''},
-            {name: '产前发热', key: ''},
+            {name: '是否转剖宫产', key: 'hasCaesareanSection'},
+            {name: '剖宫产原因', key: 'caesareanSectionReason'},
+            {name: '是否器械助产', key: 'hasInstrumental'},
+            {name: '是否侧切', key: 'hasLateralEpisiotomy'},
+            {name: '侧切时的VAS评分', key: 'lateralEpisiotomyVasScore'},
+            {name: '产前发热', key: 'hasPrenatalFever'},
             {name: '低血压的发生', key: ''},
             {name: '血管活性药物使用', key: ''},
             {name: '恶心', key: ''},
@@ -188,7 +188,12 @@ async function exportPatients() {
                 result.durationOfFirstStageOfLabor = item.observal.durationOfFirstStageOfLabor;
                 result.durationOfSecondStageOfLabor = item.observal.durationOfSecondStageOfLabor;
                 result.anestheticsConsumptionPerTime = anestheticsConsumption !== null && durationOfAnalgesia !== null ? anestheticsConsumption / durationOfAnalgesia : null;
-                result.bloodLose = item.observal.blood_lose;
+                result.bloodLose = item.observal.bloodLose;
+                result.hasCaesareanSection = boolHandler(item.observal.hasCaesareanSection);
+                result.hasInstrumental = boolHandler(item.observal.hasInstrumental);
+                result.hasLateralEpisiotomy = boolHandler(item.observal.hasLateralEpisiotomy);
+                result.lateralEpisiotomyVasScore = item.observal.lateralEpisiotomyVasScore;
+                result.hasPrenatalFever = boolHandler(item.observal.hasPrenatalFever);
             }
 
             return header.map(item => result[item.key] || null);

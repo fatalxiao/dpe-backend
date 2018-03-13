@@ -194,16 +194,16 @@ const sequelizeInstance = SequelizeGenerator(),
             field: 'has_accidental_dural_punture',
             type: Sequelize.BOOLEAN
         },
+        hasLateralEpisiotomy: {
+            field: 'has_lateral_episiotomy',
+            type: Sequelize.BOOLEAN
+        },
         lateralEpisiotomyVasScore: {
             field: 'lateral_episiotomy_vas_score',
             type: Sequelize.INTEGER,
             set(value) {
                 this.setDataValue('lateralEpisiotomyVasScore', DataFormat.formatNumberField(value));
             }
-        },
-        hasLateralEpisiotomy: {
-            field: 'has_lateral_episiotomy',
-            type: Sequelize.BOOLEAN
         },
         foetalGender: {
             field: 'foetal_gender',
