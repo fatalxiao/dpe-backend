@@ -71,10 +71,10 @@ async function exportPatients() {
             {name: '是否侧切', key: 'hasLateralEpisiotomy'},
             {name: '侧切时的VAS评分', key: 'lateralEpisiotomyVasScore'},
             {name: '产前发热', key: 'hasPrenatalFever'},
-            {name: '低血压的发生', key: ''},
-            {name: '血管活性药物使用', key: ''},
-            {name: '恶心', key: ''},
-            {name: '呕吐', key: ''},
+            {name: '低血压的发生', key: 'hasHypotension'},
+            {name: '血管活性药物使用', key: 'hasVasoactiveAgent'},
+            {name: '恶心', key: 'hasNausea'},
+            {name: '呕吐', key: 'hasVomit'},
             {name: '瘙痒', key: ''},
             {name: '头痛', key: ''},
             {name: '背痛', key: ''},
@@ -194,6 +194,10 @@ async function exportPatients() {
                 result.hasLateralEpisiotomy = boolHandler(item.observal.hasLateralEpisiotomy);
                 result.lateralEpisiotomyVasScore = item.observal.lateralEpisiotomyVasScore;
                 result.hasPrenatalFever = boolHandler(item.observal.hasPrenatalFever);
+                result.hasHypotension = boolHandler(item.observal.hasHypotension);
+                result.hasVasoactiveAgent = boolHandler(item.observal.hasVasoactiveAgent);
+                result.hasNausea = boolHandler(item.observal.hasNausea);
+                result.hasVomit = boolHandler(item.observal.hasVomit);
             }
 
             return header.map(item => result[item.key] || null);
