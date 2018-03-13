@@ -215,6 +215,18 @@ function timePointOfSacralSensoryBlock(analgesiaData, sensoryBlock) {
 
 function isFetalHeartRateDecreased(analgesiaData) {
 
+    if (!analgesiaData || analgesiaData.length < 1) {
+        return null;
+    }
+
+    for (let item of analgesiaData) {
+        if (item.fetalHeartRate !== null && item.fetalHeartRate < 110) {
+            return true;
+        }
+    }
+
+    return false;
+
 }
 
 export default {
