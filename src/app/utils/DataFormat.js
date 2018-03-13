@@ -24,8 +24,18 @@ function formatResDateTime(value) {
 
 }
 
+function formatBooleanToNumber(value) {
+    return value ? 1 : 0;
+}
+
+function formatString(value) {
+    return value || '';
+}
+
 export default {
     formatNumberField,
     formatDateTimeField,
-    formatResDateTime
+    formatResDateTime,
+    formatBooleanToNumber,
+    formatString
 };
