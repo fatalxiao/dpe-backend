@@ -104,6 +104,7 @@ async function exportPatients() {
             result.isIVEpiduralCatheterInsertion = boolHandler(item.observal.isIVEpiduralCatheterInsertion);
             result.isIntrathecalEpiduralCatheterInsertion = boolHandler(item.observal.isIntrathecalEpiduralCatheterInsertion);
             result.durationOfAnalgesia = OC.durationOfAnalgesia(item.observal);
+            result.anestheticsConsumption = OC.anestheticsConsumption(item.observal);
         }
 
     });
