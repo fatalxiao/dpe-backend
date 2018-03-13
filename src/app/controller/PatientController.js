@@ -1,3 +1,5 @@
+import xlsx from 'node-xlsx';
+
 import PatientService from '../service/PatientService.js';
 import Response from '../utils/Response.js';
 import {Api, ApiOperation, GetMapping, PostMapping} from '../utils/ApiDecorator';
@@ -48,7 +50,16 @@ class PatientController {
     @GetMapping({value: '/dpe/patient/exportPatients'})
     @ApiOperation({value: 'export patients', notes: ''})
     static async exportPatients(ctx) {
-        ctx.response.body = await PatientService.exportPatients();
+
+        const data = [[1, 2, 3], [true, false, null, 'sheetjs'],
+                ['foo', 'bar', new Date('2014-02-19T14:30Z'), '0.3'], ['baz', null, 'qux']],
+            buffer = xlsx.build([{name: 'mySheetName', data: data}]);
+
+        ctx.set('Content-Type', 'application/vnd.openxmlformats');
+        ctx.set('Content-Disposition', `attachment; filename=dpe-data.xlsx`);
+
+        ctx.response.body = buffer;
+
     }
 
     @GetMapping({value: '/dpe/patient/getPatientById/:id'})
