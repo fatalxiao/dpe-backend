@@ -185,7 +185,7 @@ async function exportPatients() {
                 result.anestheticsConsumption = numHandler(anestheticsConsumption);
                 result.durationOfFirstStageOfLabor = numHandler(item.observal.durationOfFirstStageOfLabor);
                 result.durationOfSecondStageOfLabor = numHandler(item.observal.durationOfSecondStageOfLabor);
-                result.anestheticsConsumptionPerTime = anestheticsConsumption !== null && durationOfAnalgesia !== null ? numHandler(anestheticsConsumption / durationOfAnalgesia) : null;
+                result.anestheticsConsumptionPerTime = anestheticsConsumption !== null && durationOfAnalgesia !== null ? (anestheticsConsumption / durationOfAnalgesia).toFixed(2) : null;
                 result.hasCaesareanSection = boolHandler(item.observal.hasCaesareanSection);
                 result.hasInstrumental = boolHandler(item.observal.hasInstrumental);
                 result.hasLateralEpisiotomy = boolHandler(item.observal.hasLateralEpisiotomy);
