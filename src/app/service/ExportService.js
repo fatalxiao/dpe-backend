@@ -92,6 +92,7 @@ async function exportPatients() {
             {name: '脐静脉BE', key: 'venousBe'}],
 
         boolHandler = ExportFormat.formatBoolean,
+        numHandler = ExportFormat.formatNumber,
 
         data = await PatientDao.getFullPatients(),
         sensoryBlocks = await SensoryBlockDao.getSensoryBlocks(),
@@ -107,18 +108,18 @@ async function exportPatients() {
                 groupName: item.group ? item.group.name : '',
                 name: item.name,
                 id: item.id,
-                age: item.age,
-                height: item.height,
-                weight: item.weight,
+                age: numHandler(item.age),
+                height: numHandler(item.height),
+                weight: numHandler(item.weight),
                 bmi: item.weight && item.height ? (item.weight / ((item.height / 100) ** 2)).toFixed(2) : null,
-                gestationalDays: item.gestationalDays,
-                initialVasScore: item.initialVasScore,
-                cervicalDilationAtTimeOfEA: item.cervicalDilationAtTimeOfEA,
-                systolicBloodPressure: item.systolicBloodPressure,
-                diastolicBloodPressure: item.diastolicBloodPressure,
-                heartRate: item.heartRate,
-                pulseOxygenSaturation: item.pulseOxygenSaturation,
-                fetalHeartRate: item.fetalHeartRate,
+                gestationalDays: numHandler(item.gestationalDays),
+                initialVasScore: numHandler(item.initialVasScore),
+                cervicalDilationAtTimeOfEA: numHandler(item.cervicalDilationAtTimeOfEA),
+                systolicBloodPressure: numHandler(item.systolicBloodPressure),
+                diastolicBloodPressure: numHandler(item.diastolicBloodPressure),
+                heartRate: numHandler(item.heartRate),
+                pulseOxygenSaturation: numHandler(item.pulseOxygenSaturation),
+                fetalHeartRate: numHandler(item.fetalHeartRate),
                 hasOxytocinAtTimeOfEA: boolHandler(item.hasOxytocinAtTimeOfEA)
             };
 
