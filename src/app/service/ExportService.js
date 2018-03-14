@@ -3,7 +3,7 @@ import SensoryBlockDao from '../dao/SensoryBlockDao.js';
 
 import AC from '../utils/AnalgesiaCalculation.js';
 import OC from '../utils/ObservalCalculation.js';
-import DataFormat from '../utils/DataFormat.js';
+import ExportFormat from '../utils/ExportFormat.js';
 
 async function exportPatients() {
 
@@ -91,7 +91,7 @@ async function exportPatients() {
             {name: '脐静脉PH', key: 'venousPh'},
             {name: '脐静脉BE', key: 'venousBe'}],
 
-        boolHandler = DataFormat.formatBooleanToNumber,
+        boolHandler = ExportFormat.formatBoolean,
 
         data = await PatientDao.getFullPatients(),
         sensoryBlocks = await SensoryBlockDao.getSensoryBlocks(),
