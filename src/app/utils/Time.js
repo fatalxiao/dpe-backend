@@ -1,3 +1,5 @@
+import moment from 'moment';
+
 function duration(t1, t2, format = 'YYYY-MM-DD HH:mm:ss') {
 
     if (!t1 || !t2) {
