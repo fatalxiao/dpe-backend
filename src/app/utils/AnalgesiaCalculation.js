@@ -7,17 +7,17 @@ const
 
     BASE_DATA = {
         hasContraction: false,
-        vasScore: '',
+        vasScore: null,
         thoracicSensoryBlockLeft: null,
         thoracicSensoryBlockRight: null,
         sacralSensoryBlockLeft: null,
         sacralSensoryBlockRight: null,
-        bromageScore: '',
-        systolicBloodPressure: '',
-        diastolicBloodPressure: '',
-        heartRate: '',
-        pulseOxygenSaturation: '',
-        fetalHeartRate: ''
+        bromageScore: null,
+        systolicBloodPressure: null,
+        diastolicBloodPressure: null,
+        heartRate: null,
+        pulseOxygenSaturation: null,
+        fetalHeartRate: null
     },
 
     DEFAULT_TIMEPOINTS = [0, 2, 4, 6, 8, 10, 12, 14, 16, 18,
