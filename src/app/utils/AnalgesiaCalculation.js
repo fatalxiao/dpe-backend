@@ -150,7 +150,9 @@ function maxThoracicSensoryBlock(analgesiaData, position) {
         return null;
     }
 
-    return '' + Math.max(...analgesiaData.map(item => item[`thoracicSensoryBlock${position}Value`]));
+    const data = analgesiaData.map(item => item[`thoracicSensoryBlock${position}Value`]).filter(item => item);
+
+    return data.length > 0 ? ('' + Math.max(data)) : null;
 
 }
 
@@ -160,7 +162,9 @@ function minSacralSensoryBlock(analgesiaData, position) {
         return null;
     }
 
-    return '' + Math.min(...analgesiaData.map(item => item[`sacralSensoryBlock${position}Value`]));
+    const data = analgesiaData.map(item => item[`sacralSensoryBlock${position}Value`]).filter(item => item);
+
+    return data.length > 0 ? ('' + Math.min(data)) : null;
 
 }
 
