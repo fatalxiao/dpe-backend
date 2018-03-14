@@ -5,7 +5,7 @@ function formatBoolean(value) {
 }
 
 function formatNumber(value) {
-    return isNaN(value) ? null : '' + value;
+    return isNaN(value) || value === null ? '' : '' + value;
 }
 
 function formatString(value) {
