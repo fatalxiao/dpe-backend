@@ -48,7 +48,7 @@ async function exportPatients() {
             {name: '到达S1时间', key: 'timePointOfS1'},
             {name: '到达S2时间', key: 'timePointOfS2'},
             {name: 'PCA次数', key: 'pcaCount'},
-            {name: '首次PCA时间', key: 'firstPcaTime'},
+            {name: '首次PCA时间', key: 'durationOfFirstPcaTime'},
             {name: 'bolus次数', key: 'manualBolusCount'},
             {name: '首次bolus时间', key: 'firstManualBolusTime'},
             {name: '硬膜外导管重置', key: 'hasEpiduralCatheterAdjuestment'},
@@ -169,11 +169,12 @@ async function exportPatients() {
 
             if (item.observal) {
 
-                const durationOfAnalgesia = OC.durationOfAnalgesia(item.observal),
+                const durationOfFirstPcaTime = OC.durationOfFirstPcaTime(item.observal),
+                    durationOfAnalgesia = OC.durationOfAnalgesia(item.observal),
                     anestheticsConsumption = OC.anestheticsConsumption(item.observal);
 
                 result.pcaCount = numHandler(item.observal.pcaCount);
-                result.firstPcaTime = item.observal.firstPcaTime;
+                result.durationOfFirstPcaTime = numHandler(durationOfFirstPcaTime);
                 result.manualBolusCount = numHandler(item.observal.manualBolusCount);
                 result.firstManualBolusTime = item.observal.firstManualBolusTime;
                 result.hasEpiduralCatheterAdjuestment = boolHandler(item.observal.hasEpiduralCatheterAdjuestment);
