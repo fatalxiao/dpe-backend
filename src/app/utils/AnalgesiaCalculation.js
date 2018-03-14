@@ -39,10 +39,10 @@ function fullFillAnalgesiaData(analgesiaData) {
 
         for (let resItem of analgesiaData) {
 
-            const item = data.find(a => a.timePoint === resItem.timePoint);
+            const index = data.findIndex(a => a.timePoint === resItem.timePoint);
 
-            if (item) {
-                Object.assign(item, resItem);
+            if (index > -1) {
+                data[index] = resItem;
             } else {
 
                 let timePoint = DEFAULT_TIMEPOINTS[DEFAULT_TIMEPOINTS.length - 1];
@@ -52,7 +52,7 @@ function fullFillAnalgesiaData(analgesiaData) {
                     timePoint += 1.5 * 60;
 
                     if (timePoint >= resItem.timePoint) {
-                        data.push(Object.assign({...BASE_DATA, timePoint}, resItem));
+                        data.push(resItem);
                     } else {
                         const i = data.findIndex(a => a.timePoint === timePoint);
                         if (i < 0) {
