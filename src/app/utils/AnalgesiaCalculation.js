@@ -80,7 +80,7 @@ function isVasLessThan1(analgesiaData, timePoint) {
             return false;
         }
 
-        if (item.vasScore !== null && item.vasScore <= 1) {
+        if (item.hasContraction && item.vasScore !== null && item.vasScore <= 1) {
             return true;
         }
 
