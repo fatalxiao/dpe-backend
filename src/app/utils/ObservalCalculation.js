@@ -6,7 +6,17 @@ function durationOfFirstPcaTime(observalData) {
         return null;
     }
 
-    return '' + (~~(Time.duration(observalData.initialTime, observalData.firstPcaTime) / 1000 / 60) + 60);
+    return '' + (~~(Time.duration(observalData.initialTime, observalData.firstPcaTime) / 1000 / 60));
+
+}
+
+function durationOfFirstManualBolusTime(observalData) {
+
+    if (!observalData || !observalData.initialTime || !observalData.firstManualBolusTime) {
+        return null;
+    }
+
+    return '' + (~~(Time.duration(observalData.initialTime, observalData.firstManualBolusTime) / 1000 / 60));
 
 }
 
@@ -48,6 +58,7 @@ function anestheticsConsumption(observalData) {
 
 export default {
     durationOfFirstPcaTime,
+    durationOfFirstManualBolusTime,
     durationOfAnalgesia,
     anestheticsConsumption
 };

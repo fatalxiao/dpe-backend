@@ -50,7 +50,7 @@ async function exportPatients() {
             {name: 'PCA次数', key: 'pcaCount'},
             {name: '首次PCA时间', key: 'durationOfFirstPcaTime'},
             {name: 'bolus次数', key: 'manualBolusCount'},
-            {name: '首次bolus时间', key: 'firstManualBolusTime'},
+            {name: '首次bolus时间', key: 'durationOfFirstManualBolusTime'},
             {name: '硬膜外导管重置', key: 'hasEpiduralCatheterAdjuestment'},
             {name: '硬膜外导管调整', key: 'hasEpiduralCatheterReplacement'},
             {name: 'DPE未见脑脊液', key: 'isUnabledToPunctureDura'},
@@ -170,13 +170,14 @@ async function exportPatients() {
             if (item.observal) {
 
                 const durationOfFirstPcaTime = OC.durationOfFirstPcaTime(item.observal),
+                    durationOfFirstManualBolusTime = OC.durationOfFirstManualBolusTime(item.observal),
                     durationOfAnalgesia = OC.durationOfAnalgesia(item.observal),
                     anestheticsConsumption = OC.anestheticsConsumption(item.observal);
 
                 result.pcaCount = numHandler(item.observal.pcaCount);
                 result.durationOfFirstPcaTime = numHandler(durationOfFirstPcaTime);
                 result.manualBolusCount = numHandler(item.observal.manualBolusCount);
-                result.firstManualBolusTime = item.observal.firstManualBolusTime;
+                result.durationOfFirstManualBolusTime = numHandler(durationOfFirstManualBolusTime);
                 result.hasEpiduralCatheterAdjuestment = boolHandler(item.observal.hasEpiduralCatheterAdjuestment);
                 result.hasEpiduralCatheterReplacement = boolHandler(item.observal.hasEpiduralCatheterReplacement);
                 result.isUnabledToPunctureDura = boolHandler(item.observal.isUnabledToPunctureDura);
