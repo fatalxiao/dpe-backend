@@ -112,15 +112,15 @@ function timePointOfVasLessThan1(analgesiaData) {
     }
 
     if (index === 0) {
-        return '0';
+        return 0;
     }
 
     const prevItem = analgesiaData[index - 1];
     if (prevItem.vasScore === 0) {
-        return '' + prevItem.timePoint;
+        return prevItem.timePoint;
     }
 
-    return '' + analgesiaData[index].timePoint;
+    return analgesiaData[index].timePoint;
 
 }
 

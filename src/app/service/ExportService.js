@@ -141,7 +141,7 @@ async function exportPatients() {
 
                 result.isVasLessThan1In20 = boolHandler(AC.isVasLessThan1(analgesiaData, 20));
                 result.isVasLessThan1In30 = boolHandler(AC.isVasLessThan1(analgesiaData, 30));
-                result.timePointOfVasLessThan1 = AC.timePointOfVasLessThan1(analgesiaData);
+                result.timePointOfVasLessThan1 = numHandler(AC.timePointOfVasLessThan1(analgesiaData));
                 result.isS1In20Left = boolHandler(isS1In20Left);
                 result.isS1In20Right = boolHandler(isS1In20Right);
                 result.isS1In20Both = boolHandler(isS1In20Left && isS1In20Right);
