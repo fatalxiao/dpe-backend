@@ -154,15 +154,15 @@ async function exportPatients() {
                 result.isS2In30Left = boolHandler(isS2In30Left);
                 result.isS2In30Right = boolHandler(isS2In30Right);
                 result.isS2In30Both = boolHandler(isS2In30Left && isS2In30Right);
-                result.maxThoracicSensoryBlockLeft = AC.maxThoracicSensoryBlock(analgesiaData, AC.Position.LEFT);
-                result.maxThoracicSensoryBlockRight = AC.maxThoracicSensoryBlock(analgesiaData, AC.Position.RIGHT);
-                result.minSacralSensoryBlockLeft = AC.minSacralSensoryBlock(analgesiaData, AC.Position.LEFT);
-                result.minSacralSensoryBlockRight = AC.minSacralSensoryBlock(analgesiaData, AC.Position.RIGHT);
+                result.maxThoracicSensoryBlockLeft = numHandler(AC.maxThoracicSensoryBlock(analgesiaData, AC.Position.LEFT));
+                result.maxThoracicSensoryBlockRight = numHandler(AC.maxThoracicSensoryBlock(analgesiaData, AC.Position.RIGHT));
+                result.minSacralSensoryBlockLeft = numHandler(AC.minSacralSensoryBlock(analgesiaData, AC.Position.LEFT));
+                result.minSacralSensoryBlockRight = numHandler(AC.minSacralSensoryBlock(analgesiaData, AC.Position.RIGHT));
                 result.isUnilateralSensoryBlock = boolHandler(AC.isUnilateralSensoryBlock(analgesiaData));
-                result.timePointOfT8 = AC.timePointOfThoracicSensoryBlock(analgesiaData, t8Value);
-                result.timePointOfT10 = AC.timePointOfThoracicSensoryBlock(analgesiaData, t10Value);
-                result.timePointOfS1 = AC.timePointOfSacralSensoryBlock(analgesiaData, s1Value);
-                result.timePointOfS2 = AC.timePointOfSacralSensoryBlock(analgesiaData, s2Value);
+                result.timePointOfT8 = numHandler(AC.timePointOfThoracicSensoryBlock(analgesiaData, t8Value));
+                result.timePointOfT10 = numHandler(AC.timePointOfThoracicSensoryBlock(analgesiaData, t10Value));
+                result.timePointOfS1 = numHandler(AC.timePointOfSacralSensoryBlock(analgesiaData, s1Value));
+                result.timePointOfS2 = numHandler(AC.timePointOfSacralSensoryBlock(analgesiaData, s2Value));
                 result.isFetalHeartRateDecreased = boolHandler(AC.isFetalHeartRateDecreased(analgesiaData));
 
             }
@@ -172,7 +172,7 @@ async function exportPatients() {
                 const durationOfAnalgesia = OC.durationOfAnalgesia(item.observal),
                     anestheticsConsumption = OC.anestheticsConsumption(item.observal);
 
-                result.pcaCount = item.observal.pcaCount;
+                result.pcaCount = numHandler(item.observal.pcaCount);
                 result.firstPcaTime = item.observal.firstPcaTime;
                 result.manualBolusCount = item.observal.manualBolusCount;
                 result.firstManualBolusTime = item.observal.firstManualBolusTime;
