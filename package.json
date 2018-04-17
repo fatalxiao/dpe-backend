@@ -5,8 +5,11 @@
     "scripts": {
         "dev": "nodemon src/main --exec babel-node $NODE_DEBUG_OPTION",
         "clean": "rimraf dist",
-        "package": "cross-env NODE_ENV=production babel src --out-dir dist",
-        "build": "npm run clean & npm run package"
+        "package": "cross-env NODE_ENV=production babel src --out-dir dist --ignore src/swagger",
+        "copy": "babel src/swagger --out-dir dist/swagger --copy-files",
+        "build": "npm run clean && npm run package && npm run copy",
+        "run": "cross-env NODE_ENV=production node dist/main",
+        "start": "npm run build && npm run run"
     },
     "dependencies": {
         "@koa/cors": "^2.2.1",
