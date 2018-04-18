@@ -1,6 +1,4 @@
-process.env.NODE_ENV = '"release"';
-
-var gulp = require('gulp'),
+const gulp = require('gulp'),
     babel = require('gulp-babel'),
     gulpSequence = require('gulp-sequence');
 
