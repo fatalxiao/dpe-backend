@@ -224,7 +224,7 @@ function isFetalHeartRateDecreased(analgesiaData) {
     }
 
     for (let item of analgesiaData) {
-        if (item.fetalHeartRate !== null && item.fetalHeartRate < 110) {
+        if (item.timePoint < 30 && item.fetalHeartRate !== null && item.fetalHeartRate < 110) {
             return true;
         }
     }
