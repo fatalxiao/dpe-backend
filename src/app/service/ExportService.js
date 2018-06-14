@@ -102,7 +102,7 @@ async function exportPatients() {
         t8Value = sensoryBlocks.find(item => item.type === 1 && item.name === 'T8').value,
         t10Value = sensoryBlocks.find(item => item.type === 1 && item.name === 'T10').value,
 
-        excelData = data.map(item => {
+        excelData = data.filter(item => item.status).map(item => {
 
             const result = {
                 groupName: item.group ? item.group.name : '',
