@@ -89,7 +89,8 @@ async function exportPatients() {
             {name: '脐动脉PH', key: 'arterialPh'},
             {name: '脐动脉BE', key: 'arterialBe'},
             {name: '脐静脉PH', key: 'venousPh'},
-            {name: '脐静脉BE', key: 'venousBe'}],
+            {name: '脐静脉BE', key: 'venousBe'},
+            {name: '备注', key: 'desc'}],
 
         boolHandler = ExportFormat.formatBoolean,
         numHandler = ExportFormat.formatNumber,
@@ -120,7 +121,8 @@ async function exportPatients() {
                 heartRate: numHandler(item.heartRate),
                 pulseOxygenSaturation: numHandler(item.pulseOxygenSaturation),
                 fetalHeartRate: numHandler(item.fetalHeartRate),
-                hasOxytocinAtTimeOfEA: boolHandler(item.hasOxytocinAtTimeOfEA)
+                hasOxytocinAtTimeOfEA: boolHandler(item.hasOxytocinAtTimeOfEA),
+                desc: item.description ? [item.description] : []
             };
 
             if (item.analgesia) {
@@ -214,7 +216,10 @@ async function exportPatients() {
                 result.arterialBe = numHandler(item.observal.arterialBe);
                 result.venousPh = numHandler(item.observal.venousPh);
                 result.venousBe = numHandler(item.observal.venousBe);
+                item.observal.description && result.desc.push(item.observal.description);
             }
+
+            result.desc = result.desc.join('\r\n');
 
             return header.map(item => result[item.key] || null);
 
