@@ -219,7 +219,7 @@ async function exportPatients() {
                 item.observal.description && result.desc.push(item.observal.description);
             }
 
-            result.desc = result.desc.join('\r\n');
+            result.desc = result.desc.join('，');
 
             return header.map(item => result[item.key] || null);
 

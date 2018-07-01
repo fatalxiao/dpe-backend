@@ -1,4 +1,5 @@
 import xlsx from 'node-xlsx';
+import moment from 'moment';
 
 import PatientService from '../service/PatientService.js';
 import ExportService from '../service/ExportService.js';
@@ -55,7 +56,7 @@ class PatientController {
         const data = await ExportService.exportPatients();
 
         ctx.set('Content-Type', 'application/vnd.openxmlformats');
-        ctx.set('Content-Disposition', `attachment;filename=dpe-data.xlsx`);
+        ctx.set('Content-Disposition', `attachment;filename=DPE data ${moment().format('YYYY-MM-DD')}.xlsx`);
 
         ctx.response.body = xlsx.build([{name: 'DPE Data', data: data}]);
 
