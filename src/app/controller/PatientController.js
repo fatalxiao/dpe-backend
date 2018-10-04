@@ -53,9 +53,7 @@ class PatientController {
     @ApiOperation({value: 'export patients', notes: ''})
     static async exportPatients(ctx) {
 
-        const dpeData = await ExportService.exportDPEData(),
-            meanVASData = await ExportService.exportMeanVAS(),
-            meanVASWithContractionData = await ExportService.exportMeanVASWithContraction();
+        const {dpeData, meanVASData, meanVASWithContractionData} = await ExportService.getExportData();
 
         ctx.set('Content-Type', 'application/vnd.openxmlformats');
         ctx.set('Content-Disposition', `attachment;filename=DPE data ${moment().format('YYYY-MM-DD')}.xlsx`);
