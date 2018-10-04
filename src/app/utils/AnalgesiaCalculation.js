@@ -309,7 +309,11 @@ function isAdequatePainRelief(analgesiaData, timePoint) {
         (
             analgesiaData[index].hasContraction
             ||
-            (analgesiaData[index + 1] && analgesiaData[index + 1].hasContraction && analgesiaData[index].vasScore <= 1)
+            (
+                analgesiaData[index + 1]
+                && analgesiaData[index + 1].hasContraction
+                && analgesiaData[index + 1].vasScore <= 1
+            )
         )
     ) {
         return true;
