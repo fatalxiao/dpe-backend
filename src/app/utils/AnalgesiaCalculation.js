@@ -152,7 +152,7 @@ function timePointOfVasLessThan1(analgesiaData) {
     }
 
     const prevItem = analgesiaData[index - 1];
-    if (prevItem && prevItem.vasScore <= 1) {
+    if (prevItem && prevItem.vasScore !== null && prevItem.vasScore <= 1) {
         return prevItem.timePoint;
     }
 
@@ -304,7 +304,7 @@ function isAdequatePainRelief(analgesiaData, timePoint) {
         return false;
     }
 
-    if (analgesiaData[index].vasScore <= 1
+    if (analgesiaData[index].vasScore !== null && analgesiaData[index].vasScore <= 1
         &&
         (
             analgesiaData[index].hasContraction
