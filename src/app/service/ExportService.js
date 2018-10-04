@@ -8,8 +8,10 @@ import ExportFormat from '../utils/ExportFormat.js';
 const boolHandler = ExportFormat.formatBoolean,
     numHandler = ExportFormat.formatNumber;
 
-async function getExportDPEData(data = await PatientDao.getFullPatients(),
-                                sensoryBlocks = await SensoryBlockDao.getSensoryBlocks()) {
+async function getExportDPEData(data, sensoryBlocks) {
+
+    data = data || await PatientDao.getFullPatients();
+    sensoryBlocks = sensoryBlocks || await SensoryBlockDao.getSensoryBlocks();
 
     const header = [{name: '组别', key: 'groupName'},
             {name: '姓名', key: 'name'},
@@ -253,7 +255,9 @@ async function getExportDPEData(data = await PatientDao.getFullPatients(),
 
 };
 
-async function getExportMeanVAS(data = await PatientDao.getFullPatients()) {
+async function getExportMeanVAS(data) {
+
+    data = data || await PatientDao.getFullPatients();
 
     const header = [
             {name: '0min时VAS评分', key: 'vasIn0'},
@@ -303,7 +307,9 @@ async function getExportMeanVAS(data = await PatientDao.getFullPatients()) {
 
 };
 
-async function getExportMeanVASWithContraction(data = await PatientDao.getFullPatients()) {
+async function getExportMeanVASWithContraction(data) {
+
+    data = data || await PatientDao.getFullPatients();
 
     const header = [
             {name: '0min时有宫缩的VAS评分', key: 'vasIn0'},
@@ -353,13 +359,17 @@ async function getExportMeanVASWithContraction(data = await PatientDao.getFullPa
 
 };
 
-async function getExportData(data = await PatientDao.getFullPatients(),
-                             sensoryBlocks = await SensoryBlockDao.getSensoryBlocks()) {
+async function getExportData(data, sensoryBlocks) {
+
+    data = data || await PatientDao.getFullPatients();
+    sensoryBlocks = sensoryBlocks || await SensoryBlockDao.getSensoryBlocks();
+
     return {
         dpeData: getExportDPEData(data, sensoryBlocks),
         meanVASData: getExportMeanVAS(data),
         meanVASWithContractionData: getExportMeanVASWithContraction(data)
     };
+
 };
 
 export default {
