@@ -283,6 +283,9 @@ async function getExportMeanVAS(data) {
             };
 
             if (item.analgesia) {
+
+                const analgesiaData = AC.fullFillAnalgesiaData(item.analgesia);
+
                 result.vasIn0 = AC.getVasScore(analgesiaData, 0);
                 result.vasIn2 = AC.getVasScore(analgesiaData, 2);
                 result.vasIn4 = AC.getVasScore(analgesiaData, 4);
@@ -295,6 +298,7 @@ async function getExportMeanVAS(data) {
                 result.vasIn18 = AC.getVasScore(analgesiaData, 18);
                 result.vasIn20 = AC.getVasScore(analgesiaData, 20);
                 result.vasIn30 = AC.getVasScore(analgesiaData, 30);
+
             }
 
             return header.map(item => result[item.key] || null);
@@ -335,6 +339,9 @@ async function getExportMeanVASWithContraction(data) {
             };
 
             if (item.analgesia) {
+
+                const analgesiaData = AC.fullFillAnalgesiaData(item.analgesia);
+
                 result.vasIn0 = AC.getVasScoreWithContraction(analgesiaData, 0);
                 result.vasIn2 = AC.getVasScoreWithContraction(analgesiaData, 2);
                 result.vasIn4 = AC.getVasScoreWithContraction(analgesiaData, 4);
@@ -347,6 +354,7 @@ async function getExportMeanVASWithContraction(data) {
                 result.vasIn18 = AC.getVasScoreWithContraction(analgesiaData, 18);
                 result.vasIn20 = AC.getVasScoreWithContraction(analgesiaData, 20);
                 result.vasIn30 = AC.getVasScoreWithContraction(analgesiaData, 30);
+
             }
 
             return header.map(item => result[item.key] || null);
@@ -365,9 +373,9 @@ async function getExportData(data, sensoryBlocks) {
     sensoryBlocks = sensoryBlocks || await SensoryBlockDao.getSensoryBlocks();
 
     return {
-        dpeData: getExportDPEData(data, sensoryBlocks),
-        meanVASData: getExportMeanVAS(data),
-        meanVASWithContractionData: getExportMeanVASWithContraction(data)
+        dpeData: await getExportDPEData(data, sensoryBlocks),
+        meanVASData: await getExportMeanVAS(data),
+        meanVASWithContractionData: await getExportMeanVASWithContraction(data)
     };
 
 };
