@@ -126,18 +126,8 @@ function timePointOfVasLessThan1(analgesiaData) {
         return null;
     }
 
-    let index;
-
-    for (let i = 0, len = analgesiaData.length; i < len; i++) {
-
-        const item = analgesiaData[i];
-
-        if (item.hasContraction && item.vasScore !== null && item.vasScore <= 1) {
-            index = i;
-            break;
-        }
-
-    }
+    const index = analgesiaData.findIndex(item =>
+        item && item.hasContraction && item.vasScore !== null && item.vasScore <= 1);
 
     if (index === undefined) {
         return null;
@@ -148,7 +138,7 @@ function timePointOfVasLessThan1(analgesiaData) {
     }
 
     const prevItem = analgesiaData[index - 1];
-    if (prevItem.vasScore === 0) {
+    if (prevItem.vasScore <= 1) {
         return prevItem.timePoint;
     }
 
