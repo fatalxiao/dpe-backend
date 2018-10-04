@@ -68,6 +68,22 @@ function fullFillAnalgesiaData(analgesiaData) {
 
 }
 
+function getVasScore(analgesiaData, timePoint) {
+
+    if (!analgesiaData || analgesiaData.length < 1) {
+        return '';
+    }
+
+    const index = analgesiaData.findIndex(item => item && item.timePoint === timePoint);
+
+    if (index === -1) {
+        return '';
+    }
+
+    return analgesiaData[index].vasScore;
+
+}
+
 function isVasLessThan1(analgesiaData, timePoint) {
 
     if (!analgesiaData || analgesiaData.length < 1) {
@@ -258,6 +274,7 @@ export default {
     Position,
 
     fullFillAnalgesiaData,
+    getVasScore,
     isVasLessThan1,
     timePointOfVasLessThan1,
     isSacralSensoryInTime,
