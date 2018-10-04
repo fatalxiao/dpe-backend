@@ -5,7 +5,11 @@ import AC from '../utils/AnalgesiaCalculation.js';
 import OC from '../utils/ObservalCalculation.js';
 import ExportFormat from '../utils/ExportFormat.js';
 
-async function exportPatients() {
+const boolHandler = ExportFormat.formatBoolean,
+    numHandler = ExportFormat.formatNumber;
+
+async function getExportDPEData(data = await PatientDao.getFullPatients(),
+                                sensoryBlocks = await SensoryBlockDao.getSensoryBlocks()) {
 
     const header = [{name: '组别', key: 'groupName'},
             {name: '姓名', key: 'name'},
@@ -103,12 +107,6 @@ async function exportPatients() {
             {name: '脐静脉PH', key: 'venousPh'},
             {name: '脐静脉BE', key: 'venousBe'},
             {name: '备注', key: 'desc'}],
-
-        boolHandler = ExportFormat.formatBoolean,
-        numHandler = ExportFormat.formatNumber,
-
-        data = await PatientDao.getFullPatients(),
-        sensoryBlocks = await SensoryBlockDao.getSensoryBlocks(),
 
         s1Value = sensoryBlocks.find(item => item.type === 2 && item.name === 'S1').value,
         s2Value = sensoryBlocks.find(item => item.type === 2 && item.name === 'S2').value,
@@ -255,6 +253,118 @@ async function exportPatients() {
 
 };
 
+async function getExportMeanVAS(data = await PatientDao.getFullPatients()) {
+
+    const header = [
+            {name: '0min时VAS评分', key: 'vasIn0'},
+            {name: '2min时VAS评分', key: 'vasIn2'},
+            {name: '4min时VAS评分', key: 'vasIn4'},
+            {name: '6min时VAS评分', key: 'vasIn6'},
+            {name: '8min时VAS评分', key: 'vasIn8'},
+            {name: '10min时VAS评分', key: 'vasIn10'},
+            {name: '12min时VAS评分', key: 'vasIn12'},
+            {name: '14min时VAS评分', key: 'vasIn14'},
+            {name: '16min时VAS评分', key: 'vasIn16'},
+            {name: '18min时VAS评分', key: 'vasIn18'},
+            {name: '20min时VAS评分', key: 'vasIn20'},
+            {name: '30min时VAS评分', key: 'vasIn30'}
+        ],
+
+        excelData = data.filter(item => item.status).map(item => {
+
+            const result = {
+                groupName: item.group ? item.group.name : '',
+                name: item.name,
+                id: item.id
+            };
+
+            if (item.analgesia) {
+                result.vasIn0 = AC.getVasScore(analgesiaData, 0);
+                result.vasIn2 = AC.getVasScore(analgesiaData, 2);
+                result.vasIn4 = AC.getVasScore(analgesiaData, 4);
+                result.vasIn6 = AC.getVasScore(analgesiaData, 6);
+                result.vasIn8 = AC.getVasScore(analgesiaData, 8);
+                result.vasIn10 = AC.getVasScore(analgesiaData, 10);
+                result.vasIn12 = AC.getVasScore(analgesiaData, 12);
+                result.vasIn14 = AC.getVasScore(analgesiaData, 14);
+                result.vasIn16 = AC.getVasScore(analgesiaData, 16);
+                result.vasIn18 = AC.getVasScore(analgesiaData, 18);
+                result.vasIn20 = AC.getVasScore(analgesiaData, 20);
+                result.vasIn30 = AC.getVasScore(analgesiaData, 30);
+            }
+
+            return header.map(item => result[item.key] || null);
+
+        });
+
+    excelData.unshift(header.map(item => item.name));
+
+    return excelData;
+
+};
+
+async function getExportMeanVASWithContraction(data = await PatientDao.getFullPatients()) {
+
+    const header = [
+            {name: '0min时VAS评分', key: 'vasIn0'},
+            {name: '2min时VAS评分', key: 'vasIn2'},
+            {name: '4min时VAS评分', key: 'vasIn4'},
+            {name: '6min时VAS评分', key: 'vasIn6'},
+            {name: '8min时VAS评分', key: 'vasIn8'},
+            {name: '10min时VAS评分', key: 'vasIn10'},
+            {name: '12min时VAS评分', key: 'vasIn12'},
+            {name: '14min时VAS评分', key: 'vasIn14'},
+            {name: '16min时VAS评分', key: 'vasIn16'},
+            {name: '18min时VAS评分', key: 'vasIn18'},
+            {name: '20min时VAS评分', key: 'vasIn20'},
+            {name: '30min时VAS评分', key: 'vasIn30'}
+        ],
+
+        excelData = data.filter(item => item.status).map(item => {
+
+            const result = {
+                groupName: item.group ? item.group.name : '',
+                name: item.name,
+                id: item.id
+            };
+
+            if (item.analgesia) {
+                result.vasIn0 = AC.getVasScore(analgesiaData, 0);
+                result.vasIn2 = AC.getVasScore(analgesiaData, 2);
+                result.vasIn4 = AC.getVasScore(analgesiaData, 4);
+                result.vasIn6 = AC.getVasScore(analgesiaData, 6);
+                result.vasIn8 = AC.getVasScore(analgesiaData, 8);
+                result.vasIn10 = AC.getVasScore(analgesiaData, 10);
+                result.vasIn12 = AC.getVasScore(analgesiaData, 12);
+                result.vasIn14 = AC.getVasScore(analgesiaData, 14);
+                result.vasIn16 = AC.getVasScore(analgesiaData, 16);
+                result.vasIn18 = AC.getVasScore(analgesiaData, 18);
+                result.vasIn20 = AC.getVasScore(analgesiaData, 20);
+                result.vasIn30 = AC.getVasScore(analgesiaData, 30);
+            }
+
+            return header.map(item => result[item.key] || null);
+
+        });
+
+    excelData.unshift(header.map(item => item.name));
+
+    return excelData;
+
+};
+
+async function getExportData(data = await PatientDao.getFullPatients(),
+                             sensoryBlocks = await SensoryBlockDao.getSensoryBlocks()) {
+    return {
+        dpeData: getExportDPEData(data, sensoryBlocks),
+        meanVASData: getExportMeanVAS(data),
+        meanVASWithContractionData: getExportMeanVASWithContraction(data)
+    };
+};
+
 export default {
-    exportPatients
+    getExportDPEData,
+    getExportMeanVAS,
+    getExportMeanVASWithContraction,
+    getExportData
 };
