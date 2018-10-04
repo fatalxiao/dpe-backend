@@ -120,6 +120,12 @@ function isVasLessThan1(analgesiaData, timePoint) {
 
 }
 
+/**
+ * 获取VAS评分小于等于1的时间点
+ * 首先找到最早有宫缩且VAS评分<=1的时间点，如果找到的前一时间点VAS评分<=1取前一时间点，否则取找到的时间点
+ * @param analgesiaData
+ * @returns {*}
+ */
 function timePointOfVasLessThan1(analgesiaData) {
 
     if (!analgesiaData || analgesiaData.length < 1) {
@@ -255,6 +261,13 @@ function isFetalHeartRateDecreased(analgesiaData) {
 
 }
 
+/**
+ * 是否满意镇痛
+ * 如果当前时间点的VAS评分<=1，要么当前时间点有宫缩，要么下个时间点有宫缩切VAS评分<=1，即为true，否则为false
+ * @param analgesiaData
+ * @param timePoint
+ * @returns {boolean}
+ */
 function isAdequatePainRelief(analgesiaData, timePoint) {
 
     if (!analgesiaData || analgesiaData.length < 1) {
@@ -267,7 +280,14 @@ function isAdequatePainRelief(analgesiaData, timePoint) {
         return false;
     }
 
-    if (analgesiaData[index].hasContraction && analgesiaData[index].vasScore <= 1) {
+    if (analgesiaData[index].vasScore <= 1
+        &&
+        (
+            analgesiaData[index].hasContraction
+            ||
+            (analgesiaData[index + 1] && analgesiaData[index + 1].hasContraction && analgesiaData[index].vasScore <= 1)
+        )
+    ) {
         return true;
     }
 
