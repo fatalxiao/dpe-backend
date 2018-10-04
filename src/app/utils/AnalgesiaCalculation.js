@@ -233,6 +233,26 @@ function isFetalHeartRateDecreased(analgesiaData) {
 
 }
 
+function isAdequatePainRelief(analgesiaData, timePoint) {
+
+    if (!analgesiaData || analgesiaData.length < 1) {
+        return false;
+    }
+
+    const index = analgesiaData.findIndex(item => item && item.timePoint === timePoint);
+
+    if (index === -1) {
+        return false;
+    }
+
+    if (analgesiaData[index].hasContraction && analgesiaData[index].vasScore <= 1) {
+        return true;
+    }
+
+    return false;
+
+}
+
 export default {
 
     Position,
@@ -246,6 +266,7 @@ export default {
     isUnilateralSensoryBlock,
     timePointOfThoracicSensoryBlock,
     timePointOfSacralSensoryBlock,
-    isFetalHeartRateDecreased
+    isFetalHeartRateDecreased,
+    isAdequatePainRelief
 
 };
