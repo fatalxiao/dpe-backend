@@ -306,18 +306,18 @@ async function getExportMeanVAS(data = await PatientDao.getFullPatients()) {
 async function getExportMeanVASWithContraction(data = await PatientDao.getFullPatients()) {
 
     const header = [
-            {name: '0min时VAS评分', key: 'vasIn0'},
-            {name: '2min时VAS评分', key: 'vasIn2'},
-            {name: '4min时VAS评分', key: 'vasIn4'},
-            {name: '6min时VAS评分', key: 'vasIn6'},
-            {name: '8min时VAS评分', key: 'vasIn8'},
-            {name: '10min时VAS评分', key: 'vasIn10'},
-            {name: '12min时VAS评分', key: 'vasIn12'},
-            {name: '14min时VAS评分', key: 'vasIn14'},
-            {name: '16min时VAS评分', key: 'vasIn16'},
-            {name: '18min时VAS评分', key: 'vasIn18'},
-            {name: '20min时VAS评分', key: 'vasIn20'},
-            {name: '30min时VAS评分', key: 'vasIn30'}
+            {name: '0min时有宫缩的VAS评分', key: 'vasIn0'},
+            {name: '2min时有宫缩的VAS评分', key: 'vasIn2'},
+            {name: '4min时有宫缩的VAS评分', key: 'vasIn4'},
+            {name: '6min时有宫缩的VAS评分', key: 'vasIn6'},
+            {name: '8min时有宫缩的VAS评分', key: 'vasIn8'},
+            {name: '10min时有宫缩的VAS评分', key: 'vasIn10'},
+            {name: '12min时有宫缩的VAS评分', key: 'vasIn12'},
+            {name: '14min时有宫缩的VAS评分', key: 'vasIn14'},
+            {name: '16min时有宫缩的VAS评分', key: 'vasIn16'},
+            {name: '18min时有宫缩的VAS评分', key: 'vasIn18'},
+            {name: '20min时有宫缩的VAS评分', key: 'vasIn20'},
+            {name: '30min时有宫缩的VAS评分', key: 'vasIn30'}
         ],
 
         excelData = data.filter(item => item.status).map(item => {
@@ -329,18 +329,18 @@ async function getExportMeanVASWithContraction(data = await PatientDao.getFullPa
             };
 
             if (item.analgesia) {
-                result.vasIn0 = AC.getVasScore(analgesiaData, 0);
-                result.vasIn2 = AC.getVasScore(analgesiaData, 2);
-                result.vasIn4 = AC.getVasScore(analgesiaData, 4);
-                result.vasIn6 = AC.getVasScore(analgesiaData, 6);
-                result.vasIn8 = AC.getVasScore(analgesiaData, 8);
-                result.vasIn10 = AC.getVasScore(analgesiaData, 10);
-                result.vasIn12 = AC.getVasScore(analgesiaData, 12);
-                result.vasIn14 = AC.getVasScore(analgesiaData, 14);
-                result.vasIn16 = AC.getVasScore(analgesiaData, 16);
-                result.vasIn18 = AC.getVasScore(analgesiaData, 18);
-                result.vasIn20 = AC.getVasScore(analgesiaData, 20);
-                result.vasIn30 = AC.getVasScore(analgesiaData, 30);
+                result.vasIn0 = AC.getVasScoreWithContraction(analgesiaData, 0);
+                result.vasIn2 = AC.getVasScoreWithContraction(analgesiaData, 2);
+                result.vasIn4 = AC.getVasScoreWithContraction(analgesiaData, 4);
+                result.vasIn6 = AC.getVasScoreWithContraction(analgesiaData, 6);
+                result.vasIn8 = AC.getVasScoreWithContraction(analgesiaData, 8);
+                result.vasIn10 = AC.getVasScoreWithContraction(analgesiaData, 10);
+                result.vasIn12 = AC.getVasScoreWithContraction(analgesiaData, 12);
+                result.vasIn14 = AC.getVasScoreWithContraction(analgesiaData, 14);
+                result.vasIn16 = AC.getVasScoreWithContraction(analgesiaData, 16);
+                result.vasIn18 = AC.getVasScoreWithContraction(analgesiaData, 18);
+                result.vasIn20 = AC.getVasScoreWithContraction(analgesiaData, 20);
+                result.vasIn30 = AC.getVasScoreWithContraction(analgesiaData, 30);
             }
 
             return header.map(item => result[item.key] || null);
