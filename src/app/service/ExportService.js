@@ -26,6 +26,18 @@ async function exportPatients() {
             {name: '20min内VAS≤1', key: 'isVasLessThan1In20'},
             {name: '30min内VAS≤1', key: 'isVasLessThan1In30'},
             {name: 'VAS≤1的时间', key: 'timePointOfVasLessThan1'},
+            {name: '0min时是否达到满意镇痛', key: 'isAdequatePainReliefIn0'},
+            {name: '2min时是否达到满意镇痛', key: 'isAdequatePainReliefIn2'},
+            {name: '4min时是否达到满意镇痛', key: 'isAdequatePainReliefIn4'},
+            {name: '6min时是否达到满意镇痛', key: 'isAdequatePainReliefIn6'},
+            {name: '8min时是否达到满意镇痛', key: 'isAdequatePainReliefIn8'},
+            {name: '10min时是否达到满意镇痛', key: 'isAdequatePainReliefIn10'},
+            {name: '12min时是否达到满意镇痛', key: 'isAdequatePainReliefIn12'},
+            {name: '14min时是否达到满意镇痛', key: 'isAdequatePainReliefIn14'},
+            {name: '16min时是否达到满意镇痛', key: 'isAdequatePainReliefIn16'},
+            {name: '18min时是否达到满意镇痛', key: 'isAdequatePainReliefIn18'},
+            {name: '20min时是否达到满意镇痛', key: 'isAdequatePainReliefIn20'},
+            {name: '30min时是否达到满意镇痛', key: 'isAdequatePainReliefIn30'},
             {name: '20min内左侧是否达到S1', key: 'isS1In20Left'},
             {name: '20min内右侧是否达到S1', key: 'isS1In20Right'},
             {name: '20min内是否双侧是否达到S1', key: 'isS1In20Both'},
@@ -144,6 +156,18 @@ async function exportPatients() {
                 result.isVasLessThan1In20 = boolHandler(AC.isVasLessThan1(analgesiaData, 20));
                 result.isVasLessThan1In30 = boolHandler(AC.isVasLessThan1(analgesiaData, 30));
                 result.timePointOfVasLessThan1 = numHandler(AC.timePointOfVasLessThan1(analgesiaData));
+                result.isAdequatePainReliefIn0 = numHandler(AC.isAdequatePainRelief(analgesiaData, 0));
+                result.isAdequatePainReliefIn2 = numHandler(AC.isAdequatePainRelief(analgesiaData, 2));
+                result.isAdequatePainReliefIn4 = numHandler(AC.isAdequatePainRelief(analgesiaData, 4));
+                result.isAdequatePainReliefIn6 = numHandler(AC.isAdequatePainRelief(analgesiaData, 6));
+                result.isAdequatePainReliefIn8 = numHandler(AC.isAdequatePainRelief(analgesiaData, 8));
+                result.isAdequatePainReliefIn10 = numHandler(AC.isAdequatePainRelief(analgesiaData, 10));
+                result.isAdequatePainReliefIn12 = numHandler(AC.isAdequatePainRelief(analgesiaData, 12));
+                result.isAdequatePainReliefIn14 = numHandler(AC.isAdequatePainRelief(analgesiaData, 14));
+                result.isAdequatePainReliefIn16 = numHandler(AC.isAdequatePainRelief(analgesiaData, 16));
+                result.isAdequatePainReliefIn18 = numHandler(AC.isAdequatePainRelief(analgesiaData, 18));
+                result.isAdequatePainReliefIn20 = numHandler(AC.isAdequatePainRelief(analgesiaData, 20));
+                result.isAdequatePainReliefIn30 = numHandler(AC.isAdequatePainRelief(analgesiaData, 30));
                 result.isS1In20Left = boolHandler(isS1In20Left);
                 result.isS1In20Right = boolHandler(isS1In20Right);
                 result.isS1In20Both = boolHandler(isS1In20Left && isS1In20Right);
