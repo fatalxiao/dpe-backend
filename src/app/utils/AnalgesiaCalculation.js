@@ -74,6 +74,8 @@ function getVasScore(analgesiaData, timePoint) {
         return '';
     }
 
+    analgesiaData.sort((a, b) => a.timePoint - b.timePoint);
+
     const index = analgesiaData.findIndex(item => item && item.timePoint === timePoint);
 
     if (index === -1) {
@@ -273,6 +275,8 @@ function isAdequatePainRelief(analgesiaData, timePoint) {
     if (!analgesiaData || analgesiaData.length < 1) {
         return false;
     }
+
+    analgesiaData.sort((a, b) => a.timePoint - b.timePoint);
 
     const index = analgesiaData.findIndex(item => item && item.timePoint === timePoint);
 
