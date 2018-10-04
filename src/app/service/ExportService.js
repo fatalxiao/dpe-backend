@@ -13,7 +13,8 @@ async function getExportDPEData(data, sensoryBlocks) {
     data = data || await PatientDao.getFullPatients();
     sensoryBlocks = sensoryBlocks || await SensoryBlockDao.getSensoryBlocks();
 
-    const header = [{name: '组别', key: 'groupName'},
+    const header = [
+            {name: '组别', key: 'groupName'},
             {name: '姓名', key: 'name'},
             {name: '住院号', key: 'id'},
             {name: '年龄', key: 'age'},
@@ -108,7 +109,8 @@ async function getExportDPEData(data, sensoryBlocks) {
             {name: '脐动脉BE', key: 'arterialBe'},
             {name: '脐静脉PH', key: 'venousPh'},
             {name: '脐静脉BE', key: 'venousBe'},
-            {name: '备注', key: 'desc'}],
+            {name: '备注', key: 'desc'}
+        ],
 
         s1Value = sensoryBlocks.find(item => item.type === 2 && item.name === 'S1').value,
         s2Value = sensoryBlocks.find(item => item.type === 2 && item.name === 'S2').value,
@@ -260,6 +262,9 @@ async function getExportMeanVAS(data) {
     data = data || await PatientDao.getFullPatients();
 
     const header = [
+            {name: '组别', key: 'groupName'},
+            {name: '姓名', key: 'name'},
+            {name: '住院号', key: 'id'},
             {name: '0min时VAS评分', key: 'vasIn0'},
             {name: '2min时VAS评分', key: 'vasIn2'},
             {name: '4min时VAS评分', key: 'vasIn4'},
@@ -316,6 +321,9 @@ async function getExportMeanVASWithContraction(data) {
     data = data || await PatientDao.getFullPatients();
 
     const header = [
+            {name: '组别', key: 'groupName'},
+            {name: '姓名', key: 'name'},
+            {name: '住院号', key: 'id'},
             {name: '0min时有宫缩的VAS评分', key: 'vasIn0'},
             {name: '2min时有宫缩的VAS评分', key: 'vasIn2'},
             {name: '4min时有宫缩的VAS评分', key: 'vasIn4'},
