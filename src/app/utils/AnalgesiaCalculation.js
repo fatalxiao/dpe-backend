@@ -86,21 +86,52 @@ function getVasScore(analgesiaData, timePoint) {
 
 }
 
-function getVasScoreWithContraction(analgesiaData, timePoint) {
+function getVasScoreWithContraction(analgesiaData) {
 
     if (!analgesiaData || analgesiaData.length < 1) {
-        return '';
+        return;
     }
 
     analgesiaData.sort((a, b) => a.timePoint - b.timePoint);
 
-    const index = analgesiaData.findIndex(item => item && item.timePoint === timePoint);
+    // const index = analgesiaData.findIndex(item => item && item.timePoint === timePoint);
+    //
+    // if (index === -1 || !analgesiaData[index].hasContraction) {
+    //     return '';
+    // }
+    //
+    // return analgesiaData[index].vasScore;
 
-    if (index === -1 || !analgesiaData[index].hasContraction) {
-        return '';
+    const index = analgesiaData.findIndex(item =>
+        item && item.hasContraction && item.vasScore !== null && item.vasScore <= 1);
+
+    if (index === 0 || !analgesiaData[index] || analgesiaData[index].timePoint > 30) {
+        return;
     }
 
-    return analgesiaData[index].vasScore;
+    const result = {
+        [analgesiaData[index].timePoint]: true
+    };
+
+    let prevIndex = index - 1;
+    while (prevIndex >= 0) {
+        if (!analgesiaData[prevIndex] || analgesiaData[prevIndex].vasScore > 1) {
+            break;
+        }
+        result[analgesiaData[prevIndex].timePoint] = true;
+        prevIndex--;
+    }
+
+    let nextIndex = index + 1;
+    while (nextIndex < analgesiaData.length) {
+        if (!analgesiaData[nextIndex] || analgesiaData[nextIndex].vasScore > 1) {
+            break;
+        }
+        result[analgesiaData[nextIndex].timePoint] = true;
+        nextIndex--;
+    }
+
+    return result;
 
 }
 
