@@ -82,7 +82,9 @@ function getVasScore(analgesiaData, timePoint) {
         return '0';
     }
 
-    return analgesiaData[index].vasScore;
+    const result = analgesiaData[index].vasScore;
+
+    return result ? '' + result : '0';
 
 }
 
@@ -100,7 +102,7 @@ function getVasScoreWithContraction(analgesiaData, timePoint) {
         return '';
     }
 
-    return analgesiaData[index].vasScore;
+    return '' + analgesiaData[index].vasScore;
 
 }
 
