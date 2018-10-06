@@ -327,7 +327,7 @@ function isAdequatePainRelief(analgesiaData, timePoint) {
     }
 
     let nextIndex = index + 1;
-    while (nextIndex < analgesiaData.length) {
+    while (nextIndex < analgesiaData.length && analgesiaData[nextIndex].timePoint <= 30) {
 
         if (analgesiaData[nextIndex].hasContraction
             && analgesiaData[nextIndex].vasScore !== null && analgesiaData[nextIndex].vasScore <= 1) {
