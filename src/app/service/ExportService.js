@@ -350,18 +350,18 @@ async function getExportMeanVASWithContraction(data) {
 
                 const analgesiaData = AC.fullFillAnalgesiaData(item.analgesia);
 
-                result.vasWithContractionIn0 = AC.getVasScoreWithContraction(analgesiaData, 0);
-                result.vasWithContractionIn2 = AC.getVasScoreWithContraction(analgesiaData, 2);
-                result.vasWithContractionIn4 = AC.getVasScoreWithContraction(analgesiaData, 4);
-                result.vasWithContractionIn6 = AC.getVasScoreWithContraction(analgesiaData, 6);
-                result.vasWithContractionIn8 = AC.getVasScoreWithContraction(analgesiaData, 8);
-                result.vasWithContractionIn10 = AC.getVasScoreWithContraction(analgesiaData, 10);
-                result.vasWithContractionIn12 = AC.getVasScoreWithContraction(analgesiaData, 12);
-                result.vasWithContractionIn14 = AC.getVasScoreWithContraction(analgesiaData, 14);
-                result.vasWithContractionIn16 = AC.getVasScoreWithContraction(analgesiaData, 16);
-                result.vasWithContractionIn18 = AC.getVasScoreWithContraction(analgesiaData, 18);
-                result.vasWithContractionIn20 = AC.getVasScoreWithContraction(analgesiaData, 20);
-                result.vasWithContractionIn30 = AC.getVasScoreWithContraction(analgesiaData, 30);
+                result.vasIn0 = AC.getVasScoreWithContraction(analgesiaData, 0);
+                result.vasIn2 = AC.getVasScoreWithContraction(analgesiaData, 2);
+                result.vasIn4 = AC.getVasScoreWithContraction(analgesiaData, 4);
+                result.vasIn6 = AC.getVasScoreWithContraction(analgesiaData, 6);
+                result.vasIn8 = AC.getVasScoreWithContraction(analgesiaData, 8);
+                result.vasIn10 = AC.getVasScoreWithContraction(analgesiaData, 10);
+                result.vasIn12 = AC.getVasScoreWithContraction(analgesiaData, 12);
+                result.vasIn14 = AC.getVasScoreWithContraction(analgesiaData, 14);
+                result.vasIn16 = AC.getVasScoreWithContraction(analgesiaData, 16);
+                result.vasIn18 = AC.getVasScoreWithContraction(analgesiaData, 18);
+                result.vasIn20 = AC.getVasScoreWithContraction(analgesiaData, 20);
+                result.vasIn30 = AC.getVasScoreWithContraction(analgesiaData, 30);
 
             }
 
