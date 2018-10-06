@@ -322,6 +322,8 @@ function isAdequatePainRelief(analgesiaData, timePoint) {
             break;
         }
 
+        prevIndex--;
+
     }
 
     let nextIndex = index + 1;
@@ -335,6 +337,8 @@ function isAdequatePainRelief(analgesiaData, timePoint) {
         if (analgesiaData[nextIndex].vasScore > 1) {
             break;
         }
+
+        nextIndex++;
 
     }
 
