@@ -302,23 +302,40 @@ function isAdequatePainRelief(analgesiaData, timePoint) {
 
     const index = analgesiaData.findIndex(item => item && item.timePoint === timePoint);
 
-    if (index === -1) {
+    if (index === -1 || analgesiaData[index].vasScore === null || analgesiaData[index].vasScore > 1) {
         return false;
     }
 
-    if (analgesiaData[index].vasScore !== null && analgesiaData[index].vasScore <= 1
-        &&
-        (
-            analgesiaData[index].hasContraction
-            ||
-            (
-                analgesiaData[index + 1]
-                && analgesiaData[index + 1].hasContraction
-                && analgesiaData[index + 1].vasScore <= 1
-            )
-        )
-    ) {
+    if (analgesiaData[index].hasContraction) {
         return true;
+    }
+
+    let prevIndex = index - 1;
+    while (prevIndex >= 0) {
+
+        if (analgesiaData[prevIndex].hasContraction
+            && analgesiaData[prevIndex].vasScore !== null && analgesiaData[prevIndex].vasScore <= 1) {
+            return true;
+        }
+
+        if (analgesiaData[prevIndex].vasScore > 1) {
+            break;
+        }
+
+    }
+
+    let nextIndex = index + 1;
+    while (nextIndex < analgesiaData.length) {
+
+        if (analgesiaData[nextIndex].hasContraction
+            && analgesiaData[nextIndex].vasScore !== null && analgesiaData[nextIndex].vasScore <= 1) {
+            return true;
+        }
+
+        if (analgesiaData[nextIndex].vasScore > 1) {
+            break;
+        }
+
     }
 
     return false;
