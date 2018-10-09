@@ -8,7 +8,7 @@ CREATE TABLE analgesia_data
   COMMENT '时间点',
   has_contraction                    TINYINT(1) DEFAULT '0' NULL
   COMMENT '是否有宫缩',
-  vas_score                          INT                    NULL
+  vas_score                          FLOAT                  NULL
   COMMENT 'VAS评分',
   thoracic_sensory_block_left_value  INT                    NULL
   COMMENT '左侧最高阻滞平面',
