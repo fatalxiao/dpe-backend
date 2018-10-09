@@ -1,18 +1,18 @@
 const gulp = require('gulp'),
-    babel = require('gulp-babel'),
-    gulpSequence = require('gulp-sequence');
+    babel = require('gulp-babel');
 
 gulp.task('es', () =>
     gulp.src(['./src/**', '!./src/swagger/**'])
-    .pipe(babel({
-        plugins: ['transform-runtime']
-    }))
-    .pipe(gulp.dest('./dist'))
+        .pipe(babel({
+            presets: [['@babel/env', {modules: 'commonjs'}]],
+            plugins: ['@babel/plugin-transform-runtime']
+        }))
+        .pipe(gulp.dest('./dist'))
 );
 
 gulp.task('swagger', () =>
     gulp.src('./src/swagger/**')
-    .pipe(gulp.dest('./dist/swagger'))
+        .pipe(gulp.dest('./dist/swagger'))
 );
 
-gulp.task('package', gulpSequence('es', 'swagger'));
+gulp.task('package', gulp.series('es', 'swagger'));

@@ -71,7 +71,7 @@ function fullFillAnalgesiaData(analgesiaData) {
 function getVasScore(analgesiaData, timePoint) {
 
     if (!analgesiaData || analgesiaData.length < 1) {
-        return '0';
+        return '';
     }
 
     analgesiaData.sort((a, b) => a.timePoint - b.timePoint);
@@ -79,19 +79,18 @@ function getVasScore(analgesiaData, timePoint) {
     const index = analgesiaData.findIndex(item => item && item.timePoint === timePoint);
 
     if (index === -1) {
-        return '0';
+        return '';
     }
 
-    const result = analgesiaData[index].vasScore;
-
-    return result ? '' + result : '0';
+    const reuslt = analgesiaData[index].vasScore;
+    return reuslt === null ? '' : '' + reuslt;
 
 }
 
 function getVasScoreWithContraction(analgesiaData, timePoint) {
 
     if (!analgesiaData || analgesiaData.length < 1) {
-        return;
+        return '';
     }
 
     analgesiaData.sort((a, b) => a.timePoint - b.timePoint);
@@ -102,7 +101,8 @@ function getVasScoreWithContraction(analgesiaData, timePoint) {
         return '';
     }
 
-    return '' + analgesiaData[index].vasScore;
+    const reuslt = analgesiaData[index].vasScore;
+    return reuslt === null ? '' : '' + reuslt;
 
 }
 
