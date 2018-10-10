@@ -33,7 +33,7 @@ const sequelizeInstance = SequelizeGenerator(),
         },
         vasScore: {
             field: 'vas_score',
-            type: Sequelize.INTEGER,
+            type: Sequelize.FLOAT,
             set(value) {
                 this.setDataValue('vasScore', DataFormat.formatNumberField(value));
             }
