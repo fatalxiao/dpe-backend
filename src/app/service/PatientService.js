@@ -1,11 +1,5 @@
 import PatientDao from '../dao/PatientDao.js';
-import SensoryBlockDao from '../dao/SensoryBlockDao.js';
-
 import Response from '../utils/Response.js';
-import AC from '../utils/AnalgesiaCalculation.js';
-import OC from '../utils/ObservalCalculation.js';
-import Time from '../utils/Time.js';
-import DataFormat from '../utils/DataFormat.js';
 
 async function getPatients() {
     return Response.buildSuccess(await PatientDao.getPatients());
