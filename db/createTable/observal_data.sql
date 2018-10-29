@@ -35,7 +35,7 @@ create table observal_data
   comment '是否有硬膜外导管重置',
   has_prenatal_fever                         tinyint(1) default '0' null
   comment '是否有产前发热',
-  prenatal_fever_temperature                 int                    null
+  prenatal_fever_temperature                 float                  null
   comment '产前发热体温',
   has_vasoactive_agent                       tinyint(1) default '0' null
   comment '是否使用血管活性药物',
