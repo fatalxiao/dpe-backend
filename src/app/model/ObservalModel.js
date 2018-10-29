@@ -124,6 +124,13 @@ const sequelizeInstance = SequelizeGenerator(),
             field: 'has_prenatal_fever',
             type: Sequelize.BOOLEAN
         },
+        prenatalFeverTemperature: {
+            field: 'prenatal_fever_temperature',
+            type: Sequelize.INTEGER,
+            set(value) {
+                this.setDataValue('prenatalFeverTemperature', DataFormat.formatNumberField(value));
+            }
+        },
         hasVasoactiveAgent: {
             field: 'has_vasoactive_agent',
             type: Sequelize.BOOLEAN
