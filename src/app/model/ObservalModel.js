@@ -126,7 +126,7 @@ const sequelizeInstance = SequelizeGenerator(),
         },
         prenatalFeverTemperature: {
             field: 'prenatal_fever_temperature',
-            type: Sequelize.INTEGER,
+            type: Sequelize.FLOAT,
             set(value) {
                 this.setDataValue('prenatalFeverTemperature', DataFormat.formatNumberField(value));
             }
