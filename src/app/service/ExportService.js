@@ -79,7 +79,7 @@ async function getExportDPEData(data, sensoryBlocks) {
             {name: '局麻药消耗量', key: 'anestheticsConsumption'},
             {name: '第一产程时长', key: 'durationOfFirstStageOfLabor'},
             {name: '第二产程时长', key: 'durationOfSecondStageOfLabor'},
-            {name: '单位时间局麻药消耗', key: 'anestheticsConsumptionPerTime'},
+            {name: '每小时局麻药消耗', key: 'anestheticsConsumptionPerTime'},
             {name: '是否胎心下降', key: 'isFetalHeartRateDecreased'},
             {name: '是否转剖宫产', key: 'hasCaesareanSection'},
             {name: '剖宫产原因', key: 'caesareanSectionReason'},
@@ -215,7 +215,8 @@ async function getExportDPEData(data, sensoryBlocks) {
                 result.anestheticsConsumption = numHandler(anestheticsConsumption);
                 result.durationOfFirstStageOfLabor = numHandler(item.observal.durationOfFirstStageOfLabor);
                 result.durationOfSecondStageOfLabor = numHandler(item.observal.durationOfSecondStageOfLabor);
-                result.anestheticsConsumptionPerTime = anestheticsConsumption !== null && durationOfAnalgesia !== null ? (anestheticsConsumption / durationOfAnalgesia).toFixed(2) : null;
+                result.anestheticsConsumptionPerTime = anestheticsConsumption !== null && durationOfAnalgesia !== null ?
+                    (anestheticsConsumption / durationOfAnalgesia * 60).toFixed(2) : null;
                 result.hasCaesareanSection = boolHandler(item.observal.hasCaesareanSection);
                 result.hasInstrumental = boolHandler(item.observal.hasInstrumental);
                 result.hasLateralEpisiotomy = boolHandler(item.observal.hasLateralEpisiotomy);
