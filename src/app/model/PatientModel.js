@@ -109,6 +109,10 @@ const sequelizeInstance = SequelizeGenerator(),
             field: 'has_oxytocin_at_time_of_ea',
             type: Sequelize.BOOLEAN
         },
+        hasInduction: {
+            field: 'has_induction',
+            type: Sequelize.BOOLEAN
+        },
         status: {
             field: 'status',
             type: Sequelize.INTEGER
