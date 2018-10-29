@@ -20,12 +20,18 @@ function durationOfFirstManualBolusTime(observalData) {
 
 }
 
+/**
+ * 单位分钟
+ * @param observalData
+ * @returns {*}
+ */
 function durationOfAnalgesia(observalData) {
 
     if (!observalData || !observalData.initialTime || !observalData.birthTime) {
         return null;
     }
 
+    // 总镇痛时间+60分钟
     return '' + (~~(Time.duration(observalData.initialTime, observalData.birthTime) / 1000 / 60) + 60);
 
 }
