@@ -30,6 +30,7 @@ async function getExportDPEData(data, sensoryBlocks) {
             {name: '基础氧饱和度', key: 'pulseOxygenSaturation'},
             {name: '基础胎心率', key: 'fetalHeartRate'},
             {name: '镇痛前缩宫素使用', key: 'hasOxytocinAtTimeOfEA'},
+            {name: '是否引产', key: 'hasInduction'},
             {name: '20min内VAS≤1', key: 'isVasLessThan1In20'},
             {name: '30min内VAS≤1', key: 'isVasLessThan1In30'},
             {name: 'VAS≤1的时间', key: 'timePointOfVasLessThan1'},
@@ -136,6 +137,7 @@ async function getExportDPEData(data, sensoryBlocks) {
                 pulseOxygenSaturation: numHandler(item.pulseOxygenSaturation),
                 fetalHeartRate: numHandler(item.fetalHeartRate),
                 hasOxytocinAtTimeOfEA: boolHandler(item.hasOxytocinAtTimeOfEA),
+                hasInduction: boolHandler(item.hasInduction),
                 desc: item.description ? [item.description] : []
             };
 
