@@ -87,7 +87,8 @@ async function getExportDPEData(data, sensoryBlocks) {
             {name: '是否器械助产', key: 'hasInstrumental'},
             {name: '是否侧切', key: 'hasLateralEpisiotomy'},
             {name: '侧切时的VAS评分', key: 'lateralEpisiotomyVasScore'},
-            {name: '产前发热', key: 'hasPrenatalFever'},
+            {name: '是否产前发热', key: 'hasPrenatalFever'},
+            {name: '产前发热体温', key: 'prenatalFeverTemperature'},
             {name: '低血压的发生', key: 'hasHypotension'},
             {name: '血管活性药物使用', key: 'hasVasoactiveAgent'},
             {name: '恶心', key: 'hasNausea'},
@@ -224,6 +225,7 @@ async function getExportDPEData(data, sensoryBlocks) {
                 result.hasLateralEpisiotomy = boolHandler(item.observal.hasLateralEpisiotomy);
                 result.lateralEpisiotomyVasScore = numHandler(item.observal.lateralEpisiotomyVasScore);
                 result.hasPrenatalFever = boolHandler(item.observal.hasPrenatalFever);
+                result.prenatalFeverTemperature = numHandler(item.observal.prenatalFeverTemperature);
                 result.hasHypotension = boolHandler(item.observal.hasHypotension);
                 result.hasVasoactiveAgent = boolHandler(item.observal.hasVasoactiveAgent);
                 result.hasNausea = boolHandler(item.observal.hasNausea);
