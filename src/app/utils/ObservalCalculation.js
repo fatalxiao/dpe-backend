@@ -88,10 +88,37 @@ function ropivacaineConsumption(observalData) {
 
 }
 
+function sufentanilConsumption(observalData) {
+
+    if (!observalData) {
+        return null;
+    }
+
+    let result;
+
+    if (!isNaN(observalData.pumpConsumption)) {
+        if (!result) {
+            result = 0;
+        }
+        result += +observalData.pumpConsumption;
+    }
+
+    if (!isNaN(observalData.bolus)) {
+        if (!result) {
+            result = 0;
+        }
+        result += +observalData.bolus;
+    }
+
+    return result === undefined ? null : '' + result * .3;
+
+}
+
 export default {
     durationOfFirstPcaTime,
     durationOfFirstManualBolusTime,
     durationOfAnalgesia,
     anestheticsConsumption,
-    ropivacaineConsumption
+    ropivacaineConsumption,
+    sufentanilConsumption
 };
