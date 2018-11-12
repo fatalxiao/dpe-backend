@@ -58,7 +58,7 @@ function anestheticsConsumption(observalData) {
         result += +observalData.bolus;
     }
 
-    return result === undefined ? null : '' + result;
+    return result === undefined ? null : result;
 
 }
 
@@ -84,7 +84,7 @@ function ropivacaineConsumption(observalData) {
         result += +observalData.bolus * 1.25;
     }
 
-    return result === undefined ? null : '' + result;
+    return result === undefined ? null : result;
 
 }
 
@@ -110,7 +110,7 @@ function sufentanilConsumption(observalData) {
         result += +observalData.bolus;
     }
 
-    return result === undefined ? null : '' + result * .3;
+    return result === undefined ? null : result * .3;
 
 }
 
