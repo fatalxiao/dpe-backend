@@ -58,6 +58,8 @@ async function getExportDPEData(data, sensoryBlocks) {
             {name: '30min内左侧是否达到S2', key: 'isS2In30Left'},
             {name: '30min内右侧是否达到S2', key: 'isS2In30Right'},
             {name: '30min内是否双侧是否达到S2', key: 'isS2In30Both'},
+            {name: '2h时VAS评分', key: 'vasIn120'},
+            {name: '3.5h时VAS评分', key: 'vasIn210'},
             {name: '左侧最高头端阻滞平面', key: 'maxThoracicSensoryBlockLeft'},
             {name: '右侧最高头端阻滞平面', key: 'maxThoracicSensoryBlockRight'},
             {name: '左侧尾端最低阻滞平面', key: 'minSacralSensoryBlockLeft'},
@@ -189,6 +191,8 @@ async function getExportDPEData(data, sensoryBlocks) {
                 result.isS2In30Left = boolHandler(isS2In30Left);
                 result.isS2In30Right = boolHandler(isS2In30Right);
                 result.isS2In30Both = boolHandler(isS2In30Left && isS2In30Right);
+                result.vasIn120 = numHandler(AC.getVasScore(analgesiaData, 120));
+                result.vasIn210 = numHandler(AC.getVasScore(analgesiaData, 210));
                 result.maxThoracicSensoryBlockLeft = numHandler(AC.maxThoracicSensoryBlock(analgesiaData, AC.Position.LEFT));
                 result.maxThoracicSensoryBlockRight = numHandler(AC.maxThoracicSensoryBlock(analgesiaData, AC.Position.RIGHT));
                 result.minSacralSensoryBlockLeft = numHandler(AC.minSacralSensoryBlock(analgesiaData, AC.Position.LEFT));
