@@ -225,9 +225,9 @@ async function getExportDPEData(data, sensoryBlocks) {
                 result.isIVEpiduralCatheterInsertion = boolHandler(item.observal.isIVEpiduralCatheterInsertion);
                 result.isIntrathecalEpiduralCatheterInsertion = boolHandler(item.observal.isIntrathecalEpiduralCatheterInsertion);
                 result.durationOfAnalgesia = numHandler(durationOfAnalgesia);
-                result.anestheticsConsumption = numHandler(anestheticsConsumption);
-                result.ropivacaineConsumption = numHandler(ropivacaineConsumption);
-                result.sufentanilConsumption = numHandler(sufentanilConsumption);
+                result.anestheticsConsumption = numHandler(anestheticsConsumption !== null ? anestheticsConsumption.toFixed(2) : null);
+                result.ropivacaineConsumption = numHandler(ropivacaineConsumption !== null ? ropivacaineConsumption.toFixed(2) : null);
+                result.sufentanilConsumption = numHandler(sufentanilConsumption !== null ? sufentanilConsumption.toFixed(2) : null);
                 result.durationOfFirstStageOfLabor = numHandler(item.observal.durationOfFirstStageOfLabor);
                 result.durationOfSecondStageOfLabor = numHandler(item.observal.durationOfSecondStageOfLabor);
                 result.anestheticsConsumptionPerTime = anestheticsConsumption !== null && durationOfAnalgesia !== null ?
