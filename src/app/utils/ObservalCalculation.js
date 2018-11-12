@@ -58,7 +58,33 @@ function anestheticsConsumption(observalData) {
         result += +observalData.bolus;
     }
 
-    return '' + result;
+    return result === undefined ? null : '' + result;
+
+}
+
+function ropivacaineConsumption(observalData) {
+
+    if (!observalData) {
+        return null;
+    }
+
+    let result;
+
+    if (!isNaN(observalData.pumpConsumption)) {
+        if (!result) {
+            result = 0;
+        }
+        result += +observalData.pumpConsumption;
+    }
+
+    if (!isNaN(observalData.bolus)) {
+        if (!result) {
+            result = 0;
+        }
+        result += +observalData.bolus * 1.25;
+    }
+
+    return result === undefined ? null : '' + result;
 
 }
 
@@ -66,5 +92,6 @@ export default {
     durationOfFirstPcaTime,
     durationOfFirstManualBolusTime,
     durationOfAnalgesia,
-    anestheticsConsumption
+    anestheticsConsumption,
+    ropivacaineConsumption
 };

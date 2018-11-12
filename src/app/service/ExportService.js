@@ -78,9 +78,11 @@ async function getExportDPEData(data, sensoryBlocks) {
             {name: '蛛网膜下腔置管', key: 'isIntrathecalEpiduralCatheterInsertion'},
             {name: '镇痛时长', key: 'durationOfAnalgesia'},
             {name: '局麻药消耗量', key: 'anestheticsConsumption'},
+            {name: '罗哌卡因总消耗量', key: 'ropivacaineConsumption'},
             {name: '第一产程时长', key: 'durationOfFirstStageOfLabor'},
             {name: '第二产程时长', key: 'durationOfSecondStageOfLabor'},
-            {name: '每小时局麻药消耗', key: 'anestheticsConsumptionPerTime'},
+            {name: '每小时局麻药消耗量', key: 'anestheticsConsumptionPerTime'},
+            {name: '每小时罗哌卡因总消耗量', key: 'ropivacaineConsumptionPerTime'},
             {name: '是否胎心下降', key: 'isFetalHeartRateDecreased'},
             {name: '是否转剖宫产', key: 'hasCaesareanSection'},
             {name: '剖宫产原因', key: 'caesareanSectionReason'},
@@ -203,7 +205,8 @@ async function getExportDPEData(data, sensoryBlocks) {
                 const durationOfFirstPcaTime = OC.durationOfFirstPcaTime(item.observal),
                     durationOfFirstManualBolusTime = OC.durationOfFirstManualBolusTime(item.observal),
                     durationOfAnalgesia = OC.durationOfAnalgesia(item.observal),
-                    anestheticsConsumption = OC.anestheticsConsumption(item.observal);
+                    anestheticsConsumption = OC.anestheticsConsumption(item.observal),
+                    ropivacaineConsumption = OC.ropivacaineConsumption(item.observal);
 
                 result.pcaCount = numHandler(item.observal.pcaCount);
                 result.durationOfFirstPcaTime = numHandler(durationOfFirstPcaTime);
@@ -216,10 +219,13 @@ async function getExportDPEData(data, sensoryBlocks) {
                 result.isIntrathecalEpiduralCatheterInsertion = boolHandler(item.observal.isIntrathecalEpiduralCatheterInsertion);
                 result.durationOfAnalgesia = numHandler(durationOfAnalgesia);
                 result.anestheticsConsumption = numHandler(anestheticsConsumption);
+                result.ropivacaineConsumption = numHandler(ropivacaineConsumption);
                 result.durationOfFirstStageOfLabor = numHandler(item.observal.durationOfFirstStageOfLabor);
                 result.durationOfSecondStageOfLabor = numHandler(item.observal.durationOfSecondStageOfLabor);
                 result.anestheticsConsumptionPerTime = anestheticsConsumption !== null && durationOfAnalgesia !== null ?
                     (anestheticsConsumption / durationOfAnalgesia * 60).toFixed(1) : null;
+                result.ropivacaineConsumptionPerTime = ropivacaineConsumption !== null && durationOfAnalgesia !== null ?
+                    (ropivacaineConsumption / durationOfAnalgesia * 60).toFixed(1) : null;
                 result.hasCaesareanSection = boolHandler(item.observal.hasCaesareanSection);
                 result.hasInstrumental = boolHandler(item.observal.hasInstrumental);
                 result.hasLateralEpisiotomy = boolHandler(item.observal.hasLateralEpisiotomy);
