@@ -136,7 +136,7 @@ async function getExportDPEData(data, sensoryBlocks) {
                 weight: numHandler(item.weight),
                 bmi: item.weight && item.height ? (item.weight / ((item.height / 100) ** 2)).toFixed(2) : null,
                 gestationalDays: numHandler(item.gestationalDays),
-                initialVasScore: numHandler(item.initialVasScore),
+                initialVasScore: numHandler(item.initialVasScore * 10),
                 cervicalDilationAtTimeOfEA: numHandler(item.cervicalDilationAtTimeOfEA),
                 systolicBloodPressure: numHandler(item.systolicBloodPressure),
                 diastolicBloodPressure: numHandler(item.diastolicBloodPressure),
