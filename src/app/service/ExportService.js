@@ -250,7 +250,8 @@ async function getExportDPEData(data, sensoryBlocks) {
                 result.hasPostduralPunctureHeadache = boolHandler(item.observal.hasPostduralPunctureHeadache);
                 result.hasBackPain = boolHandler(item.observal.hasBackPain);
                 result.hasParesthesia = boolHandler(item.observal.hasParesthesia);
-                result.patientSatisfactionScore = numHandler(item.observal.patientSatisfactionScore);
+                result.patientSatisfactionScore = numHandler(item.observal.patientSatisfactionScore !== null ?
+                    item.observal.patientSatisfactionScore * 10 : '');
                 result.bloodLose = numHandler(item.observal.bloodLose);
                 result.foetalWeight = numHandler(item.observal.foetalWeight);
                 result.foetalHeight = numHandler(item.observal.foetalHeight);
