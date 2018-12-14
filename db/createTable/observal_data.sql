@@ -1,6 +1,7 @@
 create table observal_data
 (
-  id                                         int auto_increment,
+  id                                         int auto_increment
+    primary key,
   patient_id                                 varchar(10)            null
   comment '孕妇住院号',
   initial_time                               datetime               null
@@ -63,11 +64,11 @@ create table observal_data
   comment '是否有感觉异常',
   is_iv_epidural_catheter_insertion          tinyint(1) default '0' null
   comment '硬膜外导管是否入血管',
-  is_intrathecal_epidural_catheter_insertion tinyint(1) default '0' null
+  is_intrathecal_epidural_catheter_insertion tinyint(1)             null
   comment '是否蛛网膜下腔置管',
-  patient_satisfaction_score                 int                    null
+  patient_satisfaction_score                 float                  null
   comment '孕妇满意度',
-  has_accidental_dural_punture               tinyint(1)             null
+  has_accidental_dural_punture               tinyint(1) default '0' null
   comment '是否有意外硬脊膜穿破',
   lateral_episiotomy_vas_score               int                    null
   comment '侧切时VAS评分',
@@ -105,9 +106,5 @@ create table observal_data
   constraint observal_data_id_uindex
   unique (id)
 )
-  comment '观察数据'
-  charset = utf8;
-
-alter table observal_data
-  add primary key (id);
+  comment '观察数据';
 
