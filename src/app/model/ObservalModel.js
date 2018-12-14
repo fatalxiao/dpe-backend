@@ -192,7 +192,7 @@ const sequelizeInstance = SequelizeGenerator(),
         },
         patientSatisfactionScore: {
             field: 'patient_satisfaction_score',
-            type: Sequelize.INTEGER,
+            type: Sequelize.FLOAT,
             set(value) {
                 this.setDataValue('patientSatisfactionScore', DataFormat.formatNumberField(value));
             }
