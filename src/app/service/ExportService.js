@@ -407,8 +407,8 @@ async function getExportLaterMeanVAS(data) {
             {name: '住院号', key: 'id'},
             {name: '30min时VAS评分', key: 'vasIn30'},
             {name: '2h时VAS评分', key: 'vasIn120'},
-            {name: '3.5h时VAS评分', key: 'vasIn180'},
-            {name: '5h时VAS评分', key: 'vasIn210'}
+            {name: '3.5h时VAS评分', key: 'vasIn210'},
+            {name: '5h时VAS评分', key: 'vasIn300'}
         ],
 
         excelData = data.filter(item => item.status).map(item => {
@@ -425,8 +425,8 @@ async function getExportLaterMeanVAS(data) {
 
                 result.vasIn30 = numHandler(AC.getVasScore(analgesiaData, 30));
                 result.vasIn120 = numHandler(AC.getVasScore(analgesiaData, 120));
-                result.vasIn180 = numHandler(AC.getVasScore(analgesiaData, 180));
                 result.vasIn210 = numHandler(AC.getVasScore(analgesiaData, 210));
+                result.vasIn300 = numHandler(AC.getVasScore(analgesiaData, 300));
 
             }
 
