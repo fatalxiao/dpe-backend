@@ -397,6 +397,49 @@ async function getExportMeanVASWithContraction(data) {
 
 };
 
+async function getExportLaterMeanVAS(data) {
+
+    data = data || await PatientDao.getFullPatients();
+
+    const header = [
+            {name: '组别', key: 'groupName'},
+            {name: '姓名', key: 'name'},
+            {name: '住院号', key: 'id'},
+            {name: '30min时VAS评分', key: 'vasIn30'},
+            {name: '2h时VAS评分', key: 'vasIn120'},
+            {name: '3.5h时VAS评分', key: 'vasIn180'},
+            {name: '5h时VAS评分', key: 'vasIn210'}
+        ],
+
+        excelData = data.filter(item => item.status).map(item => {
+
+            const result = {
+                groupName: item.group ? item.group.name : '',
+                name: item.name,
+                id: item.id
+            };
+
+            if (item.analgesia) {
+
+                const analgesiaData = AC.fullFillAnalgesiaData(item.analgesia);
+
+                result.vasIn30 = numHandler(AC.getVasScore(analgesiaData, 30));
+                result.vasIn120 = numHandler(AC.getVasScore(analgesiaData, 120));
+                result.vasIn180 = numHandler(AC.getVasScore(analgesiaData, 180));
+                result.vasIn210 = numHandler(AC.getVasScore(analgesiaData, 210));
+
+            }
+
+            return header.map(item => result[item.key] || null);
+
+        });
+
+    excelData.unshift(header.map(item => item.name));
+
+    return excelData;
+
+};
+
 async function getExportData(data, sensoryBlocks) {
 
     data = data || await PatientDao.getFullPatients();
@@ -405,7 +448,8 @@ async function getExportData(data, sensoryBlocks) {
     return {
         dpeData: await getExportDPEData(data, sensoryBlocks),
         meanVASData: await getExportMeanVAS(data),
-        meanVASWithContractionData: await getExportMeanVASWithContraction(data)
+        meanVASWithContractionData: await getExportMeanVASWithContraction(data),
+        laterMeanVASData: await getExportLaterMeanVAS(data)
     };
 
 };
